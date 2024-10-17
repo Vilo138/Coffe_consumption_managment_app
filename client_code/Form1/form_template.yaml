@@ -1,5 +1,10 @@
 components:
-- components: []
+- components:
+  - event_bindings: {click: button_1_click}
+    layout_properties: {grid_position: 'KGGMUQ,SMHNMQ'}
+    name: button_1
+    properties: {text: meno1}
+    type: Button
   layout_properties: {slot: default}
   name: content_panel
   properties: {}

@@ -1,5 +1,3 @@
-# server_module.py
-
 import anvil.server
 import anvil.tables as tables
 from anvil.tables import app_tables
@@ -24,11 +22,10 @@ import anvil.server
 
 class Form1(Form1Template):
     def __init__(self, **properties):
-        # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        # Any code you write here will run before the form opens.
-        self.users = anvil.server.call('get_users')  # Zavolanie serverovej funkcie
+       
+        self.users = anvil.server.call('get_users')  
         self.buttons = []
         self.create_buttons()
 
@@ -43,10 +40,13 @@ class Form1(Form1Template):
     def button_click(self, **event_args):
         button = event_args['sender']
         user = button.user
-        updated_user = anvil.server.call('update_user_count', user.get_id())  # Zavolanie serverovej funkcie
+        updated_user = anvil.server.call('update_user_count', user.get_id())  
         if updated_user:
             button.text = f"{updated_user['name']}: {updated_user['count']}"
 
     def link_2_click(self, **event_args):
-        """This method is called when the link is clicked"""
         anvil.users.login_with_form()
+
+    def button_1_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass
