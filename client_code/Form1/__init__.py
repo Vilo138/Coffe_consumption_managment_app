@@ -1,6 +1,10 @@
 import anvil.server
 import anvil.tables as tables
 from anvil.tables import app_tables
+from ._anvil_designer import Form1Template
+from anvil import *
+import anvil.users
+import anvil.server
 
 @anvil.server.callable
 def get_users():
@@ -15,10 +19,7 @@ def update_user_count(user_id):
         return user
     return None
 
-from ._anvil_designer import Form1Template
-from anvil import *
-import anvil.users
-import anvil.server
+
 
 class Form1(Form1Template):
     def __init__(self, **properties):
