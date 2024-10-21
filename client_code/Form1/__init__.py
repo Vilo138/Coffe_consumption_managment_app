@@ -4,6 +4,9 @@ import anvil.server
 import anvil.tables as tables
 from anvil.tables import app_tables
 
+
+
+
 class Form1(Form1Template):  # Trieda Form1 dedí z triedy Form1Template
     def __init__(self, **properties):
         # Toto nastaví komponenty na formulári
@@ -32,3 +35,9 @@ class Form1(Form1Template):  # Trieda Form1 dedí z triedy Form1Template
             print("Áno")
         else:
             open_form('Form1')  # Otvorí domovskú obrazovku (Form1)
+
+# server_mail.py (Server Module)
+
+
+
+# Mailtrap credentials
