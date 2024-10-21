@@ -1,5 +1,20 @@
 allow_embedding: false
 db_schema:
+  table_2:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: id
+      type: number
+    - admin_ui: {order: 1, width: 200}
+      name: user_id
+      target: users
+      type: link_single
+    - admin_ui: {order: 2, width: 200}
+      name: cas_vyberu
+      type: datetime
+    server: full
+    title: Table 2
   users:
     client: none
     columns:
@@ -27,6 +42,9 @@ db_schema:
     - admin_ui: {width: 200}
       name: email_confirmation_key
       type: string
+    - admin_ui: {order: 8, width: 200}
+      name: id
+      type: number
     server: full
     title: Users
 name: Sign In app
