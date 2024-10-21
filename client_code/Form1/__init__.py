@@ -6,6 +6,14 @@ from anvil.tables import app_tables
 
 
 
+from anvil.google.drive import app_files
+
+import anvil.tables.query as q
+
+import anvil.users
+
+
+
 
 class Form1(Form1Template):  # Trieda Form1 dedí z triedy Form1Template
     def __init__(self, **properties):
