@@ -36,8 +36,7 @@ class Form1(Form1Template):  # Trieda Form1 dedí z triedy Form1Template
         else:
             open_form('Form1')  # Otvorí domovskú obrazovku (Form1)
 
-# server_mail.py (Server Module)
+    def link_2_click(self, **event_args):
+      """This method is called when the link is clicked"""
+      pass
 
-
-
-# Mailtrap credentials
