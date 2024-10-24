@@ -47,4 +47,5 @@ class Form1(Form1Template):  # Trieda Form1 dedí z triedy Form1Template
     def link_2_click(self, **event_args):
       """This method is called when the link is clicked"""
       anvil.users.login_with_form()
-
+##for cyklus
+## meno z databzy
