@@ -1,6 +1,6 @@
 allow_embedding: false
 db_schema:
-  table_2:
+  pocet_kav:
     client: none
     columns:
     - admin_ui: {order: 0, width: 200}

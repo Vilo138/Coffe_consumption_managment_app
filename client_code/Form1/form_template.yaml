@@ -10,11 +10,6 @@ components:
     name: button_2
     properties: {text: Meno2}
     type: Button
-  - event_bindings: {click: button_3_click}
-    layout_properties: {grid_position: 'NWOFPQ,MRZHKY'}
-    name: button_3
-    properties: {text: meno3}
-    type: Button
   layout_properties: {slot: default}
   name: content_panel
   properties: {}

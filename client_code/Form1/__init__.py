@@ -1,47 +1,49 @@
 from ._anvil_designer import Form1Template
 from anvil import *
 import anvil.server
-import anvil.tables as tables
-from anvil.tables import app_tables
-from datetime import datetime
-from anvil.google.drive import app_files
-import anvil.tables.query as q
 import anvil.users
+from datetime import datetime
 
-
-
-
-class Form1(Form1Template):  # Trieda Form1 dedí z triedy Form1Template
+class Form1(Form1Template):
     def __init__(self, **properties):
         # Toto nastaví komponenty na formulári
         self.init_components(**properties)
+        
+        # Načítanie používateľov zo servera a dynamické pridanie tlačidiel
+        self.nacitaj_pouzivatelov()
 
-    def button_1_click(self, **event_args):
-        """Túto metódu zavolá systém pri kliknutí na tlačidlo 1"""
+    def nacitaj_pouzivatelov(self):
+        """Načíta používateľov z tabuľky Users a vytvorí tlačidlá"""
+        users = anvil.server.call('get_users')
+        
+        for user in users:
+            # Priamy prístup k atribútom user objektu
+            email = user['email']
+            user_id = user['id']
+            
+            if email:
+                # Dynamicky pridávame tlačidlo pre každého používateľa
+                button = Button(text=email)
+                button.tag.user_id = user_id  # Uložíme user_id do tagu tlačidla
+                button.set_event_handler('click', self.zaznam_kavy)
+                
+                # Pridanie tlačidla do flow_panelu (uisti sa, že flow_panel_1 existuje)
+                if hasattr(self, 'flow_panel_1'):
+                    self.flow_panel_1.add_component(button)
+                else:
+                    alert("Flow panel 'flow_panel_1' neexistuje!")
+
+    def zaznam_kavy(self, **event_args):
+        """Pri kliknutí na tlačidlo zaznamená výber kávy do tabuľky"""
+        user_id = event_args['sender'].tag.user_id  # Získame user_id z tagu tlačidla
+        
+        # Zobrazenie dialógového okna s otázkou
         response = alert("Si si istý, že si si dal kávu?", buttons=[("Áno", True), ("Nie", False)])
         if response:
-            print("Áno")
-        else:
-            open_form('Form1')  # Otvorí domovskú obrazovku (Form1)
-
-    def button_2_click(self, **event_args):
-        """Túto metódu zavolá systém pri kliknutí na tlačidlo 2"""
-        response = alert("Si si istý, že si si dal kávu?", buttons=[("Áno", True), ("Nie", False)])
-        if response:
-            print("Áno")
-        else:
-            open_form('Form1')  # Otvorí domovskú obrazovku (Form1)
-
-    def button_3_click(self, **event_args):
-        """Túto metódu zavolá systém pri kliknutí na tlačidlo 3"""
-        response = alert("Si si istý, že si si dal kávu?", buttons=[("Áno", True), ("Nie", False)])
-        if response:
-            print("Áno")
-        else:
-            open_form('Form1')  # Otvorí domovskú obrazovku (Form1)
+            # Uloženie záznamu do tabuľky pomocou serverovej funkcie
+            anvil.server.call('add_coffee_record', user_id)
+            alert(f"Zaznamenaná káva pre používateľa s ID: {user_id}")
 
     def link_2_click(self, **event_args):
-      """This method is called when the link is clicked"""
-      anvil.users.login_with_form()
-##for cyklus
-## meno z databzy
+        """Pri kliknutí na link sa používateľ prihlási"""
+        anvil.users.login_with_form()
