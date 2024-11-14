@@ -15,8 +15,12 @@ class Form1(Form1Template):
     def nacitaj_pouzivatelov(self):
         """Načíta používateľov z tabuľky Users a vytvorí tlačidlá"""
         users = anvil.server.call('get_users')
-        
+        #print(users)
         for user in users:
+
+          
+            print(user['email'])
+            #print(email[0])
             # Priamy prístup k atribútom user objektu
             email = user['email']
             user_id = user['id']
@@ -47,3 +51,5 @@ class Form1(Form1Template):
     def link_2_click(self, **event_args):
         """Pri kliknutí na link sa používateľ prihlási"""
         anvil.users.login_with_form()
+
+#print(users)
