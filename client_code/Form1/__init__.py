@@ -3,6 +3,7 @@ from anvil import *
 import anvil.server
 import anvil.users
 from datetime import datetime
+from anvil.tables import app_tables
 
 class Form1(Form1Template):
     def __init__(self, **properties):
