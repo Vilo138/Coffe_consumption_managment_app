@@ -9,34 +9,25 @@ class Form1(Form1Template):
     def __init__(self, **properties):
         # Toto nastaví komponenty na formulári
         self.init_components(**properties)
-        
-        # Načítanie používateľov zo servera a dynamické pridanie tlačidiel
-        self.nacitaj_pouzivatelov()
 
-    def nacitaj_pouzivatelov(self):
+
+
+       # Načítanie emailov zo servera a ich vypísanie
+        self.get_users()
+
+    def get_users(self):
         """Načíta používateľov z tabuľky Users a vytvorí tlačidlá"""
         users = anvil.server.call('get_users')
-        #print(users)
+        
         for user in users:
+            # Dynamicky pridávame tlačidlo pre každého používateľa
+            button = Button(text=user['email'])
+            button.tag.user_id = user['id']  # Uložíme user_id do tagu tlačidla
+            button.set_event_handler('click', self.zaznam_kavy)
+            self.flow_panel_1.add_component(button)
 
-          
-            print(user['email'])
-            #print(email[0])
-            # Priamy prístup k atribútom user objektu
-            email = user['email']
-            user_id = user['id']
+            # Pridanie tlačidla do flow_panelu (uisti sa, že flow_panel_1 existuje)
             
-            if email:
-                # Dynamicky pridávame tlačidlo pre každého používateľa
-                button = Button(text=email)
-                button.tag.user_id = user_id  # Uložíme user_id do tagu tlačidla
-                button.set_event_handler('click', self.zaznam_kavy)
-                
-                # Pridanie tlačidla do flow_panelu (uisti sa, že flow_panel_1 existuje)
-                if hasattr(self, 'flow_panel_1'):
-                    self.flow_panel_1.add_component(button)
-                else:
-                    alert("Flow panel 'flow_panel_1' neexistuje!")
 
     def zaznam_kavy(self, **event_args):
         """Pri kliknutí na tlačidlo zaznamená výber kávy do tabuľky"""

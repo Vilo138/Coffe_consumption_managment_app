@@ -5,8 +5,8 @@ from datetime import datetime
 
 @anvil.server.callable
 def get_users():
-    # Načíta používateľov z tabuľky Users a vráti zoznam používateľov
-    return [(user['id'], user['email']) for user in app_tables.users.search()]
+    # Načíta používateľov z tabuľky Users a vráti zoznam emailov
+    return [{'id': user.get_id(), 'email': user['email']} for user in app_tables.users.search()]
 
 @anvil.server.callable
 def add_coffee_record(user_id):
