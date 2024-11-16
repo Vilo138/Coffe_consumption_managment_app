@@ -26,7 +26,7 @@ class Form1(Form1Template):
             button.set_event_handler('click', self.zaznam_kavy)
             self.flow_panel_1.add_component(button)
 
-            # Pridanie tlačidla do flow_panelu (uisti sa, že flow_panel_1 existuje)
+            
             
 
     def zaznam_kavy(self, **event_args):
