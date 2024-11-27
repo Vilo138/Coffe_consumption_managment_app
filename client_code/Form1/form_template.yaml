@@ -9,9 +9,9 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
-  - event_bindings: {click: sign_in}
+  - event_bindings: {click: sign_in_button}
     layout_properties: {}
-    name: link_2
+    name: sign_in
     properties: {icon: 'fa:sign-in', text: Sign In}
     type: Link
   layout_properties: {slot: nav-right}

@@ -47,9 +47,10 @@ class Form1(Form1Template):
             anvil.server.call('add_coffee_record', user_id)
             alert(f"Zaznamenaná káva pre používateľa s ID: {user_id}")
 
-    def sign_in(self, **event_args):
+    def sign_in_button(self, **event_args):
         """Pri kliknutí na link sa používateľ prihlási"""
         anvil.users.login_with_form()
         self.change_sign_in_text()
 
 #print(users)
+
