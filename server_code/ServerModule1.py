@@ -9,9 +9,9 @@ def get_users():
     return [{'id': user.get_id(), 'email': user['email']} for user in app_tables.users.search()]
 
 @anvil.server.callable
-def add_coffee_record(user_row):
+def add_coffee_record(user_id):
   
-    user_row = app_tables.users.get_by_id(user_row)
+    user_id = app_tables.users.get_by_id(user_id)
 
     max_id_row = list(app_tables.pocet_kav.search(tables.order_by("id", ascending=False)))[:1]
     if max_id_row:
@@ -25,7 +25,7 @@ def add_coffee_record(user_row):
     # Pridá záznam o káve do tabuľky pocet_kav
     app_tables.pocet_kav.add_row(
         id=new_id,
-        user_id=user_row,
+        user_id=user_id,
         cas_vyberu=datetime.now()
     )
 
