@@ -22,7 +22,7 @@ class Form1(Form1Template):
         for user in users:
             # Dynamicky pridávame tlačidlo pre každého používateľa
             button = Button(text=user['email'])
-            button.tag.user_id = user['id']  # Uložíme user_id do tagu tlačidla
+            button.tag.user_row = user  # Uložíme user_id do tagu tlačidla
             button.set_event_handler('click', self.zaznam_kavy)
             self.flow_panel_1.add_component(button)
 
@@ -31,14 +31,15 @@ class Form1(Form1Template):
 
     def zaznam_kavy(self, **event_args):
         """Pri kliknutí na tlačidlo zaznamená výber kávy do tabuľky"""
-        user_id = event_args['sender'].tag.user_id  # Získame user_id z tagu tlačidla
+        user_row = event_args['sender'].tag.user_row  # Získame user_id z tagu tlačidla
+        print(f"User ID: {user_row}")
         
         # Zobrazenie dialógového okna s otázkou
         response = alert("Si si istý, že si si dal kávu?", buttons=[("Áno", True), ("Nie", False)])
         if response:
             # Uloženie záznamu do tabuľky pomocou serverovej funkcie
-            anvil.server.call('add_coffee_record', user_id)
-            alert(f"Zaznamenaná káva pre používateľa s ID: {user_id}")
+            anvil.server.call('add_coffee_record', user_row)
+            alert(f"Zaznamenaná káva pre používateľa s ID: {user_row}")
 
     def link_2_click(self, **event_args):
         """Pri kliknutí na link sa používateľ prihlási"""
