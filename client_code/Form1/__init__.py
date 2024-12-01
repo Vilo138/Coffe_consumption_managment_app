@@ -10,30 +10,31 @@ class Form1(Form1Template):
         # Toto nastaví komponenty na formulári
         self.init_components(**properties)
 
+        # Zmena textu na prihlasovacom tlačidle
+        self.update_sign_in_text()
 
-        self.change_sign_in_text()
-       # Načítanie emailov zo servera a ich vypísanie
+        # Načítanie emailov zo servera a ich vypísanie
         self.get_users()
-    def get_users(self):
-      user = anvil.users.get_user()
-      if user:
-          email = user["email"]
-          self.sign_in.text = email
-      else:
-          self.sign_in.text = "Sign In"
+
+    def update_sign_in_text(self):
+        """Aktualizuje text prihlasovacieho tlačidla"""
+        user = anvil.users.get_user()
+        if user:
+            email = user["email"]
+            self.sign_in.text = email
+        else:
+            self.sign_in.text = "Sign In"
+
     def get_users(self):
         """Načíta používateľov z tabuľky Users a vytvorí tlačidlá"""
         users = anvil.server.call('get_users')
-        
+
         for user in users:
             # Dynamicky pridávame tlačidlo pre každého používateľa
             button = Button(text=user['email'])
             button.tag.user_id = user['id']  # Uložíme user_id do tagu tlačidla
             button.set_event_handler('click', self.zaznam_kavy)
             self.flow_panel_1.add_component(button)
-
-            
-            
 
     def zaznam_kavy(self, **event_args):
         """Pri kliknutí na tlačidlo zaznamená výber kávy do tabuľky"""
@@ -50,7 +51,4 @@ class Form1(Form1Template):
     def sign_in_button(self, **event_args):
         """Pri kliknutí na link sa používateľ prihlási"""
         anvil.users.login_with_form()
-        self.change_sign_in_text()
-
-#print(users)
-
+        self.update_sign_in_text()

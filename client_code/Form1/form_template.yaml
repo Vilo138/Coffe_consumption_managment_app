@@ -11,7 +11,7 @@ components:
 - components:
   - event_bindings: {click: sign_in_button}
     layout_properties: {}
-    name: change_sign_in_text
+    name: sign_in
     properties: {icon: 'fa:sign-in', text: Sign In}
     type: Link
   layout_properties: {slot: nav-right}
