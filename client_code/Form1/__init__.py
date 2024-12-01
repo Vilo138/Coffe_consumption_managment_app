@@ -14,7 +14,7 @@ class Form1(Form1Template):
         self.change_sign_in_text()
        # Načítanie emailov zo servera a ich vypísanie
         self.get_users()
-    def change_sign_in_text(self):
+    def get_users(self):
       user = anvil.users.get_user()
       if user:
           email = user["email"]
