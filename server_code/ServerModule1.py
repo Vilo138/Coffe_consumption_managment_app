@@ -13,7 +13,7 @@ def add_coffee_record(user_id):
   
     user_id = app_tables.users.get_by_id(user_id)
 
-    max_id_row = list(app_tables.pocet_kav.search(tables.order_by("id", ascending=False)))[:1]
+    max_id_row = list(app_tables.coffee_logs.search(tables.order_by("id", ascending=False)))[:1]
     if max_id_row:
         max_id = max_id_row[0]['id']
     else:
@@ -23,9 +23,9 @@ def add_coffee_record(user_id):
     new_id = (max_id or 0) + 1
   
     # Pridá záznam o káve do tabuľky pocet_kav
-    app_tables.pocet_kav.add_row(
+    app_tables.coffee_logs.add_row(
         id=new_id,
         user_id=user_id,
-        cas_vyberu=datetime.now()
+        time_log=datetime.now()
     )
 

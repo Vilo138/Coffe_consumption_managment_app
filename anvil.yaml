@@ -1,6 +1,6 @@
 allow_embedding: false
 db_schema:
-  pocet_kav:
+  coffee_logs:
     client: none
     columns:
     - admin_ui: {width: 200}
@@ -10,8 +10,8 @@ db_schema:
       name: user_id
       target: users
       type: link_single
-    - admin_ui: {width: 200}
-      name: cas_vyberu
+    - admin_ui: {order: 2, width: 200}
+      name: time_log
       type: datetime
     server: full
     title: Table 2
