@@ -63,7 +63,7 @@ def generate_pdf(data):
           {''.join(
             f"<tr><td>{row['id']}</td><td>{row['user_id']}</td><td>{row['time_log']}</td></tr>"
             for row in data
-          )}
+          ) if data else "<tr><td colspan='3'>No data available</td></tr>"}
         </table>
       </body>
     </html>
@@ -77,9 +77,9 @@ def get_filtered_data(start_date=None, end_date=None):
     rows = app_tables.coffee_logs.search()
     # Filtrovanie na základe rozsahu dátumu
     if start_date and end_date:
-        rows = [row for row in rows if start_date <= row['date'] <= end_date]
+        rows = [row for row in rows if start_date <= row['time_log'] <= end_date]
     return [
-        {"id": row['id'], "date": row['date'], "description": row['description']}
+        {"id": row['id'], "user_id": row['user_id'], "time_log": row['time_log']}
         for row in rows
     ]
 
