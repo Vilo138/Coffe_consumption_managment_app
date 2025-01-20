@@ -67,6 +67,10 @@ class Form1(Form1Template):
         # Stiahnutie PDF
         anvil.media.download(pdf)
 
+    def date_picker_1_change(self, **event_args):
+      """This method is called when the selected date changes"""
+      pass
+
     
 
 

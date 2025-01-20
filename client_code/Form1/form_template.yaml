@@ -9,7 +9,13 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
-  - event_bindings: {click: generate_pdf_button_click}
+  - components:
+    - event_bindings: {change: date_picker_1_change}
+      layout_properties: {grid_position: 'HKANKG,RXPRMI'}
+      name: date_picker_1
+      properties: {}
+      type: DatePicker
+    event_bindings: {click: generate_pdf_button_click}
     layout_properties: {}
     name: button_pdf
     properties: {bold: true, icon: 'fa:file-pdf-o', text: PDF}
