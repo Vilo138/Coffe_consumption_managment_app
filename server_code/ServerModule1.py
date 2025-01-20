@@ -70,14 +70,14 @@ def generate_pdf(data):
     """
     # Generovanie PDF
     pdf = HTML(string=html_template).write_pdf()
-    return Media("application/pdf", pdf, name="report.pdf")
+    return anvil.BlobMedia("application/pdf", pdf, name="report.pdf")
 
 @anvil.server.callable
 def get_filtered_data(start_date=None, end_date=None):
     rows = app_tables.coffee_logs.search()
     # Filtrovanie na základe rozsahu dátumu
     if start_date and end_date:
-        rows = [row for row in rows if start_date <= row['time_log'] <= end_date]
+        rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
     return [
         {"id": row['id'], "user_id": row['user_id'], "time_log": row['time_log']}
         for row in rows
