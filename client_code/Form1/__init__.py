@@ -4,6 +4,7 @@ import anvil.server
 import anvil.users
 from datetime import datetime
 from anvil.tables import app_tables
+from DatePickerDialog import DatePickerDialog
 
 class Form1(Form1Template):
     def __init__(self, **properties):
@@ -56,20 +57,30 @@ class Form1(Form1Template):
         self.update_sign_in_text()
 
 # funkcia pre button generate pdf
-    def generate_pdf_button_click(self, **event_args):
+#    def generate_pdf_button_click(self, **event_args):
         # Nastavenie filtra (scope)
-        start_date = self.start_date_picker.date
-        end_date = self.end_date_picker.date
+#        start_date = self.start_date_picker.date
+#        end_date = self.end_date_picker.date
         # Načítanie filtrovaných dát zo servera
-        data = anvil.server.call('get_filtered_data', start_date, end_date)
+#        data = anvil.server.call('get_filtered_data', start_date, end_date)
         # Generovanie PDF zo získaných dát
-        pdf = anvil.server.call('generate_pdf', data)
+#       pdf = anvil.server.call('generate_pdf', data)
         # Stiahnutie PDF
-        anvil.media.download(pdf)
+#        anvil.media.download(pdf)
 
-    def date_picker_1_change(self, **event_args):
-      """This method is called when the selected date changes"""
-      pass
+    def generate_pdf_button_click(self, **event_args):
+        # Zobrazenie modálneho dialógu na výber dátumov
+        dates = DatePickerDialog().show()
+        
+        if dates:
+            start_date, end_date = dates
+            if start_date and end_date:
+                # Volanie serverovej funkcie na generovanie PDF
+                data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date)
+                pdf = anvil.server.call("generate_pdf", data=data)
+                anvil.media.download(pdf)
+            else:
+                alert("Please select valid start and end dates.")
 
     
 

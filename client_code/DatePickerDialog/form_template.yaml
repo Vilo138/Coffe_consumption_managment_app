@@ -1,0 +1,21 @@
+components:
+- layout_properties: {grid_position: 'KSWHBK,SLCHYB'}
+  name: start_date_picker
+  properties: {}
+  type: DatePicker
+- layout_properties: {grid_position: 'KSWHBK,QGZWWL'}
+  name: end_date_picker
+  properties: {}
+  type: DatePicker
+- event_bindings: {click: button_ok_click}
+  layout_properties: {grid_position: 'YXJZNW,ALFAPX'}
+  name: button_ok
+  properties: {text: Confirm}
+  type: Button
+- event_bindings: {click: button_cancel_click}
+  layout_properties: {grid_position: 'YXJZNW,LCWSWT'}
+  name: button_cancel
+  properties: {text: Cancel}
+  type: Button
+container: {type: ColumnPanel}
+is_package: true
