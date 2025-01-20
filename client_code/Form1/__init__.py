@@ -51,6 +51,22 @@ class Form1(Form1Template):
             alert(f"Coffee log recorded for user: {user_email}")
 
     def sign_in_button(self, **event_args):
-        """Pri kliknutí na link sa používateľ prihlási"""
+        """Pri kliknutí na tlačidlo sa používateľ prihlási"""
         anvil.users.login_with_form()
         self.update_sign_in_text()
+
+# funkcia pre button generate pdf
+    def generate_pdf_button_click(self, **event_args):
+        # Nastavenie filtra (scope)
+        start_date = self.start_date_picker.date
+        end_date = self.end_date_picker.date
+        # Načítanie filtrovaných dát zo servera
+        data = anvil.server.call('get_filtered_data', start_date, end_date)
+        # Generovanie PDF zo získaných dát
+        pdf = anvil.server.call('generate_pdf', data)
+        # Stiahnutie PDF
+        anvil.media.download(pdf)
+
+    
+
+

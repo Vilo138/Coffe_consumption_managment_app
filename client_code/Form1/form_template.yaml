@@ -9,10 +9,15 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
+  - event_bindings: {click: generate_pdf_button_click}
+    layout_properties: {}
+    name: button_pdf
+    properties: {bold: true, icon: 'fa:file-pdf-o', text: PDF}
+    type: Link
   - event_bindings: {click: sign_in_button}
     layout_properties: {}
     name: sign_in
-    properties: {icon: 'fa:sign-in', text: Sign In}
+    properties: {bold: true, icon: 'fa:sign-in', text: Sign In}
     type: Link
   layout_properties: {slot: nav-right}
   name: navbar_links
@@ -20,7 +25,7 @@ components:
   type: FlowPanel
 - layout_properties: {slot: title}
   name: headline_1
-  properties: {role: headline, text: Web application for interactive coffee consumption management}
+  properties: {bold: true, role: headline, text: Web application for interactive coffee consumption management}
   type: Label
 container:
   properties: {html: '@theme:standard-page.html'}
