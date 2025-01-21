@@ -51,6 +51,9 @@ dependencies:
 - dep_id: dep_jwb2tfibhz6wz
   resolution_hints: {app_id: Q5JMROMRPWX6X7JN, name: Clone of Tutorial, package_name: Tutorial}
   version: {branch: master}
+- dep_id: dep_pcpcrubwaz0d
+  resolution_hints: {app_id: PVVNSYZP6PUQSLX4, name: Clone of Custom sign-up flow, package_name: custom_signup}
+  version: {branch: master}
 name: Sign In app
 package_name: Sign_In_app
 runtime_options:
