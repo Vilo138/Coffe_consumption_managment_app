@@ -57,7 +57,7 @@ def generate_pdf(data):
         <table>
           <tr>
             <th>ID</th>
-            <th>User_ID</th>
+            <th>User_email</th>
             <th>Date&Time</th>
           </tr>
           {''.join(
@@ -79,9 +79,13 @@ def get_filtered_data(start_date=None, end_date=None):
     if start_date and end_date:
         rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
     return [
-        {"id": row['id'], "user_id": row['user_id'], "time_log": row['time_log']}
-        for row in rows
-    ]
+    {
+        "id": row['id'],
+        "user_id": row['user_id']['email'] if row['user_id'] else 'Unknown',
+        "time_log": row['time_log']
+    }
+    for row in rows
+]
 
 
 

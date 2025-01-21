@@ -6,6 +6,7 @@ from datetime import datetime
 from anvil.tables import app_tables
 import sys
 from ..DatePickerDialog import DatePickerDialog
+from anvil import alert
 
 class Form1(Form1Template):
     def __init__(self, **properties):
@@ -74,7 +75,15 @@ class Form1(Form1Template):
         # Zobrazenie modálneho dialógu na výber dátumov
         #dates = DatePickerDialog().show()
         dialog = DatePickerDialog()
-        alert(content=dialog, large=True, buttons=[])
+        result = alert(content=dialog, large=True, buttons=[])
+        if result is None:
+          print("Používateľ zrušil dialóg.")
+        else:
+          print("Výsledok:", result)
+          start_date, end_date = result
+          data = anvil.server.call('get_filtered_data', start_date, end_date)
+          pdf = anvil.server.call('generate_pdf', data)
+          anvil.media.download(pdf)  # Stiahnutie PDF
         #dates = dialog.show()
         
         

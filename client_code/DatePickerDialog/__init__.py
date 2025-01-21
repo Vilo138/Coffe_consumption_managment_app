@@ -8,6 +8,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil import alert
 
 
 class DatePickerDialog(DatePickerDialogTemplate):
@@ -43,10 +44,16 @@ class DatePickerDialog(DatePickerDialogTemplate):
         else:
           print("Action was canceled.")  # Debugging
           alert("Action was canceled.")
+        anvil.alert.close()  # Zatvorí dialóg
+
         #close_alert()  # Zatvorí dialóg
     
   def button_cancel_click(self, **event_args):
         """Po kliknutí na Cancel zatvorí dialóg bez hodnôt"""
         print("Cancel clicked")
         self.result = None
-        #close_alert()  # Zatvorí dialóg
+        #self.close()  # Zatvorí dialóg
+        #self.raise_event("x-close", value=None)
+        #alert.dismiss()
+        #anvil.alert.close()
+        self.raise_event("x-close-alert", value=None)
