@@ -44,7 +44,7 @@ class DatePickerDialog(DatePickerDialogTemplate):
         else:
           print("Action was canceled.")  # Debugging
           alert("Action was canceled.")
-        anvil.alert.close()  # Zatvorí dialóg
+        self.raise_event("x-close-alert", value=None)
 
         #close_alert()  # Zatvorí dialóg
     

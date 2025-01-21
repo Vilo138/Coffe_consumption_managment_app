@@ -48,7 +48,7 @@ class Form1(Form1Template):
         print(f"User ID: {user_email}")
         
         # Zobrazenie dialógového okna s otázkou
-        response = alert("Do you want to confirm this coffee log?", buttons=[("Yes", True), ("No", False)])
+        response = alert(f"Do you want to confirm this coffee log for {user_email}?", buttons=[("Yes", True), ("No", False)])
         if response:
             # Uloženie záznamu do tabuľky pomocou serverovej funkcie
             anvil.server.call('add_coffee_record', user_id)
