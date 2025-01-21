@@ -8,14 +8,14 @@ import sys
 from ..DatePickerDialog import DatePickerDialog
 from anvil import alert
 
-class Form1(Form1Template):
+class Form1(IndexTemplate):
     def __init__(self, **properties):
         # Toto nastaví komponenty na formulári
         self.init_components(**properties)
 
         # Zmena textu na prihlasovacom tlačidle
         self.update_sign_in_text()
-        print(sys.path)
+        #print(sys.path)
 
         # Načítanie emailov zo servera a ich vypísanie
         self.get_users()
