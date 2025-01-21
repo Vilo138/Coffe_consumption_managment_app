@@ -68,4 +68,5 @@ services:
 - client_config: {}
   server_config: {}
   source: /runtime/services/facebook.yml
-startup_form: Form1
+startup: {module: Index, type: form}
+startup_form: null

@@ -1,4 +1,4 @@
-from ._anvil_designer import Form1Template
+from ._anvil_designer import IndexTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -8,7 +8,7 @@ import sys
 from ..DatePickerDialog import DatePickerDialog
 from anvil import alert
 
-class Form1(IndexTemplate):
+class Index(IndexTemplate):
     def __init__(self, **properties):
         # Toto nastaví komponenty na formulári
         self.init_components(**properties)
@@ -56,8 +56,14 @@ class Form1(IndexTemplate):
 
     def sign_in_button(self, **event_args):
         """Pri kliknutí na tlačidlo sa používateľ prihlási"""
-        anvil.users.login_with_form()
-        self.update_sign_in_text()
+        user = anvil.users.get_user()
+        if user:
+          confirm_logout = confirm('Would you like to logout?')
+          if confirm_logout:
+            anvil.users.logout()
+        else:
+          anvil.users.login_with_form()
+        self.update_sign_in_text()  
 
 # funkcia pre button generate pdf
 #    def generate_pdf_button_click(self, **event_args):
