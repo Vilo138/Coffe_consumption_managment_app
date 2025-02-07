@@ -32,7 +32,7 @@ def add_coffee_record(user_id):
     )
 # funkcia na generovanie pdf reportu
 @anvil.server.callable
-def generate_pdf(data):
+def generate_pdf(data, start_date, end_date):
     # HTML šablóna pre tabuľku
     html_template = f"""
     <html>
@@ -53,7 +53,7 @@ def generate_pdf(data):
         </style>
       </head>
       <body>
-        <h1>Report</h1>
+        <h1>Report from  {start_date} to {end_date}</h1>
         <table>
           <tr>
             <th>ID</th>

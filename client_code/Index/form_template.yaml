@@ -9,6 +9,10 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
+  - layout_properties: {}
+    name: link_1
+    properties: {bold: true, text: Statistics}
+    type: Link
   - components: []
     event_bindings: {click: generate_pdf_button_click}
     layout_properties: {}

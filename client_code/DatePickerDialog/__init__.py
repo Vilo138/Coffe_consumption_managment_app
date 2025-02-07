@@ -34,7 +34,7 @@ class DatePickerDialog(DatePickerDialogTemplate):
         # Volanie serverovej funkcie na načítanie dát
             data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date)
             if data:  # Ak sú dáta na generovanie
-              pdf = anvil.server.call("generate_pdf", data=data)
+              pdf = anvil.server.call("generate_pdf", data=data, start_date=start_date, end_date=end_date)
               anvil.media.download(pdf)  # Stiahnutie PDF
               print("PDF has been downloaded.")  # Debugging
             else:
