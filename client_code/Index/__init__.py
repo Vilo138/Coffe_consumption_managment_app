@@ -62,7 +62,7 @@ class Index(IndexTemplate):
           if confirm_logout:
             anvil.users.logout()
         else:
-          anvil.users.login_with_form()
+          anvil.users.login_with_form(allow_cancel=True)
         self.update_sign_in_text()  
 
 # funkcia pre button generate pdf
