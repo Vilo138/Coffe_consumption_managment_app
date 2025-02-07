@@ -4,6 +4,8 @@ from anvil.tables import app_tables
 from datetime import datetime
 from anvil import Media
 from weasyprint import HTML
+import collections
+
 
 @anvil.server.callable
 def get_users():
@@ -30,10 +32,34 @@ def add_coffee_record(user_id):
         user_id=user_id,
         time_log=datetime.now()
     )
+@anvil.server.callable
+def get_filtered_data(start_date=None, end_date=None):
+    rows = app_tables.coffee_logs.search()
+    # Filtrovanie na základe rozsahu dátumu
+    if start_date and end_date:
+        rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
+    emails = [row['user_id']['email'] if row['user_id'] and row['user_id']['email'] else 'Unknown' for row in rows]
+    email_counts = collections.Counter(emails)
+    print(emails, email_counts)
+
+    results = []
+    for email, count in email_counts.items():
+        results.append({
+            "email": email,
+            "pocet": count,
+            "suma": count * 0.6  # Cena za jednu kávu
+        })
+    print(results)
+    return results
+
 # funkcia na generovanie pdf reportu
 @anvil.server.callable
 def generate_pdf(data, start_date, end_date):
-    # HTML šablóna pre tabuľku
+    rows_html = ''.join(
+        f"<tr><td>{row['email']}</td><td>{row['pocet']}</td><td>{row['suma']}</td></tr>"
+        for row in data
+    ) if data else "<tr><td colspan='3'>No data available</td></tr>"
+
     html_template = f"""
     <html>
       <head>
@@ -53,39 +79,24 @@ def generate_pdf(data, start_date, end_date):
         </style>
       </head>
       <body>
-        <h1>Report from  {start_date} to {end_date}</h1>
+        <h1>Report from {start_date} to {end_date}</h1>
         <table>
           <tr>
-            <th>ID</th>
-            <th>User_email</th>
-            <th>Date&Time</th>
+            <th>Email</th>
+            <th>Count</th>
+            <th>Sum</th>
           </tr>
-          {''.join(
-            f"<tr><td>{row['id']}</td><td>{row['user_id']}</td><td>{row['time_log']}</td></tr>"
-            for row in data
-          ) if data else "<tr><td colspan='3'>No data available</td></tr>"}
+          {rows_html}
         </table>
       </body>
     </html>
     """
     # Generovanie PDF
     pdf = HTML(string=html_template).write_pdf()
-    return anvil.BlobMedia("application/pdf", pdf, name="report.pdf")
+    return anvil.BlobMedia("application/pdf", pdf, name=f"report {start_date} to {end_date}.pdf")
 
-@anvil.server.callable
-def get_filtered_data(start_date=None, end_date=None):
-    rows = app_tables.coffee_logs.search()
-    # Filtrovanie na základe rozsahu dátumu
-    if start_date and end_date:
-        rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
-    return [
-    {
-        "id": row['id'],
-        "user_id": row['user_id']['email'] if row['user_id'] else 'Unknown',
-        "time_log": row['time_log']
-    }
-    for row in rows
-]
+    
+
 
 
 
