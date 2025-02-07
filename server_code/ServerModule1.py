@@ -40,7 +40,7 @@ def get_filtered_data(start_date=None, end_date=None):
         rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
     emails = [row['user_id']['email'] if row['user_id'] and row['user_id']['email'] else 'Unknown' for row in rows]
     email_counts = collections.Counter(emails)
-    print(emails, email_counts)
+    #print(emails, email_counts)
 
     results = []
     for email, count in email_counts.items():
@@ -49,7 +49,7 @@ def get_filtered_data(start_date=None, end_date=None):
             "pocet": count,
             "suma": count * 0.6  # Cena za jednu kávu
         })
-    print(results)
+    #print(results)
     return results
 
 # funkcia na generovanie pdf reportu
