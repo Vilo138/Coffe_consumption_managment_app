@@ -167,7 +167,7 @@ def hash_password(password, salt):
 
 
 @anvil.server.callable
-def _do_signup(email, name, password):
+def _do_signup(email, name, password, user_id):
   if name is None or name.strip() == "":
     return "Must supply a name"
   
@@ -180,8 +180,18 @@ def _do_signup(email, name, password):
   @tables.in_transaction
   def add_user_if_missing():
     user = app_tables.users.get(email=email)
+    #user_id = app_tables.users.get_by_id(user_id)
+    max_id_row = list(app_tables.users.search(tables.order_by('id', ascending=False)))[:1]
+    if max_id_row:
+        max_id = max_id_row[0]['id']
+    else:
+        max_id = 0
+    new_id = (max_id or 0) + 1
+
+    
     if user is None:
-      user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash)
+      user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
+      #new_user_id = app_tables.users.add_row(id=)
       return user
     
   user = add_user_if_missing()
