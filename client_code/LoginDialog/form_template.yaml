@@ -1,0 +1,36 @@
+components:
+- layout_properties: {grid_position: 'QUNHCQ,JOGLAS'}
+  name: label_1
+  properties:
+    text: |
+      Email address:
+  type: Label
+- event_bindings: {pressed_enter: focus_password}
+  layout_properties: {grid_position: 'FVBXGS,XVFUSG'}
+  name: email_box
+  properties: {placeholder: email_box, text: ''}
+  type: TextBox
+- components: []
+  layout_properties: {grid_position: 'WAKLCI,LYQYVC'}
+  name: confirm_lnk
+  properties: {foreground: red, text: You need to check your email and click the link to confirm your email address. Click here to re-send the confirmation email.}
+  type: Link
+- layout_properties: {grid_position: 'XAIVOW,AJWTDS'}
+  name: label_2
+  properties: {text: 'Password:'}
+  type: Label
+- event_bindings: {pressed_enter: close_alert}
+  layout_properties: {grid_position: 'WDFZPD,QFPFYU'}
+  name: password_box
+  properties: {hide_text: true, placeholder: '', text: ''}
+  type: TextBox
+- layout_properties: {grid_position: 'GDTFXT,DPBCHB'}
+  name: label_3
+  properties: {foreground: '#dd0000', text: login_err_lbl}
+  type: Label
+- layout_properties: {grid_position: 'QQFJNG,CRGQFV'}
+  name: reset_pw_link
+  properties: {text: 'Forgotten your password?'}
+  type: Link
+container: {type: ColumnPanel}
+is_package: true

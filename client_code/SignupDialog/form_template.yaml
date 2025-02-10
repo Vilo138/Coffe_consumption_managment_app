@@ -1,0 +1,42 @@
+components:
+- layout_properties: {grid_position: 'VCNNOX,GNWVHL'}
+  name: label_1
+  properties: {text: 'Your name:'}
+  type: Label
+- event_bindings: {pressed_enter: focus_email}
+  layout_properties: {grid_position: 'LPHMID,LGLDLT'}
+  name: name_box
+  properties: {placeholder: Enter your name}
+  type: TextBox
+- layout_properties: {grid_position: 'UKSNHB,IRAWDJ'}
+  name: label_2
+  properties: {text: 'Email address:'}
+  type: Label
+- layout_properties: {grid_position: 'LYIPCX,TXVUPB'}
+  name: email_box
+  properties: {placeholder: Enter your email}
+  type: TextBox
+- layout_properties: {grid_position: 'RWIXPQ,DAAOWH'}
+  name: label_3
+  properties: {text: 'Password:'}
+  type: Label
+- event_bindings: {pressed_enter: focus_password}
+  layout_properties: {grid_position: 'XHSHXP,DCYCQC'}
+  name: password_box
+  properties: {hide_text: true, placeholder: ''}
+  type: TextBox
+- layout_properties: {grid_position: 'VJPXHQ,PBZEHA'}
+  name: label_4
+  properties: {text: Re-enter your password}
+  type: Label
+- event_bindings: {pressed_enter: focus_password_repeat}
+  layout_properties: {grid_position: 'ZSXSFG,QRBBBS'}
+  name: password_repeat_box
+  properties: {hide_text: true}
+  type: TextBox
+- layout_properties: {grid_position: 'JSVFZN,YRJZRL'}
+  name: signup_err_lbl
+  properties: {text: signup_err_lbl}
+  type: Label
+container: {type: ColumnPanel}
+is_package: true
