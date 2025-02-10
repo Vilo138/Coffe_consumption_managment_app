@@ -1,3 +1,19 @@
-components: []
+components:
+- layout_properties: {grid_position: 'JROUUY,JSWKNU'}
+  name: label_1
+  properties: {text: 'Enter your new password:'}
+  type: Label
+- layout_properties: {grid_position: 'XMFUJL,WKTYCA'}
+  name: pw_box
+  properties: {hide_text: true}
+  type: TextBox
+- layout_properties: {grid_position: 'PBVKDX,WJKSDJ'}
+  name: label_2
+  properties: {text: 'Re-enter password:'}
+  type: Label
+- layout_properties: {grid_position: 'FWBQXX,WVSIYZ'}
+  name: pw_repeat_box
+  properties: {hide_text: true}
+  type: TextBox
 container: {type: ColumnPanel}
 is_package: true
