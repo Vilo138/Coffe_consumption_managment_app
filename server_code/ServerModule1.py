@@ -181,16 +181,13 @@ def _do_signup(email, name, password, user_id):
   def add_user_if_missing():
     user = app_tables.users.get(email=email)
     #user_id = app_tables.users.get_by_id(user_id)
-    max_id_row = list(app_tables.users.search(tables.order_by('id', ascending=False)))[:1]
-    if max_id_row:
-        max_id = max_id_row[0]['id']
-    else:
-        max_id = 0
-    new_id = (max_id or 0) + 1
+    max_id_row = app_tables.users.search(tables.order_by("id", ascending=False), tables.limit(1))
+    max_id = max_id_row[0]['id'] if max_id_row else 0
+    new_id = max_id + 1
 
     
     if user is None:
-      user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
+      user = app_tables.users.add_row(email=email, enabled=True,  password_hash=pwhash, id=new_id, name=name)
       #new_user_id = app_tables.users.add_row(id=)
       return user
     
