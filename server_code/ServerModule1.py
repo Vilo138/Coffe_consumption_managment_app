@@ -167,7 +167,8 @@ def hash_password(password, salt):
 
 
 @anvil.server.callable
-def _do_signup(email, name, password):
+def _do_signup1(email, name, password):
+    print('robim singup')
     if not name.strip():
         return "Must supply a name"
 
