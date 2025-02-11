@@ -167,39 +167,34 @@ def hash_password(password, salt):
 
 
 @anvil.server.callable
-def _do_signup(email, name, password, user_id):
-  if name is None or name.strip() == "":
-    return "Must supply a name"
-  
-  pwhash = hash_password(password, bcrypt.gensalt())
-  
-  # Add the user in a transaction, to make sure there is only ever one user in this database
-  # with this email address. The transaction might retry or abort, so wait until after it's
-  # done before sending the email.
+def _do_signup(email, name, password):
+    if not name.strip():
+        return "Must supply a name"
 
-  @tables.in_transaction
-  def add_user_if_missing():
-    user = app_tables.users.get(email=email)
-    #user_id = app_tables.users.get_by_id(user_id)
-    max_id_row = app_tables.users.search(tables.order_by("id", ascending=False), tables.limit(1))
-    max_id = max_id_row[0]['id'] if max_id_row else 0
-    new_id = max_id + 1
+    pwhash = hash_password(password, bcrypt.gensalt())
 
-    
-    if user is None:
-      user = app_tables.users.add_row(email=email, enabled=True,  password_hash=pwhash, id=new_id, name=name)
-      #new_user_id = app_tables.users.add_row(id=)
-      return user
-    
-  user = add_user_if_missing()
+    @tables.in_transaction
+    def add_user_if_missing():
+        user = app_tables.users.get(email=email)
+        if user:
+            return "User already exists"  # Vrátiť hneď, ak užívateľ existuje.
 
-  if user is None:
-    return "This email address has already been registered for our service. Try logging in."
-  
-  _send_email_confirm_link(email)
-  
-  # No error = success
-  return None
+        max_id_row = app_tables.users.search(tables.order_by("id", ascending=False), tables.limit(1))
+        max_id = max_id_row[0]['id'] if max_id_row else 0
+        new_id = max_id + 1
+        print("Max ID:", max_id)  # Toto by teraz malo vypísať.
+        print("New ID:", new_id)  # Toto by teraz malo vypísať.
+
+        user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
+        return user
+
+    result = add_user_if_missing()
+    if isinstance(result, str):
+        return result  # Vráti chybovú správu, ak existuje.
+
+    _send_email_confirm_link(email)
+    return None  # No error = success
+
   
     
 def get_user_if_key_correct(email, link_key):
