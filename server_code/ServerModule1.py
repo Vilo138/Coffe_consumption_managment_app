@@ -166,8 +166,8 @@ def hash_password(password, salt):
 
 
 @anvil.server.callable
-def _do_signup1(email, name, password):
-    print('robim singup')
+def _do_signup(email, name, password):
+    #print('robim singup')
     if not name.strip():
         return "Must supply a name"
 
@@ -179,11 +179,11 @@ def _do_signup1(email, name, password):
         if user:
             return "User already exists"  # Vrátiť hneď, ak užívateľ existuje.
 
-        max_id_row = app_tables.users.search(tables.order_by("id", ascending=False), tables.limit(1))
+        max_id_row = app_tables.users.search(tables.order_by("id", ascending=False)) #tables.limit(1)
         max_id = max_id_row[0]['id'] if max_id_row else 0
         new_id = max_id + 1
-        print("Max ID:", max_id)  # Toto by teraz malo vypísať.
-        print("New ID:", new_id)  # Toto by teraz malo vypísať.
+        #print("Max ID:", max_id)  # Toto by teraz malo vypísať.
+        #print("New ID:", new_id)  # Toto by teraz malo vypísať.
 
         user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
         return user

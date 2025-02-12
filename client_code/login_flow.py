@@ -65,7 +65,7 @@ def signup_with_form():
       d.signup_err_lbl.visible = True
       continue
     
-    err = anvil.server.call('_do_signup1', d.email_box.text, d.name_box.text, d.password_box.text)
+    err = anvil.server.call('_do_signup', d.email_box.text, d.name_box.text, d.password_box.text)
     if err is not None:
       d.signup_err_lbl.text = err
       d.signup_err_lbl.visible = True
