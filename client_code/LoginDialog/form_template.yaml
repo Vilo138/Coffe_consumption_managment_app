@@ -29,7 +29,8 @@ components:
   name: login_err_lbl
   properties: {foreground: '#dd0000', role: null, text: login_err_lbl, visible: false}
   type: Label
-- layout_properties: {grid_position: 'QQFJNG,CRGQFV'}
+- event_bindings: {click: reset_pw_link_click}
+  layout_properties: {grid_position: 'QQFJNG,CRGQFV'}
   name: reset_pw_link
   properties: {text: 'Forgotten your password?'}
   type: Link
