@@ -14,7 +14,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 #from anvil.tables import app_tables
 from anvil import open_form
-import custom_signup.login_flow
+from .. import login_flow
 
 class Index(IndexTemplate):
     def __init__(self, **properties):
@@ -72,7 +72,7 @@ class Index(IndexTemplate):
         #else:
         #  anvil.users.login_with_form(allow_cancel=True)
         #self.update_sign_in_text()  
-        custom_signup.login_flow.do_email_confirm_or_reset()
+        login_flow.do_email_confirm_or_reset()
         open_form('Test')
 
 # funkcia pre button generate pdf

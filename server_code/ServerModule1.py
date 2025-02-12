@@ -1,21 +1,20 @@
+import sys
 import anvil.server
 import anvil.tables as tables
 from anvil.tables import app_tables
 from datetime import datetime
 from anvil import Media
 from weasyprint import HTML
-import collections
-
-
+import collections # stare, pod tymto nove
 import anvil.email
-import tables
-from tables import app_tables
+#import tables
+#from tables import app_tables
 import anvil.users
 from anvil.http import url_encode
 import bcrypt
 from random import SystemRandom
 random = SystemRandom()
-import sys
+
 
 
 @anvil.server.callable
