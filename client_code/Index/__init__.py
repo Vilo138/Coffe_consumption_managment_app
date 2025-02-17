@@ -84,11 +84,15 @@ class Index(IndexTemplate):
         #dates = dialog.show()
 
     def title_click(self, **event_args):
-      """This method is called when the link is clicked"""
-      try:
+      """This method is called when the link is clicked."""
+      if not isinstance(self.content_panel.get_components()[-1], Home):
+        # Clear existing components and add Home
+        self.content_panel.clear_components()
         self.content_panel.add_component(Home())
-      except Exeception as e:
-        print(f"Home page already rendered: {e}")
+      #else:
+        # Refresh the current page
+       # anvil.server.call('refresh_page')
+
         
       
 

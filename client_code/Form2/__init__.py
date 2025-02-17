@@ -23,17 +23,17 @@ class Test(TestTemplate):
     else:
       self.login_status_lbl.text = "You are logged in as %s" % user['email']
 
-  def login_btn1_click(self, **event_args):
+  def login_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
     login_flow.login_with_form()
     self.update_login_status()
 
-  def logout_btn1_click(self, **event_args):
+  def logout_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
     self.update_login_status()
 
-  def signup_btn1_click(self, **event_args):
+  def signup_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
     login_flow.signup_with_form()
 

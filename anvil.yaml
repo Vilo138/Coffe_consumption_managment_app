@@ -15,11 +15,6 @@ db_schema:
       type: datetime
     server: full
     title: Table 2
-  skuska:
-    client: none
-    columns: []
-    server: full
-    title: skuska
   users:
     client: none
     columns:
