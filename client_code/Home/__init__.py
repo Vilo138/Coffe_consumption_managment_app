@@ -27,8 +27,8 @@ class Home(HomeTemplate):
             button.tag.user_id = user['id']  # Uložíme user_id do tagu tlačidla
             button.tag.user_email = user['email']
             button.set_event_handler('click', self.zaznam_kavy)
-            #self.flow_panel_buttons_users.add_component(button)
-            self.content_panel.add_component(button)
+            self.flow_panel_buttons_users.add_component(button)
+            #self.content_panel.add_component(button)
 
   def zaznam_kavy(self, **event_args):
         """Pri kliknutí na tlačidlo zaznamená výber kávy do tabuľky"""

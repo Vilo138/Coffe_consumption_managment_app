@@ -27,6 +27,8 @@ class Index(IndexTemplate):
         self.update_sign_in_text()
         #print(sys.path)
         self.content_panel.add_component(Home())
+        anvil.server.register_event_handler('user_login_changed', self.update_sign_in_text)
+
         
 
     def update_sign_in_text(self):
@@ -45,12 +47,6 @@ class Index(IndexTemplate):
         self.content_panel.add_component(Test())
         #open_form('Test')
 
-    
-    
-    
-
-
-#
 
     def generate_pdf_button_click(self, **event_args):
         # Zobrazenie modálneho dialógu na výber dátumov
