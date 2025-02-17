@@ -16,6 +16,7 @@ class Test(TestTemplate):
     # Any code you write here will run when the form opens.
     self.update_login_status()
     
+    
   def update_login_status (self):
     user = anvil.users.get_user()
     if user is None:

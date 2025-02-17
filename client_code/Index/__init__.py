@@ -27,6 +27,7 @@ class Index(IndexTemplate):
         self.update_sign_in_text()
         #print(sys.path)
         self.content_panel.add_component(Home())
+        
 
     def update_sign_in_text(self):
         """Aktualizuje text prihlasovacieho tlačidla"""
@@ -40,9 +41,14 @@ class Index(IndexTemplate):
     def sign_in_button(self, **event_args):
         """Pri kliknutí na tlačidlo sa používateľ prihlási"""  
         login_flow.do_email_confirm_or_reset()
-        self.flow_panel_buttons_users.clear_components()
+        self.content_panel.clear()
         self.content_panel.add_component(Test())
         #open_form('Test')
+
+    
+    
+    
+
 
 #
 
@@ -65,7 +71,7 @@ class Index(IndexTemplate):
       """This method is called when the link is clicked."""
       if not isinstance(self.content_panel.get_components()[-1], Home):
         # Clear existing components and add Home
-        self.content_panel.clear_components()
+        self.content_panel.clear()
         self.content_panel.add_component(Home())
       
 

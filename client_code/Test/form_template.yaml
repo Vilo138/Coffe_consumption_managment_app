@@ -1,10 +1,12 @@
 components:
 - components:
-  - layout_properties: {grid_position: 'ZPQGWB,CBISHT'}
+  - event_bindings: {click: login_btn_click}
+    layout_properties: {grid_position: 'ZPQGWB,CBISHT'}
     name: login_btn
     properties: {role: primary-color, text: SIGN IN}
     type: Button
-  - layout_properties: {grid_position: 'XAKZGK,DQUZAK'}
+  - event_bindings: {click: signup_btn_click}
+    layout_properties: {grid_position: 'XAKZGK,DQUZAK'}
     name: signup_btn
     properties: {bold: false, role: primary-color, text: SIGN UP for a NEW ACCOUNT}
     type: Button
@@ -12,7 +14,8 @@ components:
     name: login_status_lbl
     properties: {align: center}
     type: Label
-  - layout_properties: {grid_position: 'OKWGQP,FHTNGR'}
+  - event_bindings: {click: logout_btn_click}
+    layout_properties: {grid_position: 'OKWGQP,FHTNGR'}
     name: logout_btn
     properties: {role: secondary-color, text: Sign OUT}
     type: Button
