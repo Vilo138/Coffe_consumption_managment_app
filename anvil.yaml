@@ -1,7 +1,7 @@
 allow_embedding: false
 db_schema:
   coffee_logs:
-    client: none
+    client: search
     columns:
     - admin_ui: {width: 200}
       name: id
@@ -10,11 +10,11 @@ db_schema:
       name: user_id
       target: users
       type: link_single
-    - admin_ui: {order: 2, width: 200}
+    - admin_ui: {width: 200}
       name: time_log
       type: datetime
     server: full
-    title: Table 2
+    title: coffe_logs
   users:
     client: none
     columns:
@@ -27,7 +27,7 @@ db_schema:
     - admin_ui: {width: 200}
       name: last_login
       type: datetime
-    - admin_ui: {order: 3, width: 514}
+    - admin_ui: {width: 514}
       name: password_hash
       type: string
     - admin_ui: {width: 200}
@@ -45,10 +45,10 @@ db_schema:
     - admin_ui: {width: 200}
       name: id
       type: number
-    - admin_ui: {order: 10, width: 200}
+    - admin_ui: {width: 200}
       name: link_key
       type: string
-    - admin_ui: {order: 11, width: 200}
+    - admin_ui: {width: 200}
       name: name
       type: string
     server: full

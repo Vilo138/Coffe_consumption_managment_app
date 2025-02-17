@@ -5,8 +5,9 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
-  - layout_properties: {}
-    name: link_1
+  - event_bindings: {click: button_csv_click}
+    layout_properties: {}
+    name: button_csv
     properties: {bold: false, text: Statistics}
     type: Link
   - components: []

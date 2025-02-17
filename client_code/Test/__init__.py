@@ -8,6 +8,7 @@ from anvil.tables import app_tables
 from .. import login_flow
 from ..Home import Home
 #from ..Index import Index
+#from anvil import event
 
 class Test(TestTemplate):
   def __init__(self, **properties):
@@ -28,10 +29,13 @@ class Test(TestTemplate):
   def login_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
     #from ..Index import Index
+    #from ..Index import sign_in
+
     login_flow.login_with_form()
     self.update_login_status()
     print('som tu')
-    anvil.server.raise_event('user_login_changed')
+    
+    #anvil.server.raise_event('user_login_changed')
 
 
   def logout_btn_click(self, **event_args):
@@ -40,7 +44,7 @@ class Test(TestTemplate):
     anvil.users.logout()
     self.update_login_status()
     print('som tu')
-    anvil.server.raise_event('user_login_changed')
+    #anvil.server.raise_event('user_login_changed')
 
     #index_instancia = Index()
     #index_instancia.update_sign_in_text()

@@ -1,3 +1,4 @@
+import anvil.tz
 import sys
 import anvil.server
 import anvil.tables as tables
@@ -15,6 +16,9 @@ import bcrypt
 from random import SystemRandom
 random = SystemRandom()
 
+#naive_local = datetime.now()
+# 2019-08-09 10:10:00.406000
+#aware_local = datetime.now(anvil.tz.tzlocal())
 
 
 @anvil.server.callable
@@ -40,7 +44,7 @@ def add_coffee_record(user_id):
     app_tables.coffee_logs.add_row(
         id=new_id,
         user_id=user_id,
-        time_log=datetime.now()
+        time_log=datetime.now(anvil.tz.tzoffset(hours=1)) 
     )
 @anvil.server.callable
 def get_filtered_data(start_date=None, end_date=None):

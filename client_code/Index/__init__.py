@@ -22,12 +22,11 @@ class Index(IndexTemplate):
     def __init__(self, **properties):
         # Toto nastaví komponenty na formulári
         self.init_components(**properties)
-
         # Zmena textu na prihlasovacom tlačidle
         self.update_sign_in_text()
         #print(sys.path)
         self.content_panel.add_component(Home())
-        anvil.server.register_event_handler('user_login_changed', self.update_sign_in_text)
+        #anvil.server.register_event_handler('user_login_changed', self.update_sign_in_text)
 
         
 
@@ -43,6 +42,7 @@ class Index(IndexTemplate):
     def sign_in_button(self, **event_args):
         """Pri kliknutí na tlačidlo sa používateľ prihlási"""  
         login_flow.do_email_confirm_or_reset()
+        self.update_sign_in_text()
         self.content_panel.clear()
         self.content_panel.add_component(Test())
         #open_form('Test')
@@ -65,10 +65,16 @@ class Index(IndexTemplate):
 
     def title_click(self, **event_args):
       """This method is called when the link is clicked."""
+      self.update_sign_in_text()
       if not isinstance(self.content_panel.get_components()[-1], Home):
         # Clear existing components and add Home
         self.content_panel.clear()
         self.content_panel.add_component(Home())
+
+    def button_csv_click(self, **event_args):
+        """This method is called when the link is clicked"""
+        csv_file = app_tables.coffee_logs.search().to_csv()
+        anvil.media.download(csv_file)
       
 
         
