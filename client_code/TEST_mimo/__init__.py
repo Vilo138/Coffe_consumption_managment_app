@@ -1,4 +1,4 @@
-from ._anvil_designer import TestTemplate
+from ._anvil_designer import TEST_mimoTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -8,7 +8,7 @@ from anvil.tables import app_tables
 from .. import login_flow
 from ..Home import Home
 
-class Test(TestTemplate):
+class TEST_mimo(TEST_mimoTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -23,17 +23,17 @@ class Test(TestTemplate):
     else:
       self.login_status_lbl.text = "You are logged in as %s" % user['email']
 
-  def login_btn_click(self, **event_args):
+  def login_btn1_click(self, **event_args):
     """This method is called when the button is clicked"""
     login_flow.login_with_form()
     self.update_login_status()
 
-  def logout_btn_click(self, **event_args):
+  def logout_btn1_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
     self.update_login_status()
 
-  def signup_btn_click(self, **event_args):
+  def signup_btn1_click(self, **event_args):
     """This method is called when the button is clicked"""
     login_flow.signup_with_form()
 
