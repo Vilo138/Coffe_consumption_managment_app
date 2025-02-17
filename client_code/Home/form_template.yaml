@@ -1,0 +1,7 @@
+components:
+- layout_properties: {grid_position: 'YJIQOX,RHGEJO'}
+  name: flow_panel_buttons_users
+  properties: {}
+  type: FlowPanel
+container: {type: ColumnPanel}
+is_package: true

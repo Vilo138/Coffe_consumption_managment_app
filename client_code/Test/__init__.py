@@ -6,6 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import login_flow
+from ..Home import Home
 
 class Test(TestTemplate):
   def __init__(self, **properties):
