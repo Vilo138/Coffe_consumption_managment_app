@@ -1,0 +1,20 @@
+components:
+- data_bindings:
+  - {code: 'self.item[''id'']', property: tag, writeback: false}
+  layout_properties: {column: USCRSU}
+  name: text_box_1
+  properties: {}
+  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''user_id'']', property: tag, writeback: false}
+  layout_properties: {column: YBZTVE}
+  name: text_box_2
+  properties: {}
+  type: TextBox
+- data_bindings: []
+  layout_properties: {column: SUSMYH}
+  name: text_box_3
+  properties: {}
+  type: TextBox
+container: {type: DataRowPanel}
+is_package: true

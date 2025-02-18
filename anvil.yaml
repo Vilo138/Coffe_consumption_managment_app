@@ -1,7 +1,7 @@
 allow_embedding: false
 db_schema:
   coffee_logs:
-    client: search
+    client: full
     columns:
     - admin_ui: {width: 200}
       name: id

@@ -1,28 +1,19 @@
 components:
 - components:
-  - layout_properties: {pinned: false}
-    name: repeating_panel_1
-    properties: {border: '10', foreground: '', item_template: DB_users.RowTemplate3, role: wide}
+  - name: repeating_panel_1
+    properties: {item_template: DB_users.RowTemplate9}
     type: RepeatingPanel
-  data_bindings: []
-  layout_properties: {full_width_row: true, grid_position: 'YYAXAC,EWFGXK', row_background: ''}
+  layout_properties: {grid_position: 'XIXGEW,ZPXLHU'}
   name: data_grid_1
   properties:
-    border: '10'
     columns:
-    - {data_key: email, id: EMUHAI, title: email, width: '200'}
-    - {data_key: enabled, id: CBEMCV, title: enabled, width: '200'}
-    - {data_key: last_login, id: IRJFUG, title: last_login, width: '200'}
-    - {data_key: password_hash, id: WINFMJ, title: password_hash, width: '550'}
-    - {data_key: n_password_failures, id: FOSQYC, title: n_password_failures, width: '200'}
-    - {data_key: confirmed_email, id: EZOZQG, title: confirmed_email, width: '200'}
-    - {data_key: signed_up, id: SUJYGA, title: signed_up, width: '200'}
-    - {data_key: email_confirmation_key, expand: false, id: NNLQEV, title: email_confirmation_key, width: '200'}
-    - {data_key: id, id: DJVXIB, title: id, width: '100'}
-    - {data_key: link_key, id: NLAQAB, title: link_key, width: '200'}
-    - {data_key: name, id: ZRWCQK, title: name, width: '200'}
-    role: wide
-    rows_per_page: 8
+    - {data_key: email, id: KAZCSL, title: email}
+    - {data_key: enabled, id: RZTPZK, title: enabled}
+    - {data_key: last_login, id: VXTJOC, title: last_login}
+    - {data_key: signed_up, id: GBNQVA, title: signed_up}
+    - {data_key: id, id: LHZOFL, title: id}
+    - {data_key: link_key, id: WMLMWG, title: link_key}
+    - {data_key: name, id: KXUXDR, title: name}
   type: DataGrid
 container:
   data_bindings: []

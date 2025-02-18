@@ -4,7 +4,8 @@
     overflow-x: auto;
 }
 
-/* Zabezpeenie správneho rozlo~enia riadkov */
+/* Zabezpe
+enie správneho rozlozenia riadkov */
 .anvil-role-wide .anvil-data-row-panel {
     flex-wrap: nowrap !important;
     min-width: min-content !important;
@@ -22,7 +23,7 @@
     display: table !important;
 }
 
-/*!iary medzi bunkami */
+/*!ciary medzi bunkami */
 .anvil-role-wide .grid-panel td, 
 .anvil-role-wide .grid-panel th {
     border: 1px solid #ddd !important; /* Farba mrie~ky */
@@ -673,19 +674,66 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
 /* Component: Card */
 
 .anvil-role-card {
-  overflow: hidden;
+  overflow: auto-flow;
   border-radius: 2px;
   background-color: white;
   padding: 8px 12px;
   /* 2dp */  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.anvil-role-card .grid-panel td, 
+.anvil-role-card .grid-panel th {
+    border: 1px solid #ddd !important; /* Farba mrie~ky */
+    padding: 8px !important;
+    text-align: left !important;
+}
+.anvil-role-card .data-grid-child-panel {
+    overflow-x: auto;
+}
+
+/* Zabezpe
+enie správneho rozlozenia riadkov */
+.anvil-role-card .anvil-data-row-panel {
+    flex-wrap: nowrap !important;
+    min-width: min-content !important;
+}
+
+.anvil-role-card .anvil-panel-section-gutter {
+    flex-wrap: wrap !important;
+    min-width: min-content !important;
+}
+
+/* Povolenie mrie~ky v tabu>ke */
+.anvil-role-card .grid-panel {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    display: table !important;
+}
+
+/*!ciary medzi bunkami */
+.anvil-role-card .grid-panel td, 
+.anvil-role-card .grid-panel th {
+    border: 1px solid #ddd !important; /* Farba mrie~ky */
+    padding: 8px !important;
+    text-align: left !important;
+}
+
+/* Striedavé riadky - svetlosivé pozadie */
+.anvil-role-card .grid-panel tr:nth-child(even) {
+    background-color: #f9f9f9 !important;
+}
+
+/* Zvýraznenie pri hover */
+.anvil-role-card .grid-panel tr:hover {
+    background-color: #e0e0e0 !important;
+    transition: background-color 0.2s ease-in-out !important;
 }
 
 /* full_width_row sections go full bleed */
 .column-panel.anvil-role-card > .anvil-panel-section > .anvil-panel-section-container.full-width-row {
   margin-left: -12px;
   margin-right: -12px;
-  width: initial;
-  max-width: initial;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* If the first row of a card is a full_width_row, it goes to the top */
