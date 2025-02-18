@@ -2,10 +2,10 @@ components:
 - components:
   - layout_properties: {pinned: false}
     name: repeating_panel_1
-    properties: {border: '10', foreground: '', item_template: DB_users.RowTemplate3, role: null}
+    properties: {border: '10', foreground: '', item_template: DB_users.RowTemplate3, role: wide}
     type: RepeatingPanel
   data_bindings: []
-  layout_properties: {full_width_row: true, grid_position: 'YYAXAC,EWFGXK', row_background: 'theme:Gray 300'}
+  layout_properties: {full_width_row: true, grid_position: 'YYAXAC,EWFGXK', row_background: ''}
   name: data_grid_1
   properties:
     border: '10'
@@ -21,7 +21,7 @@ components:
     - {data_key: id, id: DJVXIB, title: id, width: '100'}
     - {data_key: link_key, id: NLAQAB, title: link_key, width: '200'}
     - {data_key: name, id: ZRWCQK, title: name, width: '200'}
-    role: null
+    role: wide
     rows_per_page: 8
   type: DataGrid
 container:

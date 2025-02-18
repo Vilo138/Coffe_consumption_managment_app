@@ -1,40 +1,46 @@
-/** kod pre horizontal bar v DB **/
+/** kod pre horizontal bar v DB 
+/* Povolenie horizontálneho posúvania v Data Grid */
 .anvil-role-wide .data-grid-child-panel {
-  overflow-x: auto;
+    overflow-x: auto;
 }
+
+/* Zabezpeenie správneho rozlo~enia riadkov */
 .anvil-role-wide .anvil-data-row-panel {
-  flex-wrap: nowrap;
-  min-width: -moz-min-content;
-  min-width: min-content;
+    flex-wrap: nowrap !important;
+    min-width: min-content !important;
 }
+
 .anvil-role-wide .anvil-panel-section-gutter {
-  flex-wrap: wrap;
-  min-width: -moz-min-content;
-  min-width: min-content;
+    flex-wrap: wrap !important;
+    min-width: min-content !important;
 }
+
+/* Povolenie mrie~ky v tabu>ke */
 .anvil-role-wide .grid-panel {
-    border-collapse: collapse;
+    border-collapse: collapse !important;
+    width: 100% !important;
+    display: table !important;
 }
 
-/* iary medzi bunkami */
-.anvil-role-grid-striped .grid-panel td, 
-.anvil-role-grid-striped .grid-panel th {
-    border: 1px solid #ddd; /* Farba mrie~ky */
-    padding: 8px;
+/*!iary medzi bunkami */
+.anvil-role-wide .grid-panel td, 
+.anvil-role-wide .grid-panel th {
+    border: 1px solid #ddd !important; /* Farba mrie~ky */
+    padding: 8px !important;
+    text-align: left !important;
 }
 
-/* Striedavé riadky - svetlo!aedé pozadie */
-.anvil-role-grid-striped .grid-panel tr:nth-child(even) {
-    background-color: #f9f9f9; 
+/* Striedavé riadky - svetlosivé pozadie */
+.anvil-role-wide .grid-panel tr:nth-child(even) {
+    background-color: #f9f9f9 !important;
 }
 
 /* Zvýraznenie pri hover */
-.anvil-role-grid-striped .grid-panel tr:hover {
-    background-color: #e0e0e0;
+.anvil-role-wide .grid-panel tr:hover {
+    background-color: #e0e0e0 !important;
+    transition: background-color 0.2s ease-in-out !important;
 }
 
-
-/** kod pre vzhlad DB **/
 
 
 /**
