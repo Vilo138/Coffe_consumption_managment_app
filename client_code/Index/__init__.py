@@ -9,6 +9,7 @@ from ..DatePickerDialog import DatePickerDialog
 from anvil import alert
 from ..Test import Test
 from ..Home import Home
+from ..DB_users import DB_users
 
 
 
@@ -75,6 +76,12 @@ class Index(IndexTemplate):
         """This method is called when the link is clicked"""
         csv_file = app_tables.coffee_logs.search().to_csv()
         anvil.media.download(csv_file)
+
+    def link_DB_users_click(self, **event_args):
+      """This method is called when the link is clicked"""
+      self.update_sign_in_text()
+      self.content_panel.clear()
+      self.content_panel.add_component(DB_users())
       
 
         

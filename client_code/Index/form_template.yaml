@@ -5,6 +5,11 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
+  - event_bindings: {click: link_DB_users_click}
+    layout_properties: {}
+    name: link_DB_users
+    properties: {text: DB Users}
+    type: Link
   - event_bindings: {click: button_csv_click}
     layout_properties: {}
     name: button_csv

@@ -3,9 +3,5 @@ components:
   name: flow_panel_buttons_users
   properties: {}
   type: FlowPanel
-- layout_properties: {grid_position: 'XWLILO,LAQYGN'}
-  name: content_panel
-  properties: {}
-  type: ColumnPanel
 container: {type: ColumnPanel}
 is_package: true

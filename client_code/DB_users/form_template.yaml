@@ -3,13 +3,23 @@ components:
   - name: repeating_panel_1
     properties: {item_template: DB_users.RowTemplate1}
     type: RepeatingPanel
-  layout_properties: {grid_position: 'PAORVQ,KYVRRY'}
+  data_bindings: []
+  layout_properties: {full_width_row: true, grid_position: 'PAORVQ,KYVRRY'}
   name: data_grid_1
   properties:
     columns:
-    - {data_key: column_1, id: JKSDUP, title: Column 1}
-    - {data_key: column_2, id: VJQQOR, title: Column 2}
-    - {data_key: column_3, id: OJLQEN, title: Column 3}
+    - {data_key: email, id: ECAKIT, title: email}
+    - {data_key: enabled, id: ORREGT, title: enabled}
+    - {data_key: last_login, id: XIIFDB, title: last_login}
+    - {data_key: password_hash, id: VUZVKQ, title: password_hash}
+    - {data_key: n_password_failures, id: DSAZON, title: n_password_failures}
+    - {data_key: confirmed_email, id: FCBYTS, title: confirmed_email}
+    - {data_key: signed_up, id: PVOQHG, title: signed_up}
+    - {data_key: email_confirmation_key, id: TLALBB, title: email_confirmation_key}
+    - {data_key: id, id: THLZSO, title: id}
+    - {data_key: link_key, id: FRYPRV, title: link_key}
+    - {data_key: name, id: OZMQHG, title: name}
+    rows_per_page: 9
   type: DataGrid
 container: {type: ColumnPanel}
 is_package: true

@@ -235,10 +235,18 @@ def _confirm_email_address(email, confirm_key):
     user['link_key'] = None
     anvil.users.force_login(user)
     return True
+
+@anvil.server.callable
+def get_users_data():
+  return app_tables.users.client_writable()
   
  
 
-    
+@anvil.server.callable 
+def add_row(item):
+  row = app_tables.users.get(id=item['id'])
+  if row:
+    row.update(**item)
 
 
 
