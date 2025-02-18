@@ -12,6 +12,27 @@
   min-width: -moz-min-content;
   min-width: min-content;
 }
+.anvil-role-wide .grid-panel {
+    border-collapse: collapse;
+}
+
+/* iary medzi bunkami */
+.anvil-role-grid-striped .grid-panel td, 
+.anvil-role-grid-striped .grid-panel th {
+    border: 1px solid #ddd; /* Farba mrie~ky */
+    padding: 8px;
+}
+
+/* Striedavé riadky - svetlo!aedé pozadie */
+.anvil-role-grid-striped .grid-panel tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+/* Zvýraznenie pri hover */
+.anvil-role-grid-striped .grid-panel tr:hover {
+    background-color: #e0e0e0;
+}
+
 
 /** kod pre vzhlad DB **/
 
