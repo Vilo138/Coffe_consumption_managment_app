@@ -16,7 +16,7 @@ db_schema:
     server: full
     title: coffe_logs
   users:
-    client: none
+    client: full
     columns:
     - admin_ui: {width: 200}
       name: email

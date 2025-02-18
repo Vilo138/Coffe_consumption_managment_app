@@ -1,3 +1,51 @@
-components: []
-container: {type: DataRowPanel}
+components:
+- layout_properties: {column: ECAKIT}
+  name: text_box_email
+  properties: {}
+  type: TextBox
+- layout_properties: {column: ORREGT}
+  name: text_box_enabled
+  properties: {}
+  type: TextBox
+- layout_properties: {column: XIIFDB}
+  name: text_box_lastLogin
+  properties: {}
+  type: TextBox
+- layout_properties: {column: VUZVKQ}
+  name: text_box_pswHash
+  properties: {}
+  type: TextBox
+- layout_properties: {column: DSAZON}
+  name: text_box_5
+  properties: {}
+  type: TextBox
+- layout_properties: {column: FCBYTS}
+  name: text_box_6
+  properties: {}
+  type: TextBox
+- layout_properties: {column: PVOQHG}
+  name: text_box_sgnUP
+  properties: {}
+  type: TextBox
+- layout_properties: {column: TLALBB}
+  name: text_box_emCnfK
+  properties: {}
+  type: TextBox
+- layout_properties: {column: THLZSO}
+  name: text_box_id
+  properties: {}
+  type: TextBox
+- layout_properties: {column: FRYPRV}
+  name: text_box_lnk
+  properties: {}
+  type: TextBox
+- layout_properties: {column: OZMQHG}
+  name: text_box_name
+  properties: {}
+  type: TextBox
+container:
+  data_bindings:
+  - {code: 'self.item['''']', property: item, writeback: false}
+  - {code: 'self.item['''']', property: tag, writeback: false}
+  type: DataRowPanel
 is_package: true

@@ -1,25 +1,31 @@
 components:
 - components:
-  - name: repeating_panel_1
-    properties: {item_template: DB_users.RowTemplate1}
+  - layout_properties: {pinned: false}
+    name: repeating_panel_1
+    properties: {border: '10', foreground: '', item_template: DB_users.RowTemplate3, role: null}
     type: RepeatingPanel
   data_bindings: []
-  layout_properties: {full_width_row: true, grid_position: 'PAORVQ,KYVRRY'}
+  layout_properties: {full_width_row: true, grid_position: 'YYAXAC,EWFGXK', row_background: 'theme:Gray 300'}
   name: data_grid_1
   properties:
+    border: '10'
     columns:
-    - {data_key: email, id: ECAKIT, title: email}
-    - {data_key: enabled, id: ORREGT, title: enabled}
-    - {data_key: last_login, id: XIIFDB, title: last_login}
-    - {data_key: password_hash, id: VUZVKQ, title: password_hash}
-    - {data_key: n_password_failures, id: DSAZON, title: n_password_failures}
-    - {data_key: confirmed_email, id: FCBYTS, title: confirmed_email}
-    - {data_key: signed_up, id: PVOQHG, title: signed_up}
-    - {data_key: email_confirmation_key, id: TLALBB, title: email_confirmation_key}
-    - {data_key: id, id: THLZSO, title: id}
-    - {data_key: link_key, id: FRYPRV, title: link_key}
-    - {data_key: name, id: OZMQHG, title: name}
-    rows_per_page: 9
+    - {data_key: email, id: EMUHAI, title: email, width: '200'}
+    - {data_key: enabled, id: CBEMCV, title: enabled, width: '200'}
+    - {data_key: last_login, id: IRJFUG, title: last_login, width: '200'}
+    - {data_key: password_hash, id: WINFMJ, title: password_hash, width: '550'}
+    - {data_key: n_password_failures, id: FOSQYC, title: n_password_failures, width: '200'}
+    - {data_key: confirmed_email, id: EZOZQG, title: confirmed_email, width: '200'}
+    - {data_key: signed_up, id: SUJYGA, title: signed_up, width: '200'}
+    - {data_key: email_confirmation_key, expand: false, id: NNLQEV, title: email_confirmation_key, width: '200'}
+    - {data_key: id, id: DJVXIB, title: id, width: '100'}
+    - {data_key: link_key, id: NLAQAB, title: link_key, width: '200'}
+    - {data_key: name, id: ZRWCQK, title: name, width: '200'}
+    role: null
+    rows_per_page: 8
   type: DataGrid
-container: {type: ColumnPanel}
+container:
+  data_bindings: []
+  properties: {border: '10', role: null}
+  type: ColumnPanel
 is_package: true
