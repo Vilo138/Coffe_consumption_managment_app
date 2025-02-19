@@ -2,7 +2,7 @@
 /* Povolenie horizontálneho posúvania v Data Grid */
 .anvil-role-wide .data-grid-child-panel {
     overflow-x: auto;
-    border: 5px  solid black
+    border: 1px  solid black
 
 }
 
@@ -11,7 +11,7 @@ enie správneho rozlozenia riadkov */
 .anvil-role-wide .anvil-data-row-panel {
     flex-wrap: nowrap !important;
     min-width: min-content !important;
-    border: 5px solid black
+    border: 1px solid black
 }
 
 .anvil-role-wide .anvil-panel-section-gutter {
@@ -21,7 +21,7 @@ enie správneho rozlozenia riadkov */
 
 /* Povolenie mrie~ky v tabu>ke */
 .anvil-role-wide .grid-panel {
-   
+    border: 1000px solid black
     width: 100% !important;
     display: table !important;
 }
@@ -29,7 +29,7 @@ enie správneho rozlozenia riadkov */
 /*!ciary medzi bunkami */
 .anvil-role-wide .grid-panel td, 
 .anvil-role-wide .grid-panel th {
-    border: 100px solid #ddd !important; /* Farba mrie~ky */
+    border: 100px solid black !important; /* Farba mrie~ky */
     padding: 8px !important;
     text-align: left !important;
 }
@@ -41,7 +41,7 @@ enie správneho rozlozenia riadkov */
 
 /* Zvýraznenie pri hover */
 .anvil-role-wide .grid-panel tr:hover {
-    background-color: #e0e0e0 !important;
+    background-color: black !important;
     transition: background-color 0.2s ease-in-out !important;
 }
 
@@ -55,7 +55,7 @@ enie správneho rozlozenia riadkov */
 .anvil-panel-col {
   padding-bottom: 10px;
   margin-bottom: -10px;
-  border: 10px  solid black
+  
 }
 
 .content > .placeholder {
@@ -81,7 +81,7 @@ a>.anvil-component-icon.right_edge-icon,
 .anvil-label>.label-text, a>.link-text {
   padding-top: 8px;
   padding-bottom: 8px;
-  border: 10px solid black
+  
 }
 .file-loader>label {
     padding: 8px;

@@ -1,25 +1,18 @@
 components:
-- components:
-  - name: repeating_panel_1
-    properties: {item_template: DB_users.RowTemplate10}
-    type: RepeatingPanel
-  layout_properties: {grid_position: 'UJERLR,ZJHUPC'}
-  name: data_grid_1
-  properties:
-    columns:
-    - {data_key: email, id: BWGGXW, title: email, width: '200'}
-    - {data_key: enabled, id: SXLTPQ, title: enabled, width: '200'}
-    - {data_key: last_login, id: NUCZLB, title: last_login, width: '200'}
-    - {data_key: password_hash, id: ALSNAO, title: password_hash, width: '500'}
-    - {data_key: n_password_failures, id: LMJZSC, title: n_password_failures, width: '200'}
-    - {data_key: confirmed_email, id: IBXYTQ, title: confirmed_email, width: '200'}
-    - {data_key: signed_up, id: APKPGA, title: signed_up, width: '200'}
-    - {data_key: email_confirmation_key, id: GWMDTK, title: email_confirmation_key, width: '200'}
-    - {data_key: id, id: OIWEXY, title: id, width: '50'}
-    - {data_key: link_key, id: EJIWLK, title: link_key, width: '200'}
-    - {data_key: name, id: QSFZMZ, title: name, width: '200'}
-    role: wide
-  type: DataGrid
+- event_bindings: {click: button_1_click}
+  layout_properties: {grid_position: 'NKOOEL,CFUXIV'}
+  name: button_1
+  properties: {text: new}
+  type: Button
+- layout_properties: {full_width_row: true, grid_position: 'QURNJE,ODFUGM'}
+  name: repeating_panel_1
+  properties: {item_template: DB_users.RowTemplate7}
+  type: RepeatingPanel
+- event_bindings: {click: button_2_click}
+  layout_properties: {grid_position: 'QURNJE,ACTARR'}
+  name: button_2
+  properties: {align: center, text: delgg}
+  type: Button
 container:
   data_bindings: []
   properties: {border: '10', role: null}

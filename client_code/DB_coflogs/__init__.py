@@ -1,4 +1,4 @@
-from ._anvil_designer import RowTemplate7Template
+from ._anvil_designer import DB_coflogsTemplate
 from anvil import *
 import anvil.server
 import anvil.facebook.auth
@@ -10,14 +10,9 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 
-class RowTemplate7(RowTemplate7Template):
+class DB_coflogs(DB_coflogsTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.text_box_1.text = self.item['name']
-    self.text_box_2.text = self.item['email']
-    self.text_box_3.text = self.item['id']
-    self.text_box_1.width = 500
-    self.text_box_2.width = 500
-    self.text_box_3.width = 500
+
     # Any code you write here will run before the form opens.
