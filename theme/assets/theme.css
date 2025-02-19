@@ -2,7 +2,7 @@
 /* Povolenie horizontálneho posúvania v Data Grid */
 .anvil-role-wide .data-grid-child-panel {
     overflow-x: auto;
-    border: 1px  solid black
+    /* border: 1px  solid black */
 
 }
 
@@ -11,7 +11,7 @@ enie správneho rozlozenia riadkov */
 .anvil-role-wide .anvil-data-row-panel {
     flex-wrap: nowrap !important;
     min-width: min-content !important;
-    border: 1px solid black
+    /* border: 1px  solid black */
 }
 
 .anvil-role-wide .anvil-panel-section-gutter {

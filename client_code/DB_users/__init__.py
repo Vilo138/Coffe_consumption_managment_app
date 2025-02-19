@@ -14,28 +14,15 @@ class DB_users(DB_usersTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    #self.repeating_panel_1.items = app_tables.users.search(tables.order_by('id'))
-    #self.repeating_panel_1.items = app_tables.users.client_writable()
+    self.load_data()
+
+  def load_data(self):
+    """Načíta všetky riadky do Repeating Panel"""
     self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
-    #self.repeating_panel_1.role = 'wide'
-    self.button_2.width = 200
-    self.button_2.height = 150
-    #self.data_grid_1.role = 'wide'
-    #self.get_data()
-
-    # Any code you write here will run before the form opens.
-  #def get_data(self):
-    #db_data = 
-    #self.repeating_panel_1.items = anvil.server.call("get_users_data").search()
-
-  #def save_changes(self, item, **event_args):
-  #      """Uloží zmeny pri úprave tabuľky"""
-   #     anvil.server.call('update_row', item)
 
   def button_1_click(self, **event_args):
-    app_tables.users.add_row()
-    open_form('DB_users')
+    """Pridanie nového riadku do databázy a obnovenie UI"""
+    app_tables.users.add_row(meno="Nový užívateľ")  # Predvolená hodnota
+    self.load_data()
 
-  def button_2_click(self, **event_args):
-    self.item.delete()
-    self.remove_from_parent()
+  

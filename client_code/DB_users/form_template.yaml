@@ -4,15 +4,10 @@ components:
   name: button_1
   properties: {text: new}
   type: Button
-- layout_properties: {full_width_row: true, grid_position: 'QURNJE,ODFUGM'}
+- layout_properties: {grid_position: 'EGLZFX,RCGRKO LNSIIR,OFSWDE'}
   name: repeating_panel_1
-  properties: {item_template: DB_users.RowTemplate7}
+  properties: {item_template: DB_users.ItemTemplate2}
   type: RepeatingPanel
-- event_bindings: {click: button_2_click}
-  layout_properties: {grid_position: 'QURNJE,ACTARR'}
-  name: button_2
-  properties: {align: center, text: delgg}
-  type: Button
 container:
   data_bindings: []
   properties: {border: '10', role: null}

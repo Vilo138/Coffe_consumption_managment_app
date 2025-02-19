@@ -11,11 +11,15 @@ components:
   name: text_box_2
   properties: {}
   type: TextBox
-- data_bindings:
-  - {code: 'self.item[''email'']', property: tag, writeback: false}
-  layout_properties: {column: SUSMYH}
+- layout_properties: {column: 'null'}
   name: text_box_3
   properties: {}
   type: TextBox
-container: {type: DataRowPanel}
+- layout_properties: {}
+  name: button_2
+  properties: {text: button_1}
+  type: Button
+container:
+  properties: {role: wide}
+  type: DataRowPanel
 is_package: true

@@ -249,5 +249,12 @@ def add_row(item):
     row.update(**item)
 
 
+@anvil.server.callable
+def update_row(item):
+    """Upraví existujúci riadok v databáze"""
+    row = app_tables.users.get(id=item['id'])
+    if row:
+        row.update(name=item['name'])  # Aktualizácia údajov
+
 
 
