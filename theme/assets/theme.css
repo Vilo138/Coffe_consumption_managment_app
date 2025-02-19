@@ -680,8 +680,8 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
   padding: 8px 12px;
   /* 2dp */  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.anvil-role-card .grid-panel td, 
-.anvil-role-card .grid-panel th {
+.anvil-role-card > .grid-panel td, 
+.anvil-role-card > .grid-panel th {
     border: 1px solid #ddd !important; /* Farba mrie~ky */
     padding: 8px !important;
     text-align: left !important;
@@ -712,25 +712,34 @@ enie správneho rozlozenia riadkov */
 /*!ciary medzi bunkami */
 .anvil-role-card .grid-panel td, 
 .anvil-role-card .grid-panel th {
-    border: 1px solid #ddd !important; /* Farba mrie~ky */
+    border: 1px solid #ff4d4d !important; /* Farba mrie~ky */
     padding: 8px !important;
     text-align: left !important;
 }
 
 /* Striedavé riadky - svetlosivé pozadie */
-.anvil-role-card .grid-panel tr:nth-child(even) {
-    background-color: #f9f9f9 !important;
+.anvil-role-card .anvil-panel-section:nth-child(even) {
+    background-color: #ff4d4d !important;
 }
 
 /* Zvýraznenie pri hover */
-.anvil-role-card .grid-panel tr:hover {
-    background-color: #e0e0e0 !important;
+.anvil-role-card .anvil-panel-section:hover {
+    background-color: #ff4d4d !important;
     transition: background-color 0.2s ease-in-out !important;
+}
+.anvil-role-card  > .anvil-data-table tr:hover {
+    background-color: #ff4d4d !important; /* Svetlo
+ervená farba pri hover */
+    transition: background-color 0.2s ease-in-out;
 }
 
 /* full_width_row sections go full bleed */
 .column-panel.anvil-role-card > .anvil-panel-section > .anvil-panel-section-container.full-width-row {
   margin-left: -12px;
+  background-color: #ff4d4d/* Zvýraznenie pri hover - zmena na!
+ervenú */
+
+
   margin-right: -12px;
   width: 100%;
   max-width: 100%;
@@ -738,10 +747,18 @@ enie správneho rozlozenia riadkov */
 
 /* If the first row of a card is a full_width_row, it goes to the top */
 .column-panel.anvil-role-card > .anvil-panel-section:first-child > .anvil-panel-section-container.full-width-row {
-  margin-top: -8px;
+  margin-top: -11228px !important;
+  background-color: red !important;
+  border: 5px solid black !important;
 }
 .column-panel.anvil-role-card > .anvil-panel-section:last-child > .anvil-panel-section-container.full-width-row {
-  margin-bottom: -8px;
+  margin-top: -11228px !important;
+  background-color: red !important;
+  border: 5px solid black !important;
+}
+.anvil-role-card > .anvil-data-row-panel {
+  background-color: red !important;
+  border: 5px solid black !important;
 }
 
 
