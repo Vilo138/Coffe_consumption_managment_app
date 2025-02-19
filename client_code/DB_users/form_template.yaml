@@ -1,23 +1,23 @@
 components:
 - components:
-  - data_bindings:
-    - {code: 'self.item[''2000'']', property: border, writeback: false}
-    layout_properties: {pinned: true}
-    name: repeating_panel_1
-    properties: {foreground: 'theme:Primary 700', item_template: DB_users.RowTemplate9, role: card}
+  - name: repeating_panel_1
+    properties: {item_template: DB_users.RowTemplate10}
     type: RepeatingPanel
-  layout_properties: {full_width_row: true, grid_position: 'XIXGEW,ZPXLHU'}
+  layout_properties: {grid_position: 'UJERLR,ZJHUPC'}
   name: data_grid_1
   properties:
-    background: theme:Secondary 700
     columns:
-    - {data_key: email, id: KAZCSL, title: email}
-    - {data_key: enabled, id: RZTPZK, title: enabled}
-    - {data_key: last_login, id: VXTJOC, title: last_login}
-    - {data_key: signed_up, id: GBNQVA, title: signed_up}
-    - {data_key: id, id: LHZOFL, title: id}
-    - {data_key: link_key, id: WMLMWG, title: link_key}
-    - {data_key: name, id: KXUXDR, title: name}
+    - {data_key: email, id: BWGGXW, title: email, width: '200'}
+    - {data_key: enabled, id: SXLTPQ, title: enabled, width: '200'}
+    - {data_key: last_login, id: NUCZLB, title: last_login, width: '200'}
+    - {data_key: password_hash, id: ALSNAO, title: password_hash, width: '500'}
+    - {data_key: n_password_failures, id: LMJZSC, title: n_password_failures, width: '200'}
+    - {data_key: confirmed_email, id: IBXYTQ, title: confirmed_email, width: '200'}
+    - {data_key: signed_up, id: APKPGA, title: signed_up, width: '200'}
+    - {data_key: email_confirmation_key, id: GWMDTK, title: email_confirmation_key, width: '200'}
+    - {data_key: id, id: OIWEXY, title: id, width: '50'}
+    - {data_key: link_key, id: EJIWLK, title: link_key, width: '200'}
+    - {data_key: name, id: QSFZMZ, title: name, width: '200'}
     role: wide
   type: DataGrid
 container:
