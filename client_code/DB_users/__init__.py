@@ -17,7 +17,7 @@ class DB_users(DB_usersTemplate):
     #self.repeating_panel_1.items = app_tables.users.search(tables.order_by('id'))
     #self.repeating_panel_1.items = app_tables.users.client_writable()
     self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
-
+    self.repeating_panel_1.role = 'card'
     self.data_grid_1.role = 'card'
     #self.get_data()
 

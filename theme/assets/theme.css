@@ -674,9 +674,9 @@ body>div[data-notify="container"].alert-warning>span[data-notify="title"]{
 /* Component: Card */
 
 .anvil-role-card {
-  overflow: auto-flow;
+  overflow: auto;
   border-radius: 2px;
-  background-color: white;
+  background-color: green;
   padding: 8px 12px;
   /* 2dp */  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
@@ -712,23 +712,23 @@ enie správneho rozlozenia riadkov */
 /*!ciary medzi bunkami */
 .anvil-role-card .grid-panel td, 
 .anvil-role-card .grid-panel th {
-    border: 1px solid #ff4d4d !important; /* Farba mrie~ky */
+    border: 1px solid black !important; /* Farba mrie~ky */
     padding: 8px !important;
     text-align: left !important;
 }
 
 /* Striedavé riadky - svetlosivé pozadie */
 .anvil-role-card .anvil-panel-section:nth-child(even) {
-    background-color: #ff4d4d !important;
+    background-color: black !important;
 }
 
 /* Zvýraznenie pri hover */
 .anvil-role-card .anvil-panel-section:hover {
-    background-color: #ff4d4d !important;
+    background-color: black !important;
     transition: background-color 0.2s ease-in-out !important;
 }
 .anvil-role-card  > .anvil-data-table tr:hover {
-    background-color: #ff4d4d !important; /* Svetlo
+    background-color: black !important; /* Svetlo
 ervená farba pri hover */
     transition: background-color 0.2s ease-in-out;
 }
@@ -736,7 +736,7 @@ ervená farba pri hover */
 /* full_width_row sections go full bleed */
 .column-panel.anvil-role-card > .anvil-panel-section > .anvil-panel-section-container.full-width-row {
   margin-left: -12px;
-  background-color: #ff4d4d/* Zvýraznenie pri hover - zmena na!
+  background-color: black /* Zvýraznenie pri hover - zmena na!
 ervenú */
 
 
@@ -749,7 +749,7 @@ ervenú */
 .column-panel.anvil-role-card > .anvil-panel-section:first-child > .anvil-panel-section-container.full-width-row {
   margin-top: -11228px !important;
   background-color: red !important;
-  border: 5px solid black !important;
+  border: 0px solid black !important;
 }
 .column-panel.anvil-role-card > .anvil-panel-section:last-child > .anvil-panel-section-container.full-width-row {
   margin-top: -11228px !important;
@@ -758,7 +758,7 @@ ervenú */
 }
 .anvil-role-card > .anvil-data-row-panel {
   background-color: red !important;
-  border: 5px solid black !important;
+  border: 500px solid black !important;
 }
 
 
