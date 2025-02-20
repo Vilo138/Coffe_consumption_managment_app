@@ -30,13 +30,10 @@ class ItemTemplate2(ItemTemplate2Template):
   
 
 
-  #def text_box_2_lost_focus(self, **event_args):
-  #      """Uloží zmeny do databázy po úprave hodnoty v TextBoxe"""
-  #      if self.item:  # Overíme, či máme databázový riadok
-  #          self.item['name'] = self.text_box_2.text  # Aktualizácia self.item
-  #          anvil.server.call('update_row', self.item)  # Zavoláme server na uloženie
+  #def text_box_2_lost_focus(self, **event_args): 
+  #    self.item['name'] = self.text_box_2.text  # Aktualizácia 
+  #    anvil.server.call('update_row_name', self.item)    
 
-  #      self.text_box_2.enabled = False
 
   #def button_edt_click(self, **event_args):
   #    self.text_box_2.enabled = True
@@ -44,12 +41,23 @@ class ItemTemplate2(ItemTemplate2Template):
   #    anvil.server.call('update_row', self.item)
       #self.text_box_2_lost_focus()
 
-  def text_box_1_change(self, **event_args):
-      anvil.server.call('update_row', self.item)
+  
+  
+  def text_box_3_lost_focus(self, **event_args):
+      self.item['email'] = self.text_box_3.text  # Aktualizácia 
+      anvil.server.call('update_row_email', self.item)
+
   def text_box_2_change(self, **event_args):
-      anvil.server.call('update_row', self.item)
-  def text_box_3_change(self, **event_args):
-      anvil.server.call('update_row', self.item)
+    if not hasattr(self, "timer_running"):
+        self.timer_running = False
+
+    if not self.timer_running:
+        self.timer_running = True
+        self.timer = Timer(interval=0.5, function=self.update_name)
+  def update_name(self):
+    self.timer_running = False
+    self.item['name'] = self.text_box_2.text
+    anvil.server.call('update_row_name', dict(self.item))
 
   
 
