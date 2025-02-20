@@ -18,11 +18,13 @@ class DB_users(DB_usersTemplate):
 
   def load_data(self):
     """Načíta všetky riadky do Repeating Panel"""
-    self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
+    self.repeating_panel_1.items = app_tables.users.search(tables.order_by("id", ascending=True))
+    #self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
+
 
   def button_1_click(self, **event_args):
     """Pridanie nového riadku do databázy a obnovenie UI"""
-    app_tables.users.add_row(meno="Nový užívateľ")  # Predvolená hodnota
+    app_tables.users.add_row()  # Predvolená hodnota
     self.load_data()
 
   

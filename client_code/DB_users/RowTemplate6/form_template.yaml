@@ -1,9 +1,0 @@
-components: []
-container:
-  data_bindings:
-  - {code: 'self.item[''time_log'']', property: auto_display_data, writeback: false}
-  - {code: 'self.item[''time_log'']', property: tag, writeback: false}
-  - {code: 'self.item[''time_log'']', property: item, writeback: false}
-  - {code: 'self.item[''10'']', property: border, writeback: false}
-  type: DataRowPanel
-is_package: true

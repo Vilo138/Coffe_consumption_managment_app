@@ -1,7 +1,0 @@
-components: []
-container:
-  data_bindings:
-  - {code: 'self.item[''name'']', property: tag, writeback: false}
-  properties: {italic: true}
-  type: DataRowPanel
-is_package: true
