@@ -8,7 +8,6 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from .. import DB_users
 
 
 class ItemTemplate2(ItemTemplate2Template):
@@ -18,7 +17,7 @@ class ItemTemplate2(ItemTemplate2Template):
     self.text_box_1.text = self.item['id']
     self.text_box_2.text = self.item['name']
     self.text_box_3.text = self.item['email']
-    self.text_box_2.enabled = False
+    #self.text_box_2.enabled = False
 
 
     # Any code you write here will run before the form opens.
@@ -39,12 +38,18 @@ class ItemTemplate2(ItemTemplate2Template):
 
   #      self.text_box_2.enabled = False
 
-  def button_edt_click(self, **event_args):
-      self.text_box_2.enabled = True
-      self.item['name'] = self.text_box_2.text  # Aktualizácia hodnoty
-      anvil.server.call('update_row', self.item)
-      load_data()
+  #def button_edt_click(self, **event_args):
+  #    self.text_box_2.enabled = True
+  #    self.item['name'] = self.text_box_2.text  # Aktualizácia hodnoty
+  #    anvil.server.call('update_row', self.item)
       #self.text_box_2_lost_focus()
+
+  def text_box_1_change(self, **event_args):
+      anvil.server.call('update_row', self.item)
+  def text_box_2_change(self, **event_args):
+      anvil.server.call('update_row', self.item)
+  def text_box_3_change(self, **event_args):
+      anvil.server.call('update_row', self.item)
 
   
 

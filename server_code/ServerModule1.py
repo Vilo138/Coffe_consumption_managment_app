@@ -251,10 +251,13 @@ def add_row(item):
 
 @anvil.server.callable
 def update_row(item):
-    """Upraví existujúci riadok v databáze"""
-    row = app_tables.users.get(id=item['id'])
+    """Upraví existujúci riadok v databáze bez zmeny ID"""
+    row = app_tables.users.get(id=item['id'])  # Nájde existujúci riadok
     if row:
-        row.update(name=item['name'])  # Aktualizácia údajov
+        row.update(**{k: v for k, v in item.items() if k != 'id'})  # Aktualizuje všetko okrem ID
+    else:
+        raise ValueError(f"Row with id {item['id']} not found")
+
 
 
 
