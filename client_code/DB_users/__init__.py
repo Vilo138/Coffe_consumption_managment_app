@@ -22,9 +22,16 @@ class DB_users(DB_usersTemplate):
     self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
 
 
-  def button_1_click(self, **event_args):
+  def button_1_click(self, item, **event_args):
     """Pridanie nového riadku do databázy a obnovenie UI"""
-    app_tables.users.add_row()  # Predvolená hodnota
+    app_tables.users.add_row()
+    row = app_tables.users.get(id=item['id'])
+    get_max_id = app_tables.users.search(tables.order_by('id', ascending=False)).first()
+    print(get_max_id)
+    max_id = get_max_id['id']
+    print(max_id)
+    new_max_id = max_id + 1
+    app_tables.users.update(id=new_max_id)# Predvolená hodnota
     self.load_data()
 
   

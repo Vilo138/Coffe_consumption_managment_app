@@ -30,9 +30,9 @@ class ItemTemplate2(ItemTemplate2Template):
   
 
 
-  #def text_box_2_lost_focus(self, **event_args): 
-  #    self.item['name'] = self.text_box_2.text  # Aktualizácia 
-  #    anvil.server.call('update_row_name', self.item)    
+  def text_box_2_lost_focus(self, **event_args): 
+      self.item['name'] = self.text_box_2.text  # Aktualizácia 
+      anvil.server.call('update_row_name', self.item)    
 
 
   #def button_edt_click(self, **event_args):
@@ -45,19 +45,9 @@ class ItemTemplate2(ItemTemplate2Template):
   
   def text_box_3_lost_focus(self, **event_args):
       self.item['email'] = self.text_box_3.text  # Aktualizácia 
-      anvil.server.call('update_row_email', self.item)
+      anvil.server.call('update_row_name', self.item)
 
-  def text_box_2_change(self, **event_args):
-    if not hasattr(self, "timer_running"):
-        self.timer_running = False
-
-    if not self.timer_running:
-        self.timer_running = True
-        self.timer = Timer(interval=0.5, function=self.update_name)
-  def update_name(self):
-    self.timer_running = False
-    self.item['name'] = self.text_box_2.text
-    anvil.server.call('update_row_name', dict(self.item))
+  
 
   
 

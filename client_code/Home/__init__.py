@@ -34,7 +34,7 @@ class Home(HomeTemplate):
         """Pri kliknutí na tlačidlo zaznamená výber kávy do tabuľky"""
         user_id = event_args['sender'].tag.user_id  # Získame user_id z tagu tlačidla
         user_email = event_args['sender'].tag.user_email
-        print(f"User ID: {user_email}")
+        #print(f"User ID: {user_email}")
         
         # Zobrazenie dialógového okna s otázkou
         response = alert(f"Do you want to confirm this coffee log for {user_email}?", buttons=[("Yes", True), ("No", False)])

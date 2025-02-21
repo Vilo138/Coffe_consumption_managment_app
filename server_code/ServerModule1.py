@@ -244,9 +244,16 @@ def get_users_data():
 
 @anvil.server.callable 
 def add_row(item):
+  print('som tu piatok')
   row = app_tables.users.get(id=item['id'])
+  get_max_id = app_tables.users.search(tables.order_by('id', ascending=False)).first()
+  print(get_max_id)
+  max_id = get_max_id['id']
+  print(max_id)
+  new_max_id = max_id + 1
+  print(new_max_id)
   if row:
-    row.update(**item)
+    row.update(id=new_max_id, **item)
 
 
 @anvil.server.callable 
@@ -254,15 +261,10 @@ def update_row_name(item):
   """Upraví existujúci riadok v databáze""" 
   row = app_tables.users.get(id=item['id']) 
   if row: 
-    row.update(name=item['name'])  # Aktualizácia údajov
+    row.update(name=item['name'], email=item['email'])  # Aktualizácia údajov
 
 
-@anvil.server.callable 
-def update_row_email(item): 
-  """Upraví existujúci riadok v databáze""" 
-  row = app_tables.users.get(id=item['id']) 
-  if row: 
-    row.update(email=item['email'])
+
 
 
 
