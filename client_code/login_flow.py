@@ -4,6 +4,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+import anvil.js
 
 
 from LoginDialog import LoginDialog
@@ -26,6 +27,21 @@ def login_with_form(allow_cancel=True):
     if choice == 'login':
       try:
         anvil.users.login_with_email(d.email_box.text, d.password_box.text, remember=True)
+        role = anvil.server.call('get_user_role')
+        print(f"Rola po prihlásení: {role}")  # Debugging
+                
+                # Po prihlásení zavoláme funkciu, ktorá zaktualizuje viditeľnosť tlačidiel v index.py
+                # Toto môžeš zavolať v index.py po prihlásení
+        #anvil.js.call("location.reload()")
+        try:
+    # Pokúsime sa zavolať reload
+          anvil.js.call('location.reload()')
+        except Exception as e:
+    # Logovanie chyby do konzoly
+          print(f"Error occurred: {e}")
+          pass
+
+        #self.refresh_page()
       except anvil.users.EmailNotConfirmed:
         d.confirm_lnk.visible = True
       except anvil.users.AuthenticationFailed as e:
@@ -51,6 +67,8 @@ def login_with_form(allow_cancel=True):
     
     elif choice is None and allow_cancel:
       break
+    anvil.server.call('get_user_role')
+    
 
       
 def signup_with_form():

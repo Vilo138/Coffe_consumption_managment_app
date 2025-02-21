@@ -16,6 +16,7 @@ import bcrypt
 from random import SystemRandom
 random = SystemRandom()
 
+
 #naive_local = datetime.now()
 # 2019-08-09 10:10:00.406000
 #aware_local = datetime.now(anvil.tz.tzlocal())
@@ -242,18 +243,19 @@ def get_users_data():
   
  
 
-@anvil.server.callable 
-def add_row(item):
-  print('som tu piatok')
-  row = app_tables.users.get(id=item['id'])
-  get_max_id = app_tables.users.search(tables.order_by('id', ascending=False)).first()
-  print(get_max_id)
-  max_id = get_max_id['id']
-  print(max_id)
-  new_max_id = max_id + 1
-  print(new_max_id)
-  if row:
-    row.update(id=new_max_id, **item)
+#@anvil.server.callable 
+#def add_row(item):
+  # print('som tu piatok')
+  # row = app_tables.users.get(id=item['id'])
+  # get_max_id = app_tables.users.search(tables.order_by('id', ascending=False)).first()
+  # print(get_max_id)
+  # max_id = get_max_id['id']
+  # print(max_id)
+  # new_max_id = max_id + 1
+  # print(new_max_id)
+  # if row:
+  #   row.update(id=new_max_id, **item)
+
 
 
 @anvil.server.callable 
@@ -262,6 +264,21 @@ def update_row_name(item):
   row = app_tables.users.get(id=item['id']) 
   if row: 
     row.update(name=item['name'], email=item['email'])  # Aktualizácia údajov
+
+@anvil.server.callable
+def get_user_role():
+  #from Index import Index
+  user = anvil.users.get_user()
+  role = user['role']
+  if user:
+    print(f"Používateľ: {user['email']}, Rola: {user['role']}")  # Debugging
+    return user['role']
+  return None
+  if role == 'admin':
+      link_DB_users.visible = True
+  else:
+      link_DB_users.visible = False
+  
 
 
 

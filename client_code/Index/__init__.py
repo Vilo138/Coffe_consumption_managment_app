@@ -27,8 +27,25 @@ class Index(IndexTemplate):
         self.update_sign_in_text()
         #print(sys.path)
         self.content_panel.add_component(Home())
+        #role = anvil.server.call('get_user_role')
+        #self.link_DB_users.visible = False
+        user = anvil.users.get_user()
+        
+        if user:  # Skontrolovať, či je používateľ prihlásený
+            # Zavoláme serverovú funkciu na získanie roly používateľa
+            role = anvil.server.call('get_user_role')
+            
+            # Zobraziť tlačidlá podľa roly
+            if role == "admin":
+                self.link_DB_users.visible = True
+            else:
+                self.link_DB_users.visible = False
+        else:
+            # Ak používateľ nie je prihlásený, zobraziť len verejný obsah
+            self.link_DB_users.visible = False
+        
         #anvil.server.register_event_handler('user_login_changed', self.update_sign_in_text)
-
+    
         
 
     def update_sign_in_text(self):
@@ -82,6 +99,14 @@ class Index(IndexTemplate):
       self.update_sign_in_text()
       self.content_panel.clear()
       self.content_panel.add_component(DB_users())
+
+    def link_DB_users_show(self, **event_args):
+      """This method is called when the Link is shown on the screen"""
+      pass
+
+    def link_DB_users_hide(self, **event_args):
+      """This method is called when the Link is removed from the screen"""
+      pass
       
 
         

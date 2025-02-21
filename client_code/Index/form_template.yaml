@@ -5,10 +5,11 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
-  - event_bindings: {click: link_DB_users_click}
+  - data_bindings: []
+    event_bindings: {click: link_DB_users_click, hide: link_DB_users_hide, show: link_DB_users_show}
     layout_properties: {}
     name: link_DB_users
-    properties: {text: DB Users}
+    properties: {text: DB Users, visible: true}
     type: Link
   - event_bindings: {click: button_csv_click}
     layout_properties: {}

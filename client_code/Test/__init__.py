@@ -7,8 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import login_flow
 from ..Home import Home
-#from ..Index import Index
-#from anvil import event
+
 
 class Test(TestTemplate):
   def __init__(self, **properties):
@@ -33,7 +32,7 @@ class Test(TestTemplate):
 
     login_flow.login_with_form()
     self.update_login_status()
-    print('som tu')
+    #print('som tu')
     
     #anvil.server.raise_event('user_login_changed')
 
