@@ -41,7 +41,6 @@ class Index(IndexTemplate):
             else:
                 self.link_DB_users.visible = False
         else:
-            # Ak používateľ nie je prihlásený, zobraziť len verejný obsah
             self.link_DB_users.visible = False
         
         #anvil.server.register_event_handler('user_login_changed', self.update_sign_in_text)
@@ -100,14 +99,7 @@ class Index(IndexTemplate):
       self.content_panel.clear()
       self.content_panel.add_component(DB_users())
 
-    def link_DB_users_show(self, **event_args):
-      """This method is called when the Link is shown on the screen"""
-      pass
-
-    def link_DB_users_hide(self, **event_args):
-      """This method is called when the Link is removed from the screen"""
-      pass
-      
+   
 
         
       
