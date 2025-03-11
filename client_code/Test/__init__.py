@@ -41,6 +41,11 @@ class Test(TestTemplate):
     """This method is called when the button is clicked"""
     #from ..Index import Index
     anvil.users.logout()
+    try:
+      anvil.js.call('location.reload()')
+    except Exception as e:
+          print(f"Error occurred: {e}")
+          pass
     self.update_login_status()
     print('som tu')
     #anvil.server.raise_event('user_login_changed')

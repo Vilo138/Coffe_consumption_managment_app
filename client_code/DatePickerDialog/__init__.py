@@ -36,13 +36,13 @@ class DatePickerDialog(DatePickerDialogTemplate):
             if data:  # Ak sú dáta na generovanie
               pdf = anvil.server.call("generate_pdf", data=data, start_date=start_date, end_date=end_date)
               anvil.media.download(pdf)  # Stiahnutie PDF
-              print("PDF has been downloaded.")  # Debugging
+              #print("PDF has been downloaded.")  # Debugging
             else:
               alert("No data available for the selected dates.")
           else:
             alert("Please select valid start and end dates.")
         else:
-          print("Action was canceled.")  # Debugging
+          #print("Action was canceled.")  # Debugging
           alert("Action was canceled.")
         self.raise_event("x-close-alert", value=None)
 
@@ -52,8 +52,4 @@ class DatePickerDialog(DatePickerDialogTemplate):
         """Po kliknutí na Cancel zatvorí dialóg bez hodnôt"""
         print("Cancel clicked")
         self.result = None
-        #self.close()  # Zatvorí dialóg
-        #self.raise_event("x-close", value=None)
-        #alert.dismiss()
-        #anvil.alert.close()
         self.raise_event("x-close-alert", value=None)

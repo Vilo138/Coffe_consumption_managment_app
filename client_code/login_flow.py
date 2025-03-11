@@ -27,9 +27,6 @@ def login_with_form(allow_cancel=True):
     if choice == 'login':
       try:
         anvil.users.login_with_email(d.email_box.text, d.password_box.text, remember=True)
-        role = anvil.server.call('get_user_role')
-        print(f"Rola po prihlásení: {role}")  # Debugging
-                
                 # Po prihlásení zavoláme funkciu, ktorá zaktualizuje viditeľnosť tlačidiel v index.py
                 # Toto môžeš zavolať v index.py po prihlásení
         #anvil.js.call("location.reload()")

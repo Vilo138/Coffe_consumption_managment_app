@@ -27,12 +27,9 @@ class Index(IndexTemplate):
         self.update_sign_in_text()
         #print(sys.path)
         self.content_panel.add_component(Home())
-        #role = anvil.server.call('get_user_role')
-        #self.link_DB_users.visible = False
         user = anvil.users.get_user()
         
-        if user:  # Skontrolovať, či je používateľ prihlásený
-            # Zavoláme serverovú funkciu na získanie roly používateľa
+        if user:
             role = anvil.server.call('get_user_role')
             
             # Zobraziť tlačidlá podľa roly
@@ -43,7 +40,6 @@ class Index(IndexTemplate):
         else:
             self.link_DB_users.visible = False
         
-        #anvil.server.register_event_handler('user_login_changed', self.update_sign_in_text)
     
         
 
@@ -77,14 +73,13 @@ class Index(IndexTemplate):
           start_date, end_date = result
           data = anvil.server.call('get_filtered_data', start_date, end_date)
           pdf = anvil.server.call('generate_pdf', data)
-          anvil.media.download(pdf)  # Stiahnutie PDF
+          anvil.media.download(pdf)  
         #dates = dialog.show()
 
     def title_click(self, **event_args):
       """This method is called when the link is clicked."""
       self.update_sign_in_text()
       if not isinstance(self.content_panel.get_components()[-1], Home):
-        # Clear existing components and add Home
         self.content_panel.clear()
         self.content_panel.add_component(Home())
 
@@ -97,17 +92,4 @@ class Index(IndexTemplate):
       """This method is called when the link is clicked"""
       self.update_sign_in_text()
       self.content_panel.clear()
-      self.content_panel.add_component(DB_users())
-
-   
-
-        
-      
-
-        
-        
-        
-
-    
-
-
+      self.content_panel.add_component(DB_users())  

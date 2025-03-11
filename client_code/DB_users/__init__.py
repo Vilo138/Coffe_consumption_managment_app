@@ -27,7 +27,7 @@ class DB_users(DB_usersTemplate):
     #app_tables.users.add_row()
     #row = app_tables.users.get(id=item['id'])
     get_max_id = list(app_tables.users.search(tables.order_by('id', ascending=False)))[:1]
-    print(get_max_id)
+    #print(get_max_id)
     max_id = get_max_id[0]['id']
     if max_id is None:
       new_max_id = 1

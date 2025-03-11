@@ -8,15 +8,15 @@ from anvil import Media
 from weasyprint import HTML
 import collections # stare, pod tymto nove
 import anvil.email
-#import tables
-#from tables import app_tables
+from decimal import *
 import anvil.users
 from anvil.http import url_encode
 import bcrypt
 from random import SystemRandom
 random = SystemRandom()
 
-
+#import tables
+#from tables import app_tables
 #naive_local = datetime.now()
 # 2019-08-09 10:10:00.406000
 #aware_local = datetime.now(anvil.tz.tzlocal())
@@ -38,7 +38,6 @@ def add_coffee_record(user_id):
     else:
         max_id = 0
 
-  # Priradenie nového ID ako najvyššie existujúce ID plus jeden
     new_id = (max_id or 0) + 1
   
     # Pridá záznam o káve do tabuľky pocet_kav
@@ -50,7 +49,7 @@ def add_coffee_record(user_id):
 @anvil.server.callable
 def get_filtered_data(start_date=None, end_date=None):
     rows = app_tables.coffee_logs.search()
-    # Filtrovanie na základe rozsahu dátumu
+    # Filtrovanie na základe dátumu
     if start_date and end_date:
         rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
     emails = [row['user_id']['email'] if row['user_id'] and row['user_id']['email'] else 'Unknown' for row in rows]
@@ -62,7 +61,7 @@ def get_filtered_data(start_date=None, end_date=None):
         results.append({
             "email": email,
             "pocet": count,
-            "suma": count * 0.6  # Cena za jednu kávu
+            "suma": round(count * 0.6, 2)  # Cena za jednu kávu
         })
     #print(results)
     return results
@@ -267,17 +266,10 @@ def update_row_name(item):
 
 @anvil.server.callable
 def get_user_role():
-  #from Index import Index
-  user = anvil.users.get_user()
-  role = user['role']
-  if user:
-    print(f"Používateľ: {user['email']}, Rola: {user['role']}")  # Debugging
-    return user['role']
-  return None
-  if role == 'admin':
-      link_DB_users.visible = True
-  else:
-      link_DB_users.visible = False
+    user = anvil.users.get_user()
+    role = user['role']
+    return role  
+  
   
 
 
