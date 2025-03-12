@@ -17,6 +17,9 @@ class ItemTemplate2(ItemTemplate2Template):
     self.text_box_1.text = self.item['id']
     self.text_box_2.text = self.item['name']
     self.text_box_3.text = self.item['email']
+    self.text_box_4.text = self.item['role']
+    self.text_box_5.text = self.item['last_login']
+
     #self.text_box_2.enabled = False
 
 

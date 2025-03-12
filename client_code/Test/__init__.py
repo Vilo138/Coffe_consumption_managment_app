@@ -47,7 +47,7 @@ class Test(TestTemplate):
           print(f"Error occurred: {e}")
           pass
     self.update_login_status()
-    print('som tu')
+    #print('som tu')
     #anvil.server.raise_event('user_login_changed')
 
     #index_instancia = Index()

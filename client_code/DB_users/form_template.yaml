@@ -4,6 +4,34 @@ components:
   name: button_1
   properties: {text: new}
   type: Button
+- layout_properties: {grid_position: 'VODKGW,JBMESZ'}
+  name: label_1
+  properties: {text: Id}
+  type: Label
+- layout_properties: {grid_position: 'VODKGW,DOKTVV'}
+  name: label_2
+  properties: {text: name}
+  type: Label
+- layout_properties: {grid_position: 'VODKGW,KTZMPE'}
+  name: label_3
+  properties: {text: email}
+  type: Label
+- layout_properties: {grid_position: 'VODKGW,XYQVTH'}
+  name: label_4
+  properties: {text: role}
+  type: Label
+- layout_properties: {grid_position: 'VODKGW,DDKFYK'}
+  name: label_5
+  properties: {text: last login}
+  type: Label
+- layout_properties: {grid_position: 'VODKGW,RAJULG'}
+  name: label_6
+  properties: {}
+  type: Label
+- layout_properties: {grid_position: 'ZNIDPQ,AKIPAK'}
+  name: repeating_panel_2
+  properties: {item_template: DB_users.ItemTemplate1}
+  type: RepeatingPanel
 - layout_properties: {grid_position: 'EGLZFX,RCGRKO LNSIIR,OFSWDE'}
   name: repeating_panel_1
   properties: {item_template: DB_users.ItemTemplate2}
