@@ -5,6 +5,11 @@ components:
   properties: {}
   type: ColumnPanel
 - components:
+  - event_bindings: {click: link_1_click}
+    layout_properties: {}
+    name: link_1
+    properties: {text: DB Coffee Logs}
+    type: Link
   - data_bindings: []
     event_bindings: {click: link_DB_users_click}
     layout_properties: {}

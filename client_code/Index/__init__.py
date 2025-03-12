@@ -10,6 +10,7 @@ from anvil import alert
 from ..Test import Test
 from ..Home import Home
 from ..DB_users import DB_users
+from ..DB_coflogs import DB_coflogs
 
 
 
@@ -93,3 +94,8 @@ class Index(IndexTemplate):
       self.update_sign_in_text()
       self.content_panel.clear()
       self.content_panel.add_component(DB_users())  
+
+    def link_1_click(self, **event_args):
+      self.update_sign_in_text()
+      self.content_panel.clear()
+      self.content_panel.add_component(DB_coflogs())

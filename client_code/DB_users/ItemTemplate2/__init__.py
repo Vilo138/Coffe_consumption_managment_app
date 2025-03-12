@@ -50,6 +50,10 @@ class ItemTemplate2(ItemTemplate2Template):
       self.item['email'] = self.text_box_3.text  # Aktualizácia 
       anvil.server.call('update_row_name', self.item)
 
+  def text_box_4_lost_focus(self, **event_args):
+      self.item['role'] = self.text_box_4.text  # Aktualizácia 
+      anvil.server.call('update_row_name', self.item)
+
   
 
   

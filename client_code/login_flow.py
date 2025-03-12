@@ -40,7 +40,7 @@ def login_with_form(allow_cancel=True):
         print("12.32")
         d.login_err_lbl.visible = True
         d.login_err_lbl.text = str(e.args[0])
-        d.refresh_data_bindings()  # Ak používate dátové väzby
+        #d.refresh_data_bindings()  # Ak používate dátové väzby
 
         
     elif choice == 'reset_password':

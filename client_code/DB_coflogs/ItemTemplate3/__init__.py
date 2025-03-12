@@ -1,4 +1,4 @@
-from ._anvil_designer import DB_coflogsTemplate
+from ._anvil_designer import ItemTemplate3Template
 from anvil import *
 import anvil.server
 import anvil.facebook.auth
@@ -10,15 +10,11 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 
-class DB_coflogs(DB_coflogsTemplate):
+class ItemTemplate3(ItemTemplate3Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.load_data()
-
+    self.text_box_1.text = self.item['id']
+    self.text_box_2.text = self.item['user_id']['id']
+    self.text_box_3.text = self.item['time_log']
     # Any code you write here will run before the form opens.
-
-  def load_data(self):
-      """Načíta všetky riadky do Repeating Panel"""
-      #self.repeating_panel_1.items = app_tables.users.search(tables.order_by("id", ascending=True))
-      self.repeating_panel_1.items = app_tables.coffee_logs.client_writable().search(tables.order_by("id", ascending=True))

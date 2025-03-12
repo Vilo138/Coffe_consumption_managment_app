@@ -262,13 +262,16 @@ def update_row_name(item):
   """Upraví existujúci riadok v databáze""" 
   row = app_tables.users.get(id=item['id']) 
   if row: 
-    row.update(name=item['name'], email=item['email'])  # Aktualizácia údajov
+    row.update(name=item['name'], email=item['email'], role=item['role'])  # Aktualizácia údajov
 
 @anvil.server.callable
 def get_user_role():
     user = anvil.users.get_user()
-    role = user['role']
-    return role  
+    if user:
+      role = user['role']
+      return role
+    else:
+      pass
   
   
 
