@@ -27,23 +27,21 @@ def login_with_form(allow_cancel=True):
     if choice == 'login':
       try:
         anvil.users.login_with_email(d.email_box.text, d.password_box.text, remember=True)
-                # Po prihlásení zavoláme funkciu, ktorá zaktualizuje viditeľnosť tlačidiel v index.py
-                # Toto môžeš zavolať v index.py po prihlásení
-        #anvil.js.call("location.reload()")
+        print("12.3")
         try:
-    # Pokúsime sa zavolať reload
           anvil.js.call('location.reload()')
         except Exception as e:
-    # Logovanie chyby do konzoly
           print(f"Error occurred: {e}")
           pass
 
-        #self.refresh_page()
       except anvil.users.EmailNotConfirmed:
         d.confirm_lnk.visible = True
       except anvil.users.AuthenticationFailed as e:
-        d.login_err_lbl.text = str(e.args[0])
+        print("12.32")
         d.login_err_lbl.visible = True
+        d.login_err_lbl.text = str(e.args[0])
+        d.refresh_data_bindings()  # Ak používate dátové väzby
+
         
     elif choice == 'reset_password':
       fp = ForgottenPasswordDialog(d.email_box.text)
