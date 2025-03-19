@@ -68,7 +68,7 @@ def get_filtered_data(start_date=None, end_date=None):
         })
     #print(results)
     return results
-
+@anvil.server.callable
 def get_filtered_data_csv():
     """Získa dáta z tabuľky a vráti CSV"""
     rows = app_tables.coffee_logs.search()
