@@ -13,6 +13,8 @@ import anvil.users
 from anvil.http import url_encode
 import bcrypt
 from random import SystemRandom
+import anvil.tables.query as q
+import pandas as pd
 random = SystemRandom()
 
 #import tables
@@ -57,6 +59,7 @@ def get_filtered_data(start_date=None, end_date=None):
     #print(emails, email_counts)
 
     results = []
+
     for email, count in email_counts.items():
         results.append({
             "email": email,
@@ -65,6 +68,20 @@ def get_filtered_data(start_date=None, end_date=None):
         })
     #print(results)
     return results
+
+def get_filtered_data_csv():
+    """Získa dáta z tabuľky a vráti CSV"""
+    rows = app_tables.coffee_logs.search()
+    
+    # Konvertovanie na pandas DataFrame
+    data_list = [{'id': r['id'], 'user_id': r['user_id'], 'time_log': r['time_log']} for r in rows]
+    df = pd.DataFrame(data_list)
+
+    # Vytvorenie CSV ako stringu
+    csv_string = df.to_csv(index=False)
+
+    # Vrátenie CSV ako Anvil Media objekt
+    return anvil.BlobMedia("text/csv", csv_string.encode("utf-8"), name="data.csv")
 
 # funkcia na generovanie pdf reportu
 @anvil.server.callable

@@ -85,9 +85,10 @@ class Index(IndexTemplate):
         self.content_panel.add_component(Home())
 
     def button_csv_click(self, **event_args):
-        """This method is called when the link is clicked"""
-        csv_file = app_tables.coffee_logs.search().to_csv()
-        anvil.media.download(csv_file)
+      """Tento kód sa spustí, keď sa klikne na tlačidlo"""
+      csv_file = anvil.server.call('get_filtered_data_csv')  # Volanie serverovej funkcie
+      anvil.media.download(csv_file)  # Stiahnutie CSV súboru
+
 
     def link_DB_users_click(self, **event_args):
       """This method is called when the link is clicked"""
