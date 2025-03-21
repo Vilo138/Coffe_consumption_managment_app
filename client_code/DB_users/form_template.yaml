@@ -1,7 +1,7 @@
 components:
-- event_bindings: {click: button_1_click}
+- event_bindings: {click: addNewUser_click}
   layout_properties: {grid_position: 'NKOOEL,CFUXIV'}
-  name: button_1
+  name: addNewUser
   properties: {text: Add New User}
   type: Button
 - layout_properties: {grid_position: 'VODKGW,JBMESZ'}

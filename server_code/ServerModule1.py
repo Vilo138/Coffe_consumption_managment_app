@@ -191,6 +191,8 @@ def _do_signup(email, name, password):
     #print('robim singup')
     if not name.strip():
         return "Must supply a name"
+    if not email.strip():
+        return "Must supply an email"
 
     pwhash = hash_password(password, bcrypt.gensalt())
 
@@ -203,8 +205,7 @@ def _do_signup(email, name, password):
         max_id_row = app_tables.users.search(tables.order_by("id", ascending=False)) #tables.limit(1)
         max_id = max_id_row[0]['id'] if max_id_row else 0
         new_id = max_id + 1
-        #print("Max ID:", max_id)  # Toto by teraz malo vypísať.
-        #print("New ID:", new_id)  # Toto by teraz malo vypísať.
+        
 
         user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
         return user
@@ -257,20 +258,29 @@ def _confirm_email_address(email, confirm_key):
 def get_users_data():
   return app_tables.users.client_writable()
   
- 
+@anvil.server.callable
+def add_user(name, email, role):
+  if not name.strip():
+        return "Must supply a name"
+  if not email.strip():
+        return "Must supply an email"
+  if not role.strip():
+        return "Must supply a role"
 
-#@anvil.server.callable 
-#def add_row(item):
-  # print('som tu piatok')
-  # row = app_tables.users.get(id=item['id'])
-  # get_max_id = app_tables.users.search(tables.order_by('id', ascending=False)).first()
-  # print(get_max_id)
-  # max_id = get_max_id['id']
-  # print(max_id)
-  # new_max_id = max_id + 1
-  # print(new_max_id)
-  # if row:
-  #   row.update(id=new_max_id, **item)
+  rows = app_tables.users.search(tables.order_by("id", ascending=False))
+  if rows:
+    actual_max_id = rows[0]['id']
+  else:
+    actual_max_id = None
+
+  if actual_max_id is None:  # Správne porovnanie s None
+    new_id = 0
+  else:
+    new_id = actual_max_id + 1
+  app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
+
+
+
 
 
 

@@ -4,7 +4,7 @@ components:
   properties: {text: 'User name:'}
   type: Label
 - layout_properties: {grid_position: 'DXOWXH,DXTRMJ'}
-  name: text_box_1
+  name: name_box
   properties: {}
   type: TextBox
 - layout_properties: {grid_position: 'XIFVEO,OYQAWV'}
@@ -12,7 +12,7 @@ components:
   properties: {text: 'User email:'}
   type: Label
 - layout_properties: {grid_position: 'MIDPNA,DHMXMD'}
-  name: text_box_2
+  name: email_box
   properties: {}
   type: TextBox
 - layout_properties: {grid_position: 'EOQIGP,OPJLLB'}
@@ -20,8 +20,12 @@ components:
   properties: {text: 'Role:'}
   type: Label
 - layout_properties: {grid_position: 'TWJQGF,LVBOJJ'}
-  name: text_box_3
+  name: role_box
   properties: {placeholder: '''user''/''superuser''/''admin'''}
   type: TextBox
+- layout_properties: {grid_position: 'MIJKAI,DBYWXL'}
+  name: err_lbl
+  properties: {visible: false}
+  type: Label
 container: {type: ColumnPanel}
 is_package: true

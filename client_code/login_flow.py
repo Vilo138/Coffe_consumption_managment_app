@@ -124,3 +124,9 @@ def add_new_user(allow_cancel=True):
   d = NewUserDialog()
   BUTTONS = [("Submit", "submit", "primary"), ("Cancel", None)]
   choice = alert(d, title="Add new user",  buttons=BUTTONS)
+  if choice == 'submit':
+    try:
+      anvil.server.call('add_user',d.name_box.text, d.email_box.text, d.role_box.text)
+    except Exception as e:
+      d.err_lbl.text = "Velky spatny"
+      print(e)

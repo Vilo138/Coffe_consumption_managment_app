@@ -34,13 +34,17 @@ class Index(IndexTemplate):
             role = anvil.server.call('get_user_role')
             
             # Zobraziť tlačidlá podľa roly
-            if role == "admin":
+            if role == 'admin' or 'superuser':
                 self.link_DB_users.visible = True
+                self.link_DB_cof_logs.visible = True
             else:
                 self.link_DB_users.visible = False
+                self.link_DB_cof_logs.visible = False
+
         else:
             self.link_DB_users.visible = False
-        
+            self.link_DB_cof_logs.visible = False
+            
     
         
 
@@ -96,7 +100,7 @@ class Index(IndexTemplate):
       self.content_panel.clear()
       self.content_panel.add_component(DB_users())  
 
-    def link_1_click(self, **event_args):
+    def link_DB_cof_logs_click(self, **event_args):
       self.update_sign_in_text()
       self.content_panel.clear()
       self.content_panel.add_component(DB_coflogs())

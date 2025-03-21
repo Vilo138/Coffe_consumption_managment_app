@@ -25,22 +25,17 @@ class DB_users(DB_usersTemplate):
     self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
 
 
-  def button_1_click(self, **event_args):
-    """Pridanie nového riadku do databázy a obnovenie UI"""
-    #app_tables.users.add_row()
+  def addNewUser_click(self, **event_args):
     #row = app_tables.users.get(id=item['id'])
     login_flow.add_new_user()
-    
-
-    
-    get_max_id = list(app_tables.users.search(tables.order_by('id', ascending=False)))[:1]
+    #get_max_id = list(app_tables.users.search(tables.order_by('id', ascending=False)))[:1]
     #print(get_max_id)
-    max_id = get_max_id[0]['id']
-    if max_id is None:
-      new_max_id = 1
-    else:
-      new_max_id = max_id + 1
-    app_tables.users.add_row(id=new_max_id)
+    #max_id = get_max_id[0]['id']
+    #if max_id is None:
+      #new_max_id = 1
+    #else:
+      #new_max_id = max_id + 1
+    #app_tables.users.add_row(id=new_max_id)
     self.load_data()
 
   
