@@ -2,27 +2,27 @@ components:
 - event_bindings: {click: button_1_click}
   layout_properties: {grid_position: 'NKOOEL,CFUXIV'}
   name: button_1
-  properties: {text: new}
+  properties: {text: Add New User}
   type: Button
 - layout_properties: {grid_position: 'VODKGW,JBMESZ'}
   name: label_1
-  properties: {text: Id}
+  properties: {bold: true, text: ID}
   type: Label
 - layout_properties: {grid_position: 'VODKGW,DOKTVV'}
   name: label_2
-  properties: {text: name}
+  properties: {bold: true, text: Name}
   type: Label
 - layout_properties: {grid_position: 'VODKGW,KTZMPE'}
   name: label_3
-  properties: {text: email}
+  properties: {bold: true, text: Email}
   type: Label
 - layout_properties: {grid_position: 'VODKGW,XYQVTH'}
   name: label_4
-  properties: {text: role}
+  properties: {bold: true, text: Role}
   type: Label
 - layout_properties: {grid_position: 'VODKGW,DDKFYK'}
   name: label_5
-  properties: {text: last login}
+  properties: {bold: true, text: Last login}
   type: Label
 - layout_properties: {grid_position: 'VODKGW,RAJULG'}
   name: label_6

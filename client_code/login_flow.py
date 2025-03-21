@@ -5,29 +5,28 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.js
-
-
 from LoginDialog import LoginDialog
 from SignupDialog import SignupDialog
 from ForgottenPasswordDialog import ForgottenPasswordDialog
 from PasswordResetDialog import PasswordResetDialog
+from NewUserDialog import NewUserDialog
 
-
-def login_with_form(allow_cancel=True):
+#allow_cancel=True
+def login_with_form():
   """Log in by popping up the custom LoginDialog"""
   d = LoginDialog()
 
-  BUTTONS = [("Log in", "login", "primary")]
-  if allow_cancel:
-    BUTTONS += [("Cancel", None)]
+  BUTTONS = [("Log in", "login", "primary"), ("Cancel", None)]
+  #if allow_cancel:
+    #BUTTONS += [("Cancel", None)]
   
   while anvil.users.get_user() is None:
-    choice = alert(d, title="Log In", dismissible=allow_cancel, buttons=BUTTONS)
-    
+    choice = alert(d, title="Log In",  buttons=BUTTONS)
+    #dismissible=allow_cancel,
     if choice == 'login':
       try:
         anvil.users.login_with_email(d.email_box.text, d.password_box.text, remember=True)
-        print("12.3")
+        #print("12.3")
         try:
           anvil.js.call('location.reload()')
         except Exception as e:
@@ -60,7 +59,8 @@ def login_with_form(allow_cancel=True):
         alert(f"'{d.email_box.text}' is not an unconfirmed user account.")
       d.confirm_lnk.visible = False
     
-    elif choice is None and allow_cancel:
+    elif choice is None:
+      #and allow_cancel
       break
     anvil.server.call('get_user_role')
     
@@ -120,4 +120,7 @@ def do_email_confirm_or_reset():
         alert("This confirmation link is not valid. Perhaps you have already confirmed your address?\n\nTry logging in normally.")
  
      
-  
+def add_new_user(allow_cancel=True):
+  d = NewUserDialog()
+  BUTTONS = [("Submit", "submit", "primary"), ("Cancel", None)]
+  choice = alert(d, title="Add new user",  buttons=BUTTONS)

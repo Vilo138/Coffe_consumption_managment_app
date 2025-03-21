@@ -8,6 +8,9 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import login_flow
+from ..Home import Home
+from ..Test import Test
 
 
 class DB_users(DB_usersTemplate):
@@ -26,6 +29,10 @@ class DB_users(DB_usersTemplate):
     """Pridanie nového riadku do databázy a obnovenie UI"""
     #app_tables.users.add_row()
     #row = app_tables.users.get(id=item['id'])
+    login_flow.add_new_user()
+    
+
+    
     get_max_id = list(app_tables.users.search(tables.order_by('id', ascending=False)))[:1]
     #print(get_max_id)
     max_id = get_max_id[0]['id']
