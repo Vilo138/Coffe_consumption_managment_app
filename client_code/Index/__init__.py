@@ -32,7 +32,6 @@ class Index(IndexTemplate):
         
         if user:
             role = anvil.server.call('get_user_role')
-            
             # Zobraziť tlačidlá podľa roly
             if role == 'admin' or 'superuser':
                 self.link_DB_users.visible = True

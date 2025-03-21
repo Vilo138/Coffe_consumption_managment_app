@@ -72,11 +72,9 @@ def get_filtered_data(start_date=None, end_date=None):
 def get_filtered_data_csv():
     """Získa dáta z tabuľky a vráti CSV"""
     rows = app_tables.coffee_logs.search()
-    
     # Konvertovanie na pandas DataFrame
     data_list = [{'id': r['id'], 'user_id': r['user_id']['id'], 'time_log': r['time_log']} for r in rows]
     df = pd.DataFrame(data_list)
-
     # Vytvorenie CSV ako stringu
     csv_string = df.to_csv(index=False)
 
@@ -279,7 +277,22 @@ def add_user(name, email, role):
     new_id = actual_max_id + 1
   app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
 
+@anvil.server.callable
+def _send_password_setup_link(email):
+  """Send an email confirmation link if the specified user's email is not yet confirmed"""
+  user = app_tables.users.get(email=email)
+  if user is not None and not user['confirmed_email']:
+    if user['link_key'] is None:
+      user['link_key'] = mk_token()
+    anvil.email.send(to=user['email'], subject="Password set up", text=f"""
+Hi,
+You have been signed up to Coffee management application. To complete your sign-up, please, set up your password by clicking link below:
 
+{anvil.server.get_app_origin('published')}#?email={url_encode(user['email'])}&confirm={url_encode(user['link_key'])}
+
+Thanks!
+""")
+    return True
 
 
 

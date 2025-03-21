@@ -36,7 +36,7 @@ def login_with_form():
       except anvil.users.EmailNotConfirmed:
         d.confirm_lnk.visible = True
       except anvil.users.AuthenticationFailed as e:
-        print("12.32")
+        #print("12.32")
         d.login_err_lbl.visible = True
         d.login_err_lbl.text = str(e.args[0])
         #d.refresh_data_bindings()  # Ak používate dátové väzby
@@ -127,6 +127,9 @@ def add_new_user(allow_cancel=True):
   if choice == 'submit':
     try:
       anvil.server.call('add_user',d.name_box.text, d.email_box.text, d.role_box.text)
+      #wait()
+      anvil.server.call('_send_email_confirm_link', d.email_box.text)
+      
     except Exception as e:
       d.err_lbl.text = "Velky spatny"
       print(e)
