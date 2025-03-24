@@ -316,12 +316,10 @@ def get_user_role():
       pass
   
   
-@anvil.server.callable
-def delete_users_all_logs(user_id):
-  user_row_id = app_tables.users.get(id=user_id)
-  if user_row_id:
-    for row in app_tables.coffee_logs.search(user_id=user_id):
-      row.delete()
+#@anvil.server.callable
+#def delete_users_all_logs(user_id):
+#    for row in app_tables.coffee_logs.search(user_id=user_id):
+#      row.delete()
   
   
 
