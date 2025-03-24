@@ -36,6 +36,9 @@ class Index(IndexTemplate):
             if role == 'admin' or 'superuser':
                 self.link_DB_users.visible = True
                 self.link_DB_cof_logs.visible = True
+            elif role == 'user':
+              self.link_DB_users.visible = False
+              self.link_DB_cof_logs.visible = False
             else:
                 self.link_DB_users.visible = False
                 self.link_DB_cof_logs.visible = False
@@ -43,12 +46,6 @@ class Index(IndexTemplate):
         else:
             self.link_DB_users.visible = False
             self.link_DB_cof_logs.visible = False
-        if user['role'] == 'user':
-          self.link_DB_users.visible = False
-          self.link_DB_cof_logs.visible = False
-            
-    
-        
 
     def update_sign_in_text(self):
         """Aktualizuje text prihlasovacieho tlačidla"""

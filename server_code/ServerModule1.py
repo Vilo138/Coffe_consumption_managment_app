@@ -237,6 +237,7 @@ def _perform_password_reset(email, reset_key, new_password):
   """Perform a password reset if the key matches; return True if it did."""
   user = get_user_if_key_correct(email, reset_key)
   if user is not None:
+    user['confirmed_email'] = True
     user['password_hash'] = hash_password(new_password, bcrypt.gensalt())
     user['link_key'] = None
     anvil.users.force_login(user)
@@ -282,6 +283,7 @@ def _send_password_setup_link(email):
   """Send an email confirmation link if the specified user's email is not yet confirmed"""
   user = app_tables.users.get(email=email)
   if user is not None and not user['confirmed_email']:
+    #user['confirmed_email'] = True
     if user['link_key'] is None:
       user['link_key'] = mk_token()
     anvil.email.send(to=user['email'], subject="Password set up", text=f"""
@@ -312,6 +314,14 @@ def get_user_role():
       return role
     else:
       pass
+  
+  
+@anvil.server.callable
+def delete_users_all_logs(user_id):
+  user_row_id = app_tables.users.get(id=user_id)
+  if user_row_id:
+    for row in app_tables.coffee_logs.search(user_id=user_id):
+      row.delete()
   
   
 
