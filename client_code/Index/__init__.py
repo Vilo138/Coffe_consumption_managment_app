@@ -43,6 +43,9 @@ class Index(IndexTemplate):
         else:
             self.link_DB_users.visible = False
             self.link_DB_cof_logs.visible = False
+        if user['role'] == 'user':
+          self.link_DB_users.visible = False
+          self.link_DB_cof_logs.visible = False
             
     
         
