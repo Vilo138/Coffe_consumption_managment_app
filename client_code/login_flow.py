@@ -113,6 +113,28 @@ def do_email_confirm_or_reset():
         alert("This is not a valid password reset link")
 
         
+  elif isinstance(h, dict) and 'email' in h:
+    if 'setup' in h:
+      if not anvil.server.call('_is_password_key_correct', h['email'], h['setup']):
+        print('som tu1')
+        alert("This is not a valid password setup link")
+        return
+
+      while True:
+        pwr = PasswordResetDialog()
+        print('som tu2')
+        if not alert(pwr, title="Setup Your Password", buttons=[("Setup password", True, 'primary'), ("Cancel", False)]):
+          return
+        if pwr.pw_box.text != pwr.pw_repeat_box.text:
+          alert("Passwords did not match. Try again.")
+        else:
+          break
+  
+      if anvil.server.call('_perform_password_reset', h['email'], h['setup'], pwr.pw_box.text):
+        alert("Your password has been setup. You are now logged in.")
+      else:
+        alert("This is not a valid password setup link")
+        
     elif 'confirm' in h:
       if anvil.server.call('_confirm_email_address', h['email'], h['confirm']):
         alert("Thanks for confirming your email address. You are now logged in.")
@@ -128,7 +150,7 @@ def add_new_user(allow_cancel=True):
     try:
       anvil.server.call('add_user',d.name_box.text, d.email_box.text, d.role_box.text)
       #wait()
-      anvil.server.call('_send_email_confirm_link', d.email_box.text)
+      anvil.server.call('_send_password_setup_link', d.email_box.text)
       
     except Exception as e:
       d.err_lbl.text = "Velky spatny"

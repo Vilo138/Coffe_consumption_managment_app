@@ -288,7 +288,7 @@ def _send_password_setup_link(email):
 Hi,
 You have been signed up to Coffee management application. To complete your sign-up, please, set up your password by clicking link below:
 
-{anvil.server.get_app_origin('published')}#?email={url_encode(user['email'])}&confirm={url_encode(user['link_key'])}
+{anvil.server.get_app_origin('published')}#?email={url_encode(user['email'])}&setup={url_encode(user['link_key'])}
 
 Thanks!
 """)
