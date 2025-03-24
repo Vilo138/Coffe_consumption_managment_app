@@ -88,6 +88,7 @@ def signup_with_form():
   
     
 def do_email_confirm_or_reset():
+  print('som tu0')
   """Check whether the user has arrived from an email-confirmation link or a password reset, and pop up any necessary dialogs.
      Call this function from the 'show' event on your startup form.
   """
