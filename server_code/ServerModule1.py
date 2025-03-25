@@ -198,9 +198,14 @@ def _do_signup(email, name, password):
         if user:
             return "User already exists" 
 
-        max_id_row = app_tables.users.search(tables.order_by("id", ascending=False)) #tables.limit(1)
-        max_id = max_id_row[0]['id'] if max_id_row else 1
-        new_id = max_id + 1
+        max_id_row = app_tables.users.search(tables.order_by("id", ascending=False))
+        first_row = next(iter(max_id_row), None)
+        if first_row:
+          max_id = first_row['id']
+          new_id = max_id + 1
+        else:
+          new_id = 1
+
         
 
         user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
@@ -264,14 +269,14 @@ def add_user(name, email, role):
   if not role.strip():
         return "Must supply a role"
 
-  rows = app_tables.users.search(tables.order_by("id", ascending=False))
+  rows = list(app_tables.users.search(tables.order_by("id", ascending=False)))
   if rows:
     actual_max_id = rows[0]['id']
   else:
     actual_max_id = None
 
   if actual_max_id is None:  # Správne porovnanie s None
-    new_id = 0
+    new_id = 1
   else:
     new_id = actual_max_id + 1
   app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
@@ -322,7 +327,9 @@ def delete_users_all_logs(user_id):
         row.delete()
   
   
-
+@anvil.server.callable
+def addRowCofLogs():
+  anvil.tables.coffee_logs.add_row()
 
 
 

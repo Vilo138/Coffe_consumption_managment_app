@@ -19,6 +19,9 @@ class DB_coflogs(DB_coflogsTemplate):
     # Any code you write here will run before the form opens.
 
   def load_data(self):
-      """Načíta všetky riadky do Repeating Panel"""
       #self.repeating_panel_1.items = app_tables.users.search(tables.order_by("id", ascending=True))
       self.repeating_panel_1.items = app_tables.coffee_logs.client_writable().search(tables.order_by("id", ascending=True))
+
+  def button_new_click(self, **event_args):
+      app_tables.coffee_logs.add_row()
+      self.load_data()

@@ -14,6 +14,10 @@ class ItemTemplate3(ItemTemplate3Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.text_box_1.text = self.item['id']
-    self.text_box_2.text = self.item['user_id']['id']
-    self.text_box_3.text = self.item['time_log']
+    self.text_box_id.text = self.item['id']
+    self.text_box_user_id.text = self.item['user_id']['id']
+    self.text_box_time_log.text = self.item['time_log']
+
+  def button_del_click(self, **event_args):
+    self.item.delete()
+    self.remove_from_parent()
