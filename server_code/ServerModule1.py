@@ -15,6 +15,7 @@ import bcrypt
 from random import SystemRandom
 import anvil.tables.query as q
 import pandas as pd
+from ..Sign In app import NewIntake
 random = SystemRandom()
 
 #import tables
@@ -329,7 +330,10 @@ def delete_users_all_logs(user_id):
   
 @anvil.server.callable
 def addRowCofLogs():
-  anvil.tables.coffee_logs.add_row()
+  d = NewIntake()
+  BUTTONS = [("Submit", "submit", "primary"), ("Cancel", None)]
+  choice = alert(d, title="Add new user",  buttons=BUTTONS)
+  #anvil.tables.coffee_logs.add_row()
 
 
 

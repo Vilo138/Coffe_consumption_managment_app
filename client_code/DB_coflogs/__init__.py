@@ -23,5 +23,6 @@ class DB_coflogs(DB_coflogsTemplate):
       self.repeating_panel_1.items = app_tables.coffee_logs.client_writable().search(tables.order_by("id", ascending=True))
 
   def button_new_click(self, **event_args):
-      app_tables.coffee_logs.add_row()
+      #app_tables.coffee_logs.add_row()
+      anvil.server.call('addRowCofLogs')
       self.load_data()

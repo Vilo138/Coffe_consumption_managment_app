@@ -1,0 +1,19 @@
+components:
+- layout_properties: {grid_position: 'ZQINJR,VNGCJO'}
+  name: label_1
+  properties: {bold: true, text: User ID}
+  type: Label
+- layout_properties: {grid_position: 'JLEXLG,MFIUHO'}
+  name: text_box_1
+  properties: {}
+  type: TextBox
+- layout_properties: {grid_position: 'UFMCXK,HTXVCA'}
+  name: label_2
+  properties: {bold: true, text: Time&Date of intake}
+  type: Label
+- layout_properties: {grid_position: 'OMNJMC,RACHGU'}
+  name: text_box_2
+  properties: {}
+  type: TextBox
+container: {type: ColumnPanel}
+is_package: true
