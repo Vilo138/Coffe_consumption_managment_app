@@ -8,6 +8,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from .. import login_flow
 
 
 class DB_coflogs(DB_coflogsTemplate):
@@ -24,5 +25,5 @@ class DB_coflogs(DB_coflogsTemplate):
 
   def button_new_click(self, **event_args):
       #app_tables.coffee_logs.add_row()
-      anvil.server.call('addRowCofLogs')
+      login_flow.addRowCofLogs()
       self.load_data()

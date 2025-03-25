@@ -10,6 +10,7 @@ from SignupDialog import SignupDialog
 from ForgottenPasswordDialog import ForgottenPasswordDialog
 from PasswordResetSetupDialog import PasswordResetSetupDialog
 from NewUserDialog import NewUserDialog
+from .NewIntake import NewIntake
 
 #allow_cancel=True
 def login_with_form():
@@ -157,3 +158,15 @@ def add_new_user(allow_cancel=True):
     except Exception as e:
       d.err_lbl.text = "Velky spatny"
       print(e)
+
+def addRowCofLogs():
+  d = NewIntake()
+  BUTTONS = [("Submit", "submit", "primary"), ("Cancel", None)]
+  choice = alert(d, title="Add new intake",  buttons=BUTTONS)
+  if choice == 'submit':
+    try:
+      anvil.server.call('newIntake',d.text_box_user_id.text, d.text_box_timelog.text)
+    except Exception as e:
+        print(e)
+    #anvil.tables.coffe_logs.add_row(id=newID,user_id=d.text_box_user_id.text, timelog=d.text_box_timelog.text)
+    #anvil.tables.coffee_logs.add_row()

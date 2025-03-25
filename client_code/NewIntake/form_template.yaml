@@ -4,7 +4,7 @@ components:
   properties: {bold: true, text: User ID}
   type: Label
 - layout_properties: {grid_position: 'JLEXLG,MFIUHO'}
-  name: text_box_1
+  name: text_box_user_id
   properties: {}
   type: TextBox
 - layout_properties: {grid_position: 'UFMCXK,HTXVCA'}
@@ -12,7 +12,7 @@ components:
   properties: {bold: true, text: Time&Date of intake}
   type: Label
 - layout_properties: {grid_position: 'OMNJMC,RACHGU'}
-  name: text_box_2
+  name: text_box_timelog
   properties: {}
   type: TextBox
 container: {type: ColumnPanel}

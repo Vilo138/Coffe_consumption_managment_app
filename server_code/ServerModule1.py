@@ -15,7 +15,6 @@ import bcrypt
 from random import SystemRandom
 import anvil.tables.query as q
 import pandas as pd
-from ..Sign In app import NewIntake
 random = SystemRandom()
 
 #import tables
@@ -329,11 +328,20 @@ def delete_users_all_logs(user_id):
   
   
 @anvil.server.callable
-def addRowCofLogs():
-  d = NewIntake()
-  BUTTONS = [("Submit", "submit", "primary"), ("Cancel", None)]
-  choice = alert(d, title="Add new user",  buttons=BUTTONS)
-  #anvil.tables.coffee_logs.add_row()
+def newIntake(user_id, timelog):
+  if not user_id.strip():
+    return "Must supply an user ID"
+  if not timelog.strip():
+    return "Must supply Date and Time"
+  rows = list(app_tables.coffee_logs.search(tables.order_by('id', ascending = False)))
+  userIDRow = app_tables.users.get(id=int(user_id))
+  if rows:
+    maxid = rows[0]['id']
+    newid = maxid + 1
+  else:
+    newid = 1
+  app_tables.coffee_logs.add_row(id=newid, user_id=userIDRow, time_log=datetime(timelog))   
+    
 
 
 
