@@ -26,13 +26,9 @@ class Test(TestTemplate):
 
   def login_btn_click(self, **event_args):
     """This method is called when the button is clicked"""
-    #from ..Index import Index
-    #from ..Index import sign_in
-
     login_flow.login_with_form()
     self.update_login_status()
     #print('som tu')
-    
     #anvil.server.raise_event('user_login_changed')
 
 

@@ -56,17 +56,14 @@ class Index(IndexTemplate):
         else:
             self.sign_in.text = "Sign In"
 
-    def sign_in_button(self, **event_args):
-        """Pri kliknutí na tlačidlo sa používateľ prihlási"""  
+    def sign_in_button(self, **event_args):  
         login_flow.do_email_confirm_or_reset()
         self.update_sign_in_text()
         self.content_panel.clear()
         self.content_panel.add_component(Test())
-        #open_form('Test')
 
 
     def generate_pdf_button_click(self, **event_args):
-        # Zobrazenie modálneho dialógu na výber dátumov
         #dates = DatePickerDialog().show()
         dialog = DatePickerDialog()
         result = alert(content=dialog, large=True, buttons=[])

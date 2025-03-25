@@ -22,11 +22,10 @@ class DatePickerDialog(DatePickerDialogTemplate):
     
   def button_ok_click(self, **event_args):
         """Po kliknutí na OK vráti vybrané dátumy"""
-        print("OK clicked")
         start_date = self.start_date_picker.date
         end_date = self.end_date_picker.date
         self.result = (start_date, end_date)
-        print(self.result)
+        #print(self.result)
         if self.result:  # Ak sú vrátené dátumy
           start_date, end_date = self.result
           if start_date and end_date:

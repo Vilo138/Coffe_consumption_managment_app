@@ -8,7 +8,7 @@ import anvil.js
 from LoginDialog import LoginDialog
 from SignupDialog import SignupDialog
 from ForgottenPasswordDialog import ForgottenPasswordDialog
-from PasswordResetDialog import PasswordResetDialog
+from PasswordResetSetupDialog import PasswordResetSetupDialog
 from NewUserDialog import NewUserDialog
 
 #allow_cancel=True
@@ -101,7 +101,7 @@ def do_email_confirm_or_reset():
         return
 
       while True:
-        pwr = PasswordResetDialog()
+        pwr = PasswordResetSetupDialog()
         if not alert(pwr, title="Reset Your Password", buttons=[("Reset password", True, 'primary'), ("Cancel", False)]):
           return
         if pwr.pw_box.text != pwr.pw_repeat_box.text:
@@ -123,7 +123,7 @@ def do_email_confirm_or_reset():
           return
 
         while True:
-          pwr = PasswordResetDialog()
+          pwr = PasswordResetSetupDialog()
           print('som tu2')
           if not alert(pwr, title="Setup Your Password", buttons=[("Setup password", True, 'primary'), ("Cancel", False)]):
             return

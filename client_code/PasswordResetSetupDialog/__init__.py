@@ -1,4 +1,4 @@
-from ._anvil_designer import PasswordResetDialogTemplate
+from ._anvil_designer import PasswordResetSetupDialogTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -6,12 +6,11 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-class PasswordResetDialog(PasswordResetDialogTemplate):
+class PasswordResetSetupDialog(PasswordResetSetupDialogTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run when the form opens.
     
   def focus_pw_repeat_box(self, **kws):
     """Focus on the password repeat box."""

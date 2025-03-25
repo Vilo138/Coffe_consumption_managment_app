@@ -27,18 +27,17 @@ random = SystemRandom()
 @anvil.server.callable
 def get_users():
     # Načíta používateľov z tabuľky Users a vráti zoznam emailov
-    return [{'id': user.get_id(), 'email': user['email']} for user in app_tables.users.search()]
+    return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search()]
 
 @anvil.server.callable
 def add_coffee_record(user_id):
-  
     user_id = app_tables.users.get_by_id(user_id)
 
     max_id_row = list(app_tables.coffee_logs.search(tables.order_by("id", ascending=False)))[:1]
     if max_id_row:
         max_id = max_id_row[0]['id']
     else:
-        max_id = 0
+        max_id = 1
 
     new_id = (max_id or 0) + 1
   
@@ -54,15 +53,15 @@ def get_filtered_data(start_date=None, end_date=None):
     # Filtrovanie na základe dátumu
     if start_date and end_date:
         rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
-    emails = [row['user_id']['email'] if row['user_id'] and row['user_id']['email'] else 'Unknown' for row in rows]
-    email_counts = collections.Counter(emails)
+    names = [row['user_id']['name'] if row['user_id'] and row['user_id']['name'] else 'Unknown' for row in rows]
+    names_counts = collections.Counter(names)
     #print(emails, email_counts)
 
     results = []
 
-    for email, count in email_counts.items():
+    for name, count in names_counts.items():
         results.append({
-            "email": email,
+            "name": name,
             "pocet": count,
             "suma": round(count * 0.6, 2)  # Cena za jednu kávu
         })
@@ -70,7 +69,6 @@ def get_filtered_data(start_date=None, end_date=None):
     return results
 @anvil.server.callable
 def get_filtered_data_csv():
-    """Získa dáta z tabuľky a vráti CSV"""
     rows = app_tables.coffee_logs.search()
     # Konvertovanie na pandas DataFrame
     data_list = [{'id': r['id'], 'user_id': r['user_id']['id'], 'time_log': r['time_log']} for r in rows]
@@ -85,7 +83,7 @@ def get_filtered_data_csv():
 @anvil.server.callable
 def generate_pdf(data, start_date, end_date):
     rows_html = ''.join(
-        f"<tr><td>{row['email']}</td><td>{row['pocet']}</td><td>{row['suma']}</td></tr>"
+        f"<tr><td>{row['name']}</td><td>{row['pocet']}</td><td>{row['suma']}</td></tr>"
         for row in data
     ) if data else "<tr><td colspan='3'>No data available</td></tr>"
 
@@ -111,7 +109,7 @@ def generate_pdf(data, start_date, end_date):
         <h1>Report from {start_date} to {end_date}</h1>
         <table>
           <tr>
-            <th>Email</th>
+            <th>Name</th>
             <th>Count</th>
             <th>Sum</th>
           </tr>
@@ -198,10 +196,10 @@ def _do_signup(email, name, password):
     def add_user_if_missing():
         user = app_tables.users.get(email=email)
         if user:
-            return "User already exists"  # Vrátiť hneď, ak užívateľ existuje.
+            return "User already exists" 
 
         max_id_row = app_tables.users.search(tables.order_by("id", ascending=False)) #tables.limit(1)
-        max_id = max_id_row[0]['id'] if max_id_row else 0
+        max_id = max_id_row[0]['id'] if max_id_row else 1
         new_id = max_id + 1
         
 

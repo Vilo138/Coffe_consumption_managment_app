@@ -17,4 +17,3 @@ class ItemTemplate3(ItemTemplate3Template):
     self.text_box_1.text = self.item['id']
     self.text_box_2.text = self.item['user_id']['id']
     self.text_box_3.text = self.item['time_log']
-    # Any code you write here will run before the form opens.
