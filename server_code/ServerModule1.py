@@ -328,22 +328,31 @@ def delete_users_all_logs(user_id):
   
   
 @anvil.server.callable
-def newIntake(user_id, timelog):
-  if not user_id.strip():
+def newIntake(user_regN, timelog):
+  if not user_regN.strip():
     return "Must supply an user ID"
   if not timelog.strip():
     return "Must supply Date and Time"
   rows = list(app_tables.coffee_logs.search(tables.order_by('id', ascending = False)))
-  userIDRow = app_tables.users.get(id=int(user_id))
+  #rows_users = list(app_tables.coffee_logs.search())
+  #user_id = rows_users['user_id']['id']
+  #user_id = app_tables.users['id']
+  user_id_int = int(user_regN)
+  userIDRow = app_tables.users.get(id=user_id_int)
   if rows:
     maxid = rows[0]['id']
     newid = maxid + 1
   else:
     newid = 1
-  app_tables.coffee_logs.add_row(id=newid, user_id=userIDRow, time_log=datetime(timelog))   
+  app_tables.coffee_logs.add_row(id=newid, user_id=userIDRow, time_log=datetime.strptime(timelog, '%Y-%m-%d %H:%M'))
     
 
-
+#rows = app_tables.coffee_logs.search()
+    # Filtrovanie na základe dátumu
+    #if start_date and end_date:
+        #rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
+    #names = [row['user_id']['name'] if row['user_id'] and row['user_id']['name'] else 'Unknown' for row in rows]
+    #names_counts = collections.Counter(names)
 
 
 
