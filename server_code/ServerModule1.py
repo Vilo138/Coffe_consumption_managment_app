@@ -71,7 +71,7 @@ def get_filtered_data(start_date=None, end_date=None):
 def get_filtered_data_csv():
     rows = app_tables.coffee_logs.search()
     # Konvertovanie na pandas DataFrame
-    data_list = [{'id': r['id'], 'user_id': r['user_id']['id'], 'time_log': r['time_log']} for r in rows]
+    data_list = [{'id': r['id'], 'user_id': r['user_id']['id'], 'name': r['user_id']['name'], 'time_log': r['time_log']} for r in rows]
     df = pd.DataFrame(data_list)
     # Vytvorenie CSV ako stringu
     csv_string = df.to_csv(index=False)

@@ -10,6 +10,10 @@ components:
   name: text_box_user_id
   properties: {}
   type: TextBox
+- layout_properties: {grid_position: 'PMIDAX,VLHTYS'}
+  name: text_box_name
+  properties: {}
+  type: TextBox
 - data_bindings:
   - {code: '', property: tag, writeback: false}
   layout_properties: {grid_position: 'PMIDAX,BYTATD'}

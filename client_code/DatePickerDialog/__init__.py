@@ -15,40 +15,50 @@ class DatePickerDialog(DatePickerDialogTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # Inicializácia návratovej hodnoty
+    self.dropdwn_items()
     self.result = None
 
     # Any code you write here will run before the form opens.
+  def dropdwn_items(self):
+    item_list = [("All", None)]  
+    for row in app_tables.users.search():
+      item_list.append((row["name"], row))
+    self.drop_down_users.items = item_list
+
     
   def button_ok_click(self, **event_args):
         """Po kliknutí na OK vráti vybrané dátumy"""
         start_date = self.start_date_picker.date
         end_date = self.end_date_picker.date
-        self.result = (start_date, end_date)
+        drpdwn_value = self.drop_down_users.selected_value
         #print(self.result)
-        if self.result:  # Ak sú vrátené dátumy
-          start_date, end_date = self.result
-          if start_date and end_date:
-            print(f"Generating PDF for dates: {start_date} - {end_date}")  # Debugging
-        # Volanie serverovej funkcie na načítanie dát
+        if start_date and end_date:
+          if drpdwn_value is None:
             data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date)
-            if data:  # Ak sú dáta na generovanie
-              pdf = anvil.server.call("generate_pdf", data=data, start_date=start_date, end_date=end_date)
-              anvil.media.download(pdf)  # Stiahnutie PDF
-              #print("PDF has been downloaded.")  # Debugging
-            else:
-              alert("No data available for the selected dates.")
           else:
-            alert("Please select valid start and end dates.")
-        else:
-          #print("Action was canceled.")  # Debugging
-          alert("Action was canceled.")
-        self.raise_event("x-close-alert", value=None)
+            data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date, user_name=drpdwn_value['name'])
+          if data:  # Ak sú dáta na generovanie
+            pdf = anvil.server.call("generate_pdf", data=data, start_date=start_date, end_date=end_date)
+            anvil.media.download(pdf)  # Stiahnutie PDF
+              #print("PDF has been downloaded.")
+          else:
+            alert("No data available for the selected dates.")
+        else:  
+          alert("Please select valid start and end dates.")
+          
+        #self.raise_event("x-close-alert", value=None)
 
-        #close_alert()  # Zatvorí dialóg
+        #if self.dropdown_users is None:
+         # anvil.server.call('generate_pdf')
+        #elif self.drop_down_users == row:
+         # anvil.server.call('pdf_user')
+
     
   def button_cancel_click(self, **event_args):
         """Po kliknutí na Cancel zatvorí dialóg bez hodnôt"""
         print("Cancel clicked")
         self.result = None
         self.raise_event("x-close-alert", value=None)
+
+  
+
