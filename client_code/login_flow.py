@@ -156,7 +156,6 @@ def add_new_user(allow_cancel=True):
       anvil.server.call('_send_password_setup_link', d.email_box.text)
       
     except Exception as e:
-      d.err_lbl.text = "Velky spatny"
       print(e)
 
 def addRowCofLogs():

@@ -272,7 +272,11 @@ def add_user(name, email, role):
         return "Must supply an email"
   if not role.strip():
         return "Must supply a role"
-
+  valid_roles = ['user', 'superuser', 'admin']
+  if role not in valid_roles:
+    print('Bad input')
+    return 'Bad input'
+    
   rows = list(app_tables.users.search(tables.order_by("id", ascending=False)))
   if rows:
     actual_max_id = rows[0]['id']
@@ -283,7 +287,17 @@ def add_user(name, email, role):
     new_id = 1
   else:
     new_id = actual_max_id + 1
-  app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
+  
+  if role == 'admin':
+    check_role = anvil.users.get_user()
+    if check_role['role'] == 'admin':
+      app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
+    else:
+      print('You dont have permission to setup admin acount')
+  elif role in ['user', 'superuser']:
+    app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
+
+  
 
 @anvil.server.callable
 def _send_password_setup_link(email):
