@@ -50,12 +50,13 @@ def add_coffee_record(user_id):
 @anvil.server.callable
 def get_filtered_data(start_date=None, end_date=None, user_name=None):
     rows = app_tables.coffee_logs.search()
-    rows_name = app_tables.coffee_logs.search()
     if start_date and end_date and user_name:
-      rows_name = [row for row in rows_name if row['user_id']['name'] == user_name]
+      rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date and row['user_id']['name'] == user_name]
+    elif start_date and end_date:
+      rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
+    elif user_name: 
+        rows = [row for row in rows if row['user_id']['name'] == user_name]
     
-    if start_date and end_date:
-        rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
     names = [row['user_id']['name'] if row['user_id'] and row['user_id']['name'] else 'Unknown' for row in rows]
     names_counts = collections.Counter(names)
     #print(emails, email_counts)
@@ -66,7 +67,7 @@ def get_filtered_data(start_date=None, end_date=None, user_name=None):
         results.append({
             "name": name,
             "pocet": count,
-            "suma": round(count * 0.6, 2)  # Cena za jednu kávu
+            "suma": round(count * 0.6, 2)
         })
     #print(results)
     return results

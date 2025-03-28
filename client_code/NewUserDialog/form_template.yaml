@@ -21,8 +21,12 @@ components:
   type: Label
 - layout_properties: {grid_position: 'TWJQGF,LVBOJJ'}
   name: role_box
-  properties: {placeholder: '''user''/''superuser''/''admin'''}
+  properties: {placeholder: ''}
   type: TextBox
+- layout_properties: {grid_position: 'CFWPWX,UOGDTD'}
+  name: label_check_admin
+  properties: {text: ''}
+  type: Label
 - layout_properties: {grid_position: 'MIJKAI,DBYWXL'}
   name: err_lbl
   properties: {visible: false}
