@@ -48,9 +48,12 @@ def add_coffee_record(user_id):
         time_log=datetime.now(anvil.tz.tzoffset(hours=1)) 
     )
 @anvil.server.callable
-def get_filtered_data(start_date=None, end_date=None):
+def get_filtered_data(start_date=None, end_date=None, user_name=None):
     rows = app_tables.coffee_logs.search()
-    # Filtrovanie na základe dátumu
+    rows_name = app_tables.coffee_logs.search()
+    if start_date and end_date and user_name:
+      rows_name = [row for row in rows_name if row['user_id']['name'] == user_name]
+    
     if start_date and end_date:
         rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
     names = [row['user_id']['name'] if row['user_id'] and row['user_id']['name'] else 'Unknown' for row in rows]

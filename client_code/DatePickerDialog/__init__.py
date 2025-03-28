@@ -31,7 +31,7 @@ class DatePickerDialog(DatePickerDialogTemplate):
         start_date = self.start_date_picker.date
         end_date = self.end_date_picker.date
         drpdwn_value = self.drop_down_users.selected_value
-        #print(self.result)
+        
         if start_date and end_date:
           if drpdwn_value is None:
             data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date)
