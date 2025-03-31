@@ -24,7 +24,7 @@ class NewUserDialog(NewUserDialogTemplate):
       if user['role'] == 'admin':
         self.label_check_admin.text = 'Type in the role of user choose between user/superuser/admin'
       elif user['role'] == 'superuser':
-        self.label_check_su.text = 'Type in the role of user choose between user/superuser'
+        self.label_check_admin.text = 'Type in the role of user choose between user/superuser'
 
 
   

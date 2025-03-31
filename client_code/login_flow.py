@@ -167,5 +167,4 @@ def addRowCofLogs():
       anvil.server.call('newIntake',d.text_box_user_id.text, d.text_box_timelog.text)
     except Exception as e:
         print(e)
-    #anvil.tables.coffe_logs.add_row(id=newID,user_id=d.text_box_user_id.text, timelog=d.text_box_timelog.text)
-    #anvil.tables.coffee_logs.add_row()
+    

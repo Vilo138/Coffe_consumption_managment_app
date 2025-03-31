@@ -48,6 +48,7 @@ class Index(IndexTemplate):
 
     def sign_in_button(self, **event_args):  
         login_flow.do_email_confirm_or_reset()
+        self.visible_db()
         self.update_sign_in_text()
         self.content_panel.clear()
         self.content_panel.add_component(Test())
@@ -70,6 +71,7 @@ class Index(IndexTemplate):
     def title_click(self, **event_args):
       """This method is called when the link is clicked."""
       self.update_sign_in_text()
+      self.visible_db()
       if not isinstance(self.content_panel.get_components()[-1], Home):
         self.content_panel.clear()
         self.content_panel.add_component(Home())

@@ -26,9 +26,9 @@ random = SystemRandom()
 @anvil.server.callable
 def get_current_user_role():
   user = anvil.users.get_user()
-  print(user)
+  print('user:', user)
   if user:
-    role = user.get('role', 'guest')
+    role = user['role'] if user['role'] else 'guest'
     print(role)
     if role in ['superuser', 'admin']:
       return True
