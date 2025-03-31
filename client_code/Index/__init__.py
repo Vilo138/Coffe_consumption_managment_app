@@ -26,27 +26,17 @@ class Index(IndexTemplate):
         self.init_components(**properties)
         # Zmena textu na prihlasovacom tlačidle
         self.update_sign_in_text()
+        self.visible_db()
         #print(sys.path)
         self.content_panel.add_component(Home())
-        user = anvil.users.get_user()
-        
-        if user:
-            role = anvil.server.call('get_user_role')
-            # Zobraziť tlačidlá podľa roly
-            if role == 'admin' or 'superuser':
-                self.link_DB_users.visible = True
-                self.link_DB_cof_logs.visible = True
-            elif role == 'user':
-              self.link_DB_users.visible = False
-              self.link_DB_cof_logs.visible = False
-            else:
-                self.link_DB_users.visible = False
-                self.link_DB_cof_logs.visible = False
+  
 
-        else:
-            self.link_DB_users.visible = False
-            self.link_DB_cof_logs.visible = False
-
+    
+    def visible_db(self):
+      current_role = anvil.server.call('get_current_user_role')
+      self.link_DB_users.visible = current_role
+      self.link_DB_cof_logs.visible = current_role
+  
     def update_sign_in_text(self):
         """Aktualizuje text prihlasovacieho tlačidla"""
         user = anvil.users.get_user()

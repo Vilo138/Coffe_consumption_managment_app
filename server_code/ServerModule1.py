@@ -23,6 +23,17 @@ random = SystemRandom()
 # 2019-08-09 10:10:00.406000
 #aware_local = datetime.now(anvil.tz.tzlocal())
 
+@anvil.server.callable
+def get_current_user_role():
+  user = anvil.users.get_user()
+  print(user)
+  if user:
+    role = user.get('role', 'guest')
+    print(role)
+    if role in ['superuser', 'admin']:
+      return True
+  return False
+
 
 @anvil.server.callable
 def get_users():
@@ -334,7 +345,7 @@ def get_user_role():
       role = user['role']
       return role
     else:
-      pass
+      False
   
   
 @anvil.server.callable
