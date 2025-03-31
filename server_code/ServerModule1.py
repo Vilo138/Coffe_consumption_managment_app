@@ -26,7 +26,6 @@ random = SystemRandom()
 @anvil.server.callable
 def get_current_user_role():
   user = anvil.users.get_user()
-  print('user:', user)
   if user:
     role = user['role'] if user['role'] else 'guest'
     print(role)
@@ -221,17 +220,14 @@ def _do_signup(email, name, password):
         else:
           new_id = 1
 
-        
-
         user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
         return user
 
     result = add_user_if_missing()
     if isinstance(result, str):
-        return result  # Vráti chybovú správu, ak existuje.
-
+        return result 
     _send_email_confirm_link(email)
-    return None  # No error = success
+    return None  
 
   
     
@@ -285,7 +281,6 @@ def add_user(name, email, role):
         return "Must supply a role"
   valid_roles = ['user', 'superuser', 'admin']
   if role not in valid_roles:
-    print('Bad input')
     return 'Bad input'
     
   rows = list(app_tables.users.search(tables.order_by("id", ascending=False)))
@@ -303,10 +298,13 @@ def add_user(name, email, role):
     check_role = anvil.users.get_user()
     if check_role['role'] == 'admin':
       app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
+      return 'success'
     else:
-      print('You dont have permission to setup admin acount')
+      return 'permission'
+      #alert('You dont have permission to setup admin acount')
   elif role in ['user', 'superuser']:
     app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
+    return 'success'
 
   
 
@@ -351,6 +349,12 @@ def get_user_role():
 @anvil.server.callable
 def delete_users_all_logs(user_id):
     user_row = app_tables.users.get(id=user_id)
+    print('user row: ', user_row['role'])
+    check_role = anvil.users.get_user()['role']
+    print('check role: ', check_role)
+    if check_role != 'admin':
+      if user_row['role'] == 'admin':
+        return 'permission'
     if user_row:
       for row in app_tables.coffee_logs.search(user_id=user_row):
         row.delete()
@@ -363,9 +367,6 @@ def newIntake(user_regN, timelog):
   if not timelog.strip():
     return "Must supply Date and Time"
   rows = list(app_tables.coffee_logs.search(tables.order_by('id', ascending = False)))
-  #rows_users = list(app_tables.coffee_logs.search())
-  #user_id = rows_users['user_id']['id']
-  #user_id = app_tables.users['id']
   user_id_int = int(user_regN)
   userIDRow = app_tables.users.get(id=user_id_int)
   if rows:
@@ -375,13 +376,6 @@ def newIntake(user_regN, timelog):
     newid = 1
   app_tables.coffee_logs.add_row(id=newid, user_id=userIDRow, time_log=datetime.strptime(timelog, '%Y-%m-%d %H:%M'))
     
-
-#rows = app_tables.coffee_logs.search()
-    # Filtrovanie na základe dátumu
-    #if start_date and end_date:
-        #rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
-    #names = [row['user_id']['name'] if row['user_id'] and row['user_id']['name'] else 'Unknown' for row in rows]
-    #names_counts = collections.Counter(names)
 
 
 

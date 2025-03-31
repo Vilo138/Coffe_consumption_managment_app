@@ -151,8 +151,11 @@ def add_new_user(allow_cancel=True):
   choice = alert(d, title="Add new user",  buttons=BUTTONS)
   if choice == 'submit':
     try:
-      anvil.server.call('add_user',d.name_box.text, d.email_box.text, d.role_box.text)
-      #wait()
+      response = anvil.server.call('add_user',d.name_box.text, d.email_box.text, d.role_box.text)
+      if response == 'success':
+        alert('User added successfully!')
+      elif response == 'permission':
+        alert("You don't have permission to setup admin acount")
       anvil.server.call('_send_password_setup_link', d.email_box.text)
       
     except Exception as e:

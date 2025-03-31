@@ -28,9 +28,12 @@ class ItemTemplate2(ItemTemplate2Template):
   def button_del_click(self, **event_args):
     #self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
     if confirm('Are you sure you want to PERMANENTLY delete this user and all associated data?'):
-      anvil.server.call('delete_users_all_logs', self.item['id'])
-      self.item.delete()
-      self.remove_from_parent()
+      result = anvil.server.call('delete_users_all_logs', self.item['id'])
+      if result == 'permission':
+        alert("You don't have permission to delete admin acount")
+      else:
+        self.item.delete()
+        self.remove_from_parent()
   
 
 
