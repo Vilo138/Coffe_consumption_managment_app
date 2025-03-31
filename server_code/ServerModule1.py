@@ -352,8 +352,7 @@ def delete_users_all_logs(user_id):
     print('user row: ', user_row['role'])
     check_role = anvil.users.get_user()['role']
     print('check role: ', check_role)
-    if check_role != 'admin':
-      if user_row['role'] == 'admin':
+    if check_role != 'admin' and user_row['role'] == 'admin':
         return 'permission'
     if user_row:
       for row in app_tables.coffee_logs.search(user_id=user_row):
