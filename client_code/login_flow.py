@@ -48,13 +48,13 @@ def login_with_form():
       
       if alert(fp, title='Forgot Password', buttons=[("Reset password", True, "primary"), ("Cancel", False)]):
         
-        if anvil.server.call('_send_password_reset', fp.email_box.text):
+        if anvil.server.call('send_password_reset', fp.email_box.text):
           alert(f"A password reset email has been sent to {fp.email_box.text}.")
         else:
           alert("That username does not exist in our records.")
         
     elif choice == 'confirm_email':
-      if anvil.server.call('_send_email_confirm_link', d.email_box.text):
+      if anvil.server.call('send_email_confirm_link', d.email_box.text):
         alert(f"A new confirmation email has been sent to {d.email_box.text}.")
       else:
         alert(f"'{d.email_box.text}' is not an unconfirmed user account.")
@@ -79,7 +79,7 @@ def signup_with_form():
       d.signup_err_lbl.visible = True
       continue
     
-    err = anvil.server.call('_do_signup', d.email_box.text, d.name_box.text, d.password_box.text)
+    err = anvil.server.call('do_signup', d.email_box.text, d.name_box.text, d.password_box.text)
     if err is not None:
       d.signup_err_lbl.text = err
       d.signup_err_lbl.visible = True
@@ -97,7 +97,7 @@ def do_email_confirm_or_reset():
   if isinstance(h, dict) and 'email' in h:
     print('som tu reset')
     if 'pwreset' in h:
-      if not anvil.server.call('_is_password_key_correct', h['email'], h['pwreset']):
+      if not anvil.server.call('is_password_key_correct', h['email'], h['pwreset']):
         alert("This is not a valid password reset link")
         return
 
@@ -110,7 +110,7 @@ def do_email_confirm_or_reset():
         else:
           break
   
-      if anvil.server.call('_perform_password_reset', h['email'], h['pwreset'], pwr.pw_box.text):
+      if anvil.server.call('perform_password_reset', h['email'], h['pwreset'], pwr.pw_box.text):
         alert("Your password has been reset. You are now logged in.")
       else:
         alert("This is not a valid password reset link")
@@ -118,7 +118,7 @@ def do_email_confirm_or_reset():
         
     elif isinstance(h, dict) and 'email' in h:
       if 'setup' in h:
-        if not anvil.server.call('_is_password_key_correct', h['email'], h['setup']):
+        if not anvil.server.call('is_password_key_correct', h['email'], h['setup']):
           print('som tu setup')
           alert("This is not a valid password setup link")
           return
@@ -133,13 +133,13 @@ def do_email_confirm_or_reset():
           else:
             break
   
-        if anvil.server.call('_perform_password_reset', h['email'], h['setup'], pwr.pw_box.text):
+        if anvil.server.call('perform_password_reset', h['email'], h['setup'], pwr.pw_box.text):
           alert("Your password has been setup. You are now logged in.")
         else:
           alert("This is not a valid password setup link")
         
     elif 'confirm' in h:
-      if anvil.server.call('_confirm_email_address', h['email'], h['confirm']):
+      if anvil.server.call('confirm_email_address', h['email'], h['confirm']):
         alert("Thanks for confirming your email address. You are now logged in.")
       else:
         alert("This confirmation link is not valid. Perhaps you have already confirmed your address?\n\nTry logging in normally.")
@@ -156,7 +156,7 @@ def add_new_user(allow_cancel=True):
         alert('User added successfully!')
       elif response == 'permission':
         alert("You don't have permission to setup admin acount")
-      anvil.server.call('_send_password_setup_link', d.email_box.text)
+      anvil.server.call('send_password_setup_link', d.email_box.text)
       
     except Exception as e:
       print(e)

@@ -147,7 +147,7 @@ def mk_token():
   return "".join([random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") for i in range(14)])
 
 @anvil.server.callable
-def _send_password_reset(email):
+def send_password_reset(email):
   """Send a password reset email to the specified user"""
   user = app_tables.users.get(email=email)
   if user is not None:
@@ -166,7 +166,7 @@ Thanks!
 
 
 @anvil.server.callable
-def _send_email_confirm_link(email):
+def send_email_confirm_link(email):
   """Send an email confirmation link if the specified user's email is not yet confirmed"""
   user = app_tables.users.get(email=email)
   if user is not None and not user['confirmed_email']:
@@ -197,7 +197,7 @@ def hash_password(password, salt):
 
 
 @anvil.server.callable
-def _do_signup(email, name, password):
+def do_signup(email, name, password):
     #print('robim singup')
     if not name.strip():
         return "Must supply a name"
@@ -226,7 +226,7 @@ def _do_signup(email, name, password):
     result = add_user_if_missing()
     if isinstance(result, str):
         return result 
-    _send_email_confirm_link(email)
+    send_email_confirm_link(email)
     return None  
 
   
@@ -243,11 +243,11 @@ def get_user_if_key_correct(email, link_key):
 
 
 @anvil.server.callable
-def _is_password_key_correct(email, link_key):
+def is_password_key_correct(email, link_key):
   return get_user_if_key_correct(email, link_key) is not None
 
 @anvil.server.callable
-def _perform_password_reset(email, reset_key, new_password):
+def perform_password_reset(email, reset_key, new_password):
   """Perform a password reset if the key matches; return True if it did."""
   user = get_user_if_key_correct(email, reset_key)
   if user is not None:
@@ -258,7 +258,7 @@ def _perform_password_reset(email, reset_key, new_password):
     return True
     
 @anvil.server.callable
-def _confirm_email_address(email, confirm_key):
+def confirm_email_address(email, confirm_key):
   """Confirm a user's email address if the key matches; return True if it did."""
   user = get_user_if_key_correct(email, confirm_key)
   if user is not None:
@@ -309,7 +309,7 @@ def add_user(name, email, role):
   
 
 @anvil.server.callable
-def _send_password_setup_link(email):
+def send_password_setup_link(email):
   """Send an email confirmation link if the specified user's email is not yet confirmed"""
   user = app_tables.users.get(email=email)
   if user is not None and not user['confirmed_email']:
