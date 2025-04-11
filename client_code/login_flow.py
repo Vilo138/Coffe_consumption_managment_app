@@ -42,7 +42,6 @@ def login_with_form():
         d.login_err_lbl.text = str(e.args[0])
         #d.refresh_data_bindings()  # Ak používate dátové väzby
 
-        
     elif choice == 'reset_password':
       fp = ForgottenPasswordDialog(d.email_box.text)
       
