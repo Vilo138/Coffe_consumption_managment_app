@@ -37,7 +37,6 @@ def login_with_form():
       except anvil.users.EmailNotConfirmed:
         d.confirm_lnk.visible = True
       except anvil.users.AuthenticationFailed as e:
-        #print("12.32")
         d.login_err_lbl.visible = True
         d.login_err_lbl.text = str(e.args[0])
         #d.refresh_data_bindings()  # Ak používate dátové väzby
@@ -60,7 +59,6 @@ def login_with_form():
       d.confirm_lnk.visible = False
     
     elif choice is None:
-      #and allow_cancel
       break
     anvil.server.call('get_user_role')
     
