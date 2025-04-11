@@ -289,7 +289,7 @@ def add_user(name, email, role):
   else:
     actual_max_id = None
 
-  if actual_max_id is None:  # Správne porovnanie s None
+  if actual_max_id is None:  
     new_id = 1
   else:
     new_id = actual_max_id + 1
