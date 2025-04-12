@@ -86,58 +86,58 @@ def signup_with_form():
   
     
 def do_email_confirm_or_reset():
-  """Check whether the user has arrived from an email-confirmation link or a password reset, and pop up any necessary dialogs.
-     Call this function from the 'show' event on your startup form.
-  """
-  h = anvil.get_url_hash()
-  if isinstance(h, dict) and 'email' in h:
-    if 'pwreset' in h:
-      if not anvil.server.call('is_password_key_correct', h['email'], h['pwreset']):
-        alert("This is not a valid password reset link")
-        return
+    """Check whether the user has arrived from an email-confirmation link or a password reset, and pop up any necessary dialogs.
+       Call this function from the 'show' event on your startup form.
+    """
+    h = anvil.get_url_hash()
+    
+    if isinstance(h, dict) and 'email' in h:
+        if 'pwreset' in h:
+            if not anvil.server.call('is_password_key_correct', h['email'], h['pwreset']):
+                alert("This is not a valid password reset link")
+                return
 
-      while True:
-        pwr = PasswordResetSetupDialog()
-        if not alert(pwr, title="Reset Your Password", buttons=[("Reset password", True, 'primary'), ("Cancel", False)]):
-          return
-        if pwr.pw_box.text != pwr.pw_repeat_box.text:
-          alert("Passwords did not match. Try again.")
-        else:
-          break
-  
-      if anvil.server.call('perform_password_reset', h['email'], h['pwreset'], pwr.pw_box.text):
-        alert("Your password has been reset. You are now logged in.")
-      else:
-        alert("This is not a valid password reset link")
+            while True:
+                pwr = PasswordResetSetupDialog()
+                if not alert(pwr, title="Reset Your Password", buttons=[("Reset password", True, 'primary'), ("Cancel", False)]):
+                    return
+                if pwr.pw_box.text != pwr.pw_repeat_box.text:
+                    alert("Passwords did not match. Try again.")
+                else:
+                    break
 
+            if anvil.server.call('perform_password_reset', h['email'], h['pwreset'], pwr.pw_box.text):
+                alert("Your password has been reset. You are now logged in.")
+            else:
+                alert("This is not a valid password reset link")
         
-    elif isinstance(h, dict) and 'email' in h:
-      if 'setup' in h:
-        if not anvil.server.call('is_password_key_correct', h['email'], h['setup']):
-          print('som tu setup')
-          alert("This is not a valid password setup link")
-          return
+        elif 'setup' in h:
+            if not anvil.server.call('is_password_key_correct', h['email'], h['setup']):
+                print('som tu setup')
+                alert("This is not a valid password setup link")
+                return
 
-        while True:
-          pwr = PasswordResetSetupDialog()
-          print('som tu2')
-          if not alert(pwr, title="Setup Your Password", buttons=[("Setup password", True, 'primary'), ("Cancel", False)]):
-            return
-          if pwr.pw_box.text != pwr.pw_repeat_box.text:
-            alert("Passwords did not match. Try again.")
-          else:
-            break
-  
-        if anvil.server.call('perform_password_reset', h['email'], h['setup'], pwr.pw_box.text):
-          alert("Your password has been setup. You are now logged in.")
-        else:
-          alert("This is not a valid password setup link")
+            while True:
+                pwr = PasswordResetSetupDialog()
+                print('som tu2')
+                if not alert(pwr, title="Setup Your Password", buttons=[("Setup password", True, 'primary'), ("Cancel", False)]):
+                    return
+                if pwr.pw_box.text != pwr.pw_repeat_box.text:
+                    alert("Passwords did not match. Try again.")
+                else:
+                    break
+
+            if anvil.server.call('perform_password_reset', h['email'], h['setup'], pwr.pw_box.text):
+                alert("Your password has been setup. You are now logged in.")
+            else:
+                alert("This is not a valid password setup link")
         
-    elif 'confirm' in h:
-      if anvil.server.call('confirm_email_address', h['email'], h['confirm']):
-        alert("Thanks for confirming your email address. You are now logged in.")
-      else:
-        alert("This confirmation link is not valid. Perhaps you have already confirmed your address?\n\nTry logging in normally.")
+        elif 'confirm' in h:
+            if anvil.server.call('confirm_email_address', h['email'], h['confirm']):
+                alert("Thanks for confirming your email address. You are now logged in.")
+            else:
+                alert("This confirmation link is not valid. Perhaps you have already confirmed your address?\n\nTry logging in normally.")
+
  
      
 def add_new_user(allow_cancel=True):

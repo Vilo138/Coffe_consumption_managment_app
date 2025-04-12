@@ -220,7 +220,7 @@ def do_signup(email, name, password):
         else:
           new_id = 1
 
-        user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id)
+        user = app_tables.users.add_row(email=email, enabled=True, name=name, password_hash=pwhash, id=new_id, role='user')
         return user
 
     result = add_user_if_missing()
@@ -260,6 +260,7 @@ def perform_password_reset(email, reset_key, new_password):
 @anvil.server.callable
 def confirm_email_address(email, confirm_key):
   """Confirm a user's email address if the key matches; return True if it did."""
+  print('som tu teraz')
   user = get_user_if_key_correct(email, confirm_key)
   if user is not None:
     user['confirmed_email'] = True
