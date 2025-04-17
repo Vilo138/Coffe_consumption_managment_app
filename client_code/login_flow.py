@@ -119,7 +119,7 @@ def do_email_confirm_or_reset():
 
             while True:
                 pwr = PasswordResetSetupDialog()
-                print('som tu2')
+              
                 if not alert(pwr, title="Setup Your Password", buttons=[("Setup password", True, 'primary'), ("Cancel", False)]):
                     return
                 if pwr.pw_box.text != pwr.pw_repeat_box.text:
