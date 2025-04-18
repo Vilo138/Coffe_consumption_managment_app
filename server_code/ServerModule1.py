@@ -228,8 +228,6 @@ def do_signup(email, name, password):
         return result 
     send_email_confirm_link(email)
     return None  
-
-  
     
 def get_user_if_key_correct(email, link_key):
   user = app_tables.users.get(email=email)
