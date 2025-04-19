@@ -56,7 +56,9 @@ class ItemTemplate2(ItemTemplate2Template):
 
   def text_box_4_lost_focus(self, **event_args):
       self.item['role'] = self.text_box_4.text  # Aktualizácia 
-      anvil.server.call('update_row_name', self.item)
+      result = anvil.server.call('update_row_name', self.item)
+      if result == 'permission':
+        alert("You don't have permission to set admin acount")
 
   
 

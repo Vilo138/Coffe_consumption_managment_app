@@ -331,9 +331,24 @@ Thanks!
 @anvil.server.callable 
 def update_row_name(item): 
   """Upraví existujúci riadok v databáze""" 
-  row = app_tables.users.get(id=item['id']) 
-  if row: 
-    row.update(name=item['name'], email=item['email'], role=item['role'])  # Aktualizácia údajov
+  row = app_tables.users.get(id=item['id'])
+  user_role = get_user_role()
+  if user_role == 'superuser':
+      valid_roles = ['user', 'superuser']
+      if item['role'] in valid_roles:
+        if row: 
+          row.update(name=item['name'], email=item['email'], role=item['role'])
+      else:
+        return 'permission'
+  elif user_role == 'admin':
+      valid_roles = ['user', 'superuser', 'admin']
+      if item['role'] in valid_roles:
+        if row: 
+          row.update(name=item['name'], email=item['email'], role=item['role'])
+      else:
+        return 'permission'
+#  if row: 
+#    row.update(name=item['name'], email=item['email'], role=item['role'])  # Aktualizácia údajov
 
 @anvil.server.callable
 def get_user_role():
