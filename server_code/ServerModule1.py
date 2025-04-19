@@ -328,28 +328,34 @@ Thanks!
 
 
 
-@anvil.server.callable 
-def update_row_name(item): 
-  """Upraví existujúci riadok v databáze""" 
-  row = app_tables.users.get(id=item['id'])
-  user_role = get_user_role()
-  
-  if user_role == 'superuser':
-      valid_roles = ['user', 'superuser']
-      if item['role'] == 'admin':
-        return 'permission'
-      elif item['role'] in valid_roles and row:
-        row.update(name=item['name'], email=item['email'], role=item['role'])
-      else:
-        return 'invalid'
-  elif user_role == 'admin':
-      valid_roles = ['user', 'superuser', 'admin']
-      if item['role'] in valid_roles and row:
-        row.update(name=item['name'], email=item['email'], role=item['role'])
-      else:
-        return 'invalid'
-#  if row: 
-#    row.update(name=item['name'], email=item['email'], role=item['role'])  # Aktualizácia údajov
+@anvil.server.callable
+def update_row_name(user_id, proposed_role):
+    """Upraví existujúci riadok v databáze"""
+    row = app_tables.users.get(id=user_id)
+    user_role = get_user_role()
+    current_role = row['role']
+
+    if not row:
+        return 'invalid' 
+
+    if user_role == 'superuser':
+        if proposed_role == 'admin':
+            return 'permission'
+        elif current_role == 'admin' and proposed_role in ['user', 'superuser']:
+            return 'permission'
+        elif proposed_role in ['user', 'superuser']:
+            row.update(role=proposed_role)
+            return 'success'
+        else:
+            return 'invalid'
+    elif user_role == 'admin':
+        if proposed_role in ['user', 'superuser', 'admin']:
+            row.update(role=proposed_role)
+            return 'success'
+        else:
+            return 'invalid'
+
+    return 'invalid'
 
 @anvil.server.callable
 def get_user_role():

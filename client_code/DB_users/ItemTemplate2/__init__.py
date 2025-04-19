@@ -39,28 +39,24 @@ class ItemTemplate2(ItemTemplate2Template):
 
   def text_box_2_lost_focus(self, **event_args): 
       self.item['name'] = self.text_box_2.text  # Aktualizácia 
-      anvil.server.call('update_row_name', self.item)    
 
-
-  #def button_edt_click(self, **event_args):
-  #    self.text_box_2.enabled = True
-  #    self.item['name'] = self.text_box_2.text  # Aktualizácia hodnoty
-  #    anvil.server.call('update_row', self.item)
-      #self.text_box_2_lost_focus()
-
-  
-  
   def text_box_3_lost_focus(self, **event_args):
-      self.item['email'] = self.text_box_3.text  # Aktualizácia 
-      anvil.server.call('update_row_name', self.item)
+      self.item['email'] = self.text_box_3.text
 
   def text_box_4_lost_focus(self, **event_args):
-      self.item['role'] = self.text_box_4.text  # Aktualizácia 
-      result = anvil.server.call('update_row_name', self.item)
-      if result == 'permission':
-        alert("You don't have permission to set admin acount")
-      elif result == 'invalid':
+    proposed_role = self.text_box_4.text
+    result = anvil.server.call('update_row_name', self.item['id'], proposed_role)
+    if result == 'permission':
+        alert("You don't have permission to set admin account")
+        self.text_box_4.text = self.item['role']
+    elif result == 'invalid':
         alert("Invalid input")
+        self.text_box_4.text = self.item['role']
+    else:
+        self.item['role'] = proposed_role
+        alert("You have successfully changed the role")
+
+
 
 
   
