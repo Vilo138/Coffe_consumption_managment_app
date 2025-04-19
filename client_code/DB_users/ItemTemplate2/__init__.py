@@ -59,6 +59,9 @@ class ItemTemplate2(ItemTemplate2Template):
       result = anvil.server.call('update_row_name', self.item)
       if result == 'permission':
         alert("You don't have permission to set admin acount")
+      elif result == 'invalid':
+        alert("Invalid input")
+
 
   
 
