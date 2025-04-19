@@ -34,7 +34,7 @@ components:
   type: RepeatingPanel
 - layout_properties: {grid_position: 'EGLZFX,RCGRKO LNSIIR,OFSWDE'}
   name: repeating_panel_1
-  properties: {item_template: DB_users.ItemTemplate2}
+  properties: {item_template: DB_users.ItemTemplate2, role: null}
   type: RepeatingPanel
 container:
   data_bindings: []
