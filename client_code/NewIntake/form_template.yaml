@@ -13,7 +13,7 @@ components:
   type: Label
 - layout_properties: {grid_position: 'OMNJMC,RACHGU'}
   name: text_box_timelog
-  properties: {}
+  properties: {placeholder: 'YYYY-MM-DD HH:MM'}
   type: TextBox
 container: {type: ColumnPanel}
 is_package: true
