@@ -136,12 +136,6 @@ def generate_pdf(data, start_date, end_date):
     pdf = HTML(string=html_template).write_pdf()
     return anvil.BlobMedia("application/pdf", pdf, name=f"report {start_date} to {end_date}.pdf")
 
-
-
-
-
-
-
 def mk_token():
   """Generate a random 14-character token"""
   return "".join([random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") for i in range(14)])
