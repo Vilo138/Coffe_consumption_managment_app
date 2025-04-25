@@ -78,8 +78,8 @@ class Index(IndexTemplate):
 
     def button_csv_click(self, **event_args):
       """Tento kód sa spustí, keď sa klikne na tlačidlo"""
-      csv_file = anvil.server.call('get_filtered_data_csv')  # Volanie serverovej funkcie
-      anvil.media.download(csv_file)  # Stiahnutie CSV súboru
+      csv_file = anvil.server.call('get_filtered_data_csv')  
+      anvil.media.download(csv_file)  
 
 
     def link_DB_users_click(self, **event_args):
