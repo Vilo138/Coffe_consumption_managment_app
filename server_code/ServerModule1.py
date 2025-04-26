@@ -252,7 +252,6 @@ def perform_password_reset(email, reset_key, new_password):
 @anvil.server.callable
 def confirm_email_address(email, confirm_key):
   """Confirm a user's email address if the key matches; return True if it did."""
-  print('som tu teraz')
   user = get_user_if_key_correct(email, confirm_key)
   if user is not None:
     user['confirmed_email'] = True
