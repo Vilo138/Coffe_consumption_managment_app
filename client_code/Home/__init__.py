@@ -23,6 +23,7 @@ class Home(HomeTemplate):
 
         for user in users:
             # Dynamicky pridávame tlačidlo pre každého používateľa
+          if user['confirmed_email'] == 'true':
             button = Button(text=user['name'])
             button.tag.user_id = user['id']  # Uložíme user_id do tagu tlačidla
             button.tag.user_email = user['email']
