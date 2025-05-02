@@ -37,7 +37,7 @@ def get_current_user_role():
 @anvil.server.callable
 def get_users():
     # Načíta používateľov z tabuľky Users a vráti zoznam emailov
-    return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search()]
+    return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search() if user['confirmed_email'] == True]
 
 @anvil.server.callable
 def add_coffee_record(user_id):
