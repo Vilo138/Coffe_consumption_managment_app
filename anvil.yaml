@@ -57,8 +57,8 @@ db_schema:
     server: full
     title: Users
 dependencies: []
-name: Sign In app
-package_name: Sign_In_app
+name: Coffe Consumption application
+package_name: Coffe_Consumption_application
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-minimal}
