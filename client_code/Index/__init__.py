@@ -22,9 +22,7 @@ from .. import login_flow
 
 class Index(IndexTemplate):
     def __init__(self, **properties):
-        # Toto nastaví komponenty na formulári
         self.init_components(**properties)
-        # Zmena textu na prihlasovacom tlačidle
         self.update_sign_in_text()
         self.visible_db()
         #print(sys.path)
@@ -38,7 +36,6 @@ class Index(IndexTemplate):
       self.link_DB_cof_logs.visible = current_role
   
     def update_sign_in_text(self):
-        """Aktualizuje text prihlasovacieho tlačidla"""
         user = anvil.users.get_user()
         if user:
             email = user["email"]
@@ -77,7 +74,6 @@ class Index(IndexTemplate):
         self.content_panel.add_component(Home())
 
     def button_csv_click(self, **event_args):
-      """Tento kód sa spustí, keď sa klikne na tlačidlo"""
       csv_file = anvil.server.call('get_filtered_data_csv')  
       anvil.media.download(csv_file)  
 

@@ -39,7 +39,7 @@ def login_with_form():
       except anvil.users.AuthenticationFailed as e:
         d.login_err_lbl.visible = True
         d.login_err_lbl.text = str(e.args[0])
-        #d.refresh_data_bindings()  # Ak používate dátové väzby
+        #d.refresh_data_bindings()
 
     elif choice == 'reset_password':
       fp = ForgottenPasswordDialog(d.email_box.text)

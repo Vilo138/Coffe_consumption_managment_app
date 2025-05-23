@@ -27,7 +27,6 @@ class DatePickerDialog(DatePickerDialogTemplate):
 
     
   def button_ok_click(self, **event_args):
-        """Po kliknutí na OK vráti vybrané dátumy"""
         start_date = self.start_date_picker.date
         end_date = self.end_date_picker.date
         drpdwn_value = self.drop_down_users.selected_value
@@ -37,9 +36,9 @@ class DatePickerDialog(DatePickerDialogTemplate):
             data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date)
           else:
             data = anvil.server.call("get_filtered_data", start_date=start_date, end_date=end_date, user_name=drpdwn_value['name'])
-          if data:  # Ak sú dáta na generovanie
+          if data:  
             pdf = anvil.server.call("generate_pdf", data=data, start_date=start_date, end_date=end_date)
-            anvil.media.download(pdf)  # Stiahnutie PDF
+            anvil.media.download(pdf)
               #print("PDF has been downloaded.")
           else:
             alert("No data available for the selected dates.")
@@ -53,9 +52,7 @@ class DatePickerDialog(DatePickerDialogTemplate):
         #elif self.drop_down_users == row:
          # anvil.server.call('pdf_user')
 
-    
   def button_cancel_click(self, **event_args):
-        """Po kliknutí na Cancel zatvorí dialóg bez hodnôt"""
         print("Cancel clicked")
         self.result = None
         self.raise_event("x-close-alert", value=None)

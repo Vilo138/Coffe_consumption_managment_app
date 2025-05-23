@@ -36,7 +36,6 @@ def get_current_user_role():
 
 @anvil.server.callable
 def get_users():
-    # Načíta používateľov z tabuľky Users a vráti zoznam emailov
     return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search() if user['confirmed_email'] == True]
 
 @anvil.server.callable
@@ -51,7 +50,6 @@ def add_coffee_record(user_id):
 
     new_id = (max_id or 0) + 1
   
-    # Pridá záznam o káve do tabuľky pocet_kav
     app_tables.coffee_logs.add_row(
         id=new_id,
         user_id=user_id,
@@ -84,16 +82,12 @@ def get_filtered_data(start_date=None, end_date=None, user_name=None):
 @anvil.server.callable
 def get_filtered_data_csv():
     rows = app_tables.coffee_logs.search()
-    # Konvertovanie na pandas DataFrame
     data_list = [{'id': r['id'], 'user_id': r['user_id']['id'], 'name': r['user_id']['name'], 'time_log': r['time_log']} for r in rows]
     df = pd.DataFrame(data_list)
-    # Vytvorenie CSV ako stringu
     csv_string = df.to_csv(index=False)
-
-    # Vrátenie CSV ako Anvil Media objekt
+  
     return anvil.BlobMedia("text/csv", csv_string.encode("utf-8"), name="data.csv")
 
-# funkcia na generovanie pdf reportu
 @anvil.server.callable
 def generate_pdf(data, start_date, end_date):
     rows_html = ''.join(
@@ -132,7 +126,6 @@ def generate_pdf(data, start_date, end_date):
       </body>
     </html>
     """
-    # Generovanie PDF
     pdf = HTML(string=html_template).write_pdf()
     return anvil.BlobMedia("application/pdf", pdf, name=f"report {start_date} to {end_date}.pdf")
 
@@ -157,7 +150,6 @@ If you do want to reset your password, click here:
 Thanks!
 """)
     return True
-
 
 @anvil.server.callable
 def send_email_confirm_link(email):
@@ -188,7 +180,6 @@ def hash_password(password, salt):
 
   if isinstance(result, bytes):
     return result.decode('utf-8')
-
 
 @anvil.server.callable
 def do_signup(email, name, password):
@@ -227,8 +218,6 @@ def get_user_if_key_correct(email, link_key):
   user = app_tables.users.get(email=email)
 
   if user is not None and user['link_key'] is not None:
-    # Use bcrypt to hash the link key and compare the hashed version.
-    # The naive way (link_key == user['link_key']) would expose a timing vulnerability.
     salt = bcrypt.gensalt()
     if hash_password(link_key, salt) == hash_password(user['link_key'], salt):
       return user
@@ -298,8 +287,6 @@ def add_user(name, email, role):
     app_tables.users.add_row(email=email, enabled=True, name=name, id=new_id, role=role)
     return 'success'
 
-  
-
 @anvil.server.callable
 def send_password_setup_link(email):
   """Send an email confirmation link if the specified user's email is not yet confirmed"""
@@ -317,9 +304,6 @@ You have been signed up to Coffee management application. To complete your sign-
 Thanks!
 """)
     return True
-
-
-
 
 @anvil.server.callable
 def update_row_name(user_id, proposed_role):
@@ -359,7 +343,6 @@ def get_user_role():
     else:
       False
   
-  
 @anvil.server.callable
 def delete_users_all_logs(user_id):
     user_row = app_tables.users.get(id=user_id)
@@ -371,7 +354,6 @@ def delete_users_all_logs(user_id):
     if user_row:
       for row in app_tables.coffee_logs.search(user_id=user_row):
         row.delete()
-  
   
 @anvil.server.callable
 def newIntake(user_regN, timelog):

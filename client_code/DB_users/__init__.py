@@ -15,12 +15,10 @@ from ..Test import Test
 
 class DB_users(DB_usersTemplate):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.load_data()
 
   def load_data(self):
-    """Načíta všetky riadky do Repeating Panel"""
     #self.repeating_panel_1.items = app_tables.users.search(tables.order_by("id", ascending=True))
     self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
 

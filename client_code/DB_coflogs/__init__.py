@@ -17,8 +17,6 @@ class DB_coflogs(DB_coflogsTemplate):
     self.init_components(**properties)
     self.load_data()
 
-    # Any code you write here will run before the form opens.
-
   def load_data(self):
       #self.repeating_panel_1.items = app_tables.users.search(tables.order_by("id", ascending=True))
       self.repeating_panel_1.items = app_tables.coffee_logs.client_writable().search(tables.order_by("id", ascending=True))
