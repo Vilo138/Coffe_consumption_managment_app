@@ -1,4 +1,4 @@
-from ._anvil_designer import TestTemplate
+from ._anvil_designer import AuthMenuTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -9,7 +9,7 @@ from .. import login_flow
 from ..Home import Home
 
 
-class Test(TestTemplate):
+class AuthMenu(AuthMenuTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

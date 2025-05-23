@@ -6,7 +6,7 @@ from anvil.tables import app_tables
 from datetime import datetime
 from anvil import Media
 from weasyprint import HTML
-import collections # stare, pod tymto nove
+import collections
 import anvil.email
 from decimal import *
 import anvil.users

@@ -10,7 +10,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from .. import login_flow
 from ..Home import Home
-from ..Test import Test
+from ..AuthMenu import AuthMenu
 
 
 class DB_users(DB_usersTemplate):

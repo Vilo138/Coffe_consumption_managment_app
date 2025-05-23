@@ -7,7 +7,7 @@ from anvil.tables import app_tables
 import sys
 from ..DatePickerDialog import DatePickerDialog
 from anvil import alert
-from ..Test import Test
+from ..AuthMenu import AuthMenu
 from ..Home import Home
 from ..DB_users import DB_users
 from ..DB_coflogs import DB_coflogs
@@ -48,7 +48,7 @@ class Index(IndexTemplate):
         self.visible_db()
         self.update_sign_in_text()
         self.content_panel.clear()
-        self.content_panel.add_component(Test())
+        self.content_panel.add_component(AuthMenu())
 
 
     def generate_pdf_button_click(self, **event_args):

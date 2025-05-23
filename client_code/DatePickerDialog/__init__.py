@@ -46,7 +46,6 @@ class DatePickerDialog(DatePickerDialogTemplate):
           alert("Please select valid start and end dates.")
           
         #self.raise_event("x-close-alert", value=None)
-
         #if self.dropdown_users is None:
          # anvil.server.call('generate_pdf')
         #elif self.drop_down_users == row:
