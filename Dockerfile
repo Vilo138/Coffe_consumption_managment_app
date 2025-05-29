@@ -7,7 +7,7 @@ COPY . .
 RUN apt-get update && apt-get install -y \
     build-essential \
     openjdk-17-jdk \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
 RUN pip install anvil-app-server
