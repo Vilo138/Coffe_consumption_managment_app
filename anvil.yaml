@@ -79,7 +79,7 @@ services:
   server_config: {}
   source: /runtime/services/facebook.yml
 - client_config: {}
-  server_config: {custom_smtp: true, smtp_host: smtp.mailersend.net, smtp_password: ctDxOIHrtW3vShPenPmBu3qF21Anr1c9AIYO95ktopYNzYyk1Hj/+3CSEvUXtvUHoJxtv6cyMznka9pjd0Yn0sKXkfaoG7hqgyNcLJtFrESn7rEaejGUNFxA0cDzTMPH1JfV3EqW3Nycl31b13GCYQHfnoavSKo/fC0qFYw7/x1ss2kn2JBOzZzAIapZZPFuwT1U1YEwyHYX1KhEua0=, smtp_port: 587, smtp_user: MS_RGJPxR@test-p7kx4xwmde8g9yjr.mlsender.net, test_mode: false}
+  server_config: {custom_smtp: true, smtp_encryption: starttls, smtp_host: smtp.mailersend.net, smtp_password: ctDxOIHrtW3vShPenPmBu3qF21Anr1c9AIYO95ktopYNzYyk1Hj/+3CSEvUXtvUHoJxtv6cyMznka9pjd0Yn0sKXkfaoG7hqgyNcLJtFrESn7rEaejGUNFxA0cDzTMPH1JfV3EqW3Nycl31b13GCYQHfnoavSKo/fC0qFYw7/x1ss2kn2JBOzZzAIapZZPFuwT1U1YEwyHYX1KhEua0=, smtp_port: 587, smtp_user: MS_RGJPxR@test-p7kx4xwmde8g9yjr.mlsender.net, test_mode: false}
   source: /runtime/services/anvil/email.yml
 startup: {module: Index, type: form}
 startup_form: null
