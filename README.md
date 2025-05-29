@@ -1,3 +1,12 @@
+# how to run the docker app
+```
+# 1. Build the image
+docker build -t anvillapp .
+
+# 2. Run with port mapping
+docker run -p 3030:3030 anvillapp
+```
+
 # About This [Anvil](https://anvil.works/?utm_source=github:app_README) App
 
 ### Build web apps with nothing but Python.
