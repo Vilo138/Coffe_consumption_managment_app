@@ -20,7 +20,7 @@ class DatePickerDialog(DatePickerDialogTemplate):
 
     # Any code you write here will run before the form opens.
   def dropdwn_items(self):
-    item_list = [("All", None)]  
+    item_list = [("All Users", None)]  
     for row in app_tables.users.search():
       item_list.append((row["name"], row))
     self.drop_down_users.items = item_list
