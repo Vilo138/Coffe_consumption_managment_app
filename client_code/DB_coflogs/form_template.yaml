@@ -2,7 +2,7 @@ components:
 - event_bindings: {click: button_new_click}
   layout_properties: {grid_position: 'HVRGBO,LSWTYC'}
   name: button_new
-  properties: {text: NEW}
+  properties: {text: ADD NEW INTAKE}
   type: Button
 - layout_properties: {grid_position: 'SNLYXY,QKCMGR'}
   name: label_intake
