@@ -62,8 +62,6 @@ def login_with_form():
       break
     anvil.server.call('get_user_role')
     
-
-      
 def signup_with_form():
   d = SignupDialog()
 
@@ -138,8 +136,6 @@ def do_email_confirm_or_reset():
             else:
                 alert("This confirmation link is not valid. Perhaps you have already confirmed your address?\n\nTry logging in normally.")
 
- 
-     
 def add_new_user(allow_cancel=True):
   d = NewUserDialog()
   BUTTONS = [("Submit", "submit", "primary"), ("Cancel", None)]

@@ -33,7 +33,6 @@ def get_current_user_role():
       return True
   return False
 
-
 @anvil.server.callable
 def get_users():
     return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search() if user['confirmed_email'] == True]
@@ -169,8 +168,9 @@ Thanks!
 """)
     return True
 
+"""Hash the password using bcrypt in a way that is compatible with Python 2 and 3."""
+
 def hash_password(password, salt):
-  """Hash the password using bcrypt in a way that is compatible with Python 2 and 3."""
   if not isinstance(password, bytes):
     password = password.encode()
   if not isinstance(salt, bytes):
@@ -222,14 +222,14 @@ def get_user_if_key_correct(email, link_key):
     if hash_password(link_key, salt) == hash_password(user['link_key'], salt):
       return user
 
-
 @anvil.server.callable
 def is_password_key_correct(email, link_key):
   return get_user_if_key_correct(email, link_key) is not None
 
+"""Perform a password reset if the key matches; return True if it did."""
+
 @anvil.server.callable
 def perform_password_reset(email, reset_key, new_password):
-  """Perform a password reset if the key matches; return True if it did."""
   user = get_user_if_key_correct(email, reset_key)
   if user is not None:
     user['confirmed_email'] = True

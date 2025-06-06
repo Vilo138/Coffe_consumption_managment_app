@@ -44,4 +44,12 @@ components:
 container:
   properties: {html: '@theme:standard-page.html'}
   type: HtmlTemplate
+custom_component: true
+events:
+- default_event: true
+  name: event
+  parameters:
+  - {name: param}
 is_package: true
+properties:
+- {default_binding_prop: true, default_value: '', important: true, name: prop, type: string}

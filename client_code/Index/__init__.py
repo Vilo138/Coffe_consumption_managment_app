@@ -12,8 +12,6 @@ from ..Home import Home
 from ..DB_users import DB_users
 from ..DB_coflogs import DB_coflogs
 
-
-
 import anvil.tables as tables
 import anvil.tables.query as q
 #from anvil.tables import app_tables
@@ -28,8 +26,6 @@ class Index(IndexTemplate):
         #print(sys.path)
         self.content_panel.add_component(Home())
   
-
-    
     def visible_db(self):
       current_role = anvil.server.call('get_current_user_role')
       self.link_DB_users.visible = current_role
@@ -49,7 +45,6 @@ class Index(IndexTemplate):
         self.update_sign_in_text()
         self.content_panel.clear()
         self.content_panel.add_component(AuthMenu())
-
 
     def generate_pdf_button_click(self, **event_args):
         #dates = DatePickerDialog().show()
@@ -76,7 +71,6 @@ class Index(IndexTemplate):
     def button_csv_click(self, **event_args):
       csv_file = anvil.server.call('get_filtered_data_csv')  
       anvil.media.download(csv_file)  
-
 
     def link_DB_users_click(self, **event_args):
       """This method is called when the link is clicked"""
