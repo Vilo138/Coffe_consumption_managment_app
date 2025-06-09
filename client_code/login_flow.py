@@ -12,7 +12,6 @@ from PasswordResetSetupDialog import PasswordResetSetupDialog
 from NewUserDialog import NewUserDialog
 from .NewIntake import NewIntake
 
-#allow_cancel=True
 def login_with_form():
   """Log in by popping up the custom LoginDialog"""
   d = LoginDialog()
@@ -27,7 +26,6 @@ def login_with_form():
     if choice == 'login':
       try:
         anvil.users.login_with_email(d.email_box.text, d.password_box.text, remember=True)
-        #print("12.3")
         try:
           anvil.js.call('location.reload()')
         except Exception as e:
