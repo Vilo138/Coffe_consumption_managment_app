@@ -79,9 +79,9 @@ def get_filtered_data(start_date=None, end_date=None, user_name=None):
       if row['user_id']:
         names.append(row['user_id']['name'])
       else:
-        names.append('Unknown')
+        names.append('Unknown user')
     except anvil.tables.TableError:
-      names.append('Unknown')
+      names.append('Unknown user')
 
   names_counts = collections.Counter(names)
 
@@ -94,7 +94,6 @@ def get_filtered_data(start_date=None, end_date=None, user_name=None):
     })
 
   return results
-
   
 @anvil.server.callable
 def get_filtered_data_csv():
@@ -103,7 +102,6 @@ def get_filtered_data_csv():
 
   for r in rows:
     try:
-      # Overíme, či user_id existuje a nie je vymazaný
       user_id = r['user_id']['id'] if r['user_id'] else 'Unknown'
       name = r['user_id']['name'] if r['user_id'] else 'Unknown'
     except anvil.tables.TableError:

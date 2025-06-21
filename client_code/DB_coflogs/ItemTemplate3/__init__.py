@@ -15,8 +15,7 @@ class ItemTemplate3(ItemTemplate3Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.text_box_id.text = self.item['id']
-    ##self.text_box_user_id.text = self.item['user_id']['id']
-    ##self.text_box_name.text = self.item['user_id']['name']
+    
     try:
       self.text_box_user_id.text = self.item['user_id']['id']
       self.text_box_name.text = self.item['user_id']['name']
