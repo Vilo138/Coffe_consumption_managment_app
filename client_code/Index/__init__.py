@@ -17,6 +17,11 @@ import anvil.tables.query as q
 #from anvil.tables import app_tables
 from anvil import open_form
 from .. import login_flow
+from anvil.js.window import moment
+
+moment.updateLocale('en', { 'week': {
+  'dow': 1, # First day of week is Monday
+}})
 
 class Index(IndexTemplate):
     def __init__(self, **properties):
