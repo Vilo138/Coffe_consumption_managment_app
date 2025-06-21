@@ -1,11 +1,12 @@
 components:
 - layout_properties: {grid_position: 'KSWHBK,SLCHYB'}
   name: start_date_picker
-  properties: {placeholder: Start date}
+  properties: {format: DD.MM.YYYY, placeholder: Start date}
   type: DatePicker
-- layout_properties: {grid_position: 'KSWHBK,QGZWWL'}
+- data_bindings: []
+  layout_properties: {grid_position: 'KSWHBK,QGZWWL'}
   name: end_date_picker
-  properties: {placeholder: End date}
+  properties: {format: DD.MM.YYYY, placeholder: End date}
   type: DatePicker
 - event_bindings: {click: button_ok_click}
   layout_properties: {grid_position: 'YXJZNW,ALFAPX'}

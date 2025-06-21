@@ -19,7 +19,7 @@ components:
   - event_bindings: {click: button_csv_click}
     layout_properties: {}
     name: button_csv
-    properties: {bold: false, text: Statistics}
+    properties: {bold: false, text: Export}
     type: Link
   - components: []
     event_bindings: {click: generate_pdf_button_click}
