@@ -15,8 +15,15 @@ class ItemTemplate3(ItemTemplate3Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.text_box_id.text = self.item['id']
-    self.text_box_user_id.text = self.item['user_id']['id']
-    self.text_box_name.text = self.item['user_id']['name']
+    ##self.text_box_user_id.text = self.item['user_id']['id']
+    ##self.text_box_name.text = self.item['user_id']['name']
+    try:
+      self.text_box_user_id.text = self.item['user_id']['id']
+      self.text_box_name.text = self.item['user_id']['name']
+    except anvil.tables.TableError:
+      self.text_box_user_id.text = "Unknown"
+      self.text_box_name.text = "Unknown"
+
     self.text_box_time_log.text = self.item['time_log']
 
   def button_del_click(self, **event_args):

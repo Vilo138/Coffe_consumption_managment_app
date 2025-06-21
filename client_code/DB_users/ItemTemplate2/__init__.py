@@ -19,15 +19,11 @@ class ItemTemplate2(ItemTemplate2Template):
     self.text_box_3.text = self.item['email']
     self.text_box_4.text = self.item['role']
     self.text_box_5.text = self.item['last_login']
-
-    #self.text_box_2.enabled = False
-
-
-    # Any code you write here will run before the form opens.
+    self.check_box_1.text = self.item['enabled']
 
   def button_del_click(self, **event_args):
     #self.repeating_panel_1.items = app_tables.users.client_writable().search(tables.order_by("id", ascending=True))
-    if confirm('Are you sure you want to PERMANENTLY delete this user and all associated data?'):
+    if confirm('Are you sure you want to PERMANENTLY delete this user?'):
       result = anvil.server.call('delete_users_all_logs', self.item['id'])
       if result == 'permission':
         alert("You don't have permission to delete admin acount")
@@ -35,10 +31,8 @@ class ItemTemplate2(ItemTemplate2Template):
         self.item.delete()
         self.remove_from_parent()
   
-
-
   def text_box_2_lost_focus(self, **event_args): 
-      self.item['name'] = self.text_box_2.text  # Aktualizácia 
+      self.item['name'] = self.text_box_2.text
 
   def text_box_3_lost_focus(self, **event_args):
       self.item['email'] = self.text_box_3.text
@@ -55,6 +49,9 @@ class ItemTemplate2(ItemTemplate2Template):
     else:
         self.item['role'] = proposed_role
         alert("You have successfully changed the role")
+
+  def checkbox_1_change(self, **event_args):
+    self.item['enabled'] = self.check_box_1.checked
 
 
 

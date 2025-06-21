@@ -35,7 +35,7 @@ def get_current_user_role():
 
 @anvil.server.callable
 def get_users():
-    return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search() if user['confirmed_email'] == True]
+    return [{'id': user.get_id(), 'email': user['email'], 'name': user['name']} for user in app_tables.users.search() if user['confirmed_email'] == True and user['enabled'] == True]
 
 @anvil.server.callable
 def add_coffee_record(user_id):
@@ -56,36 +56,72 @@ def add_coffee_record(user_id):
     )
 @anvil.server.callable
 def get_filtered_data(start_date=None, end_date=None, user_name=None):
-    rows = app_tables.coffee_logs.search()
-    if start_date and end_date and user_name:
-      rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date and row['user_id']['name'] == user_name]
-    elif start_date and end_date:
-      rows = [row for row in rows if start_date <= row['time_log'].date() <= end_date]
-    elif user_name: 
-        rows = [row for row in rows if row['user_id']['name'] == user_name]
-    
-    names = [row['user_id']['name'] if row['user_id'] and row['user_id']['name'] else 'Unknown' for row in rows]
-    names_counts = collections.Counter(names)
-    #print(emails, email_counts)
+  rows = app_tables.coffee_logs.search()
+  if start_date and end_date and user_name:
+    rows = [
+      row for row in rows 
+      if start_date <= row['time_log'].date() <= end_date and row['user_id'] and row['user_id']['name'] == user_name
+    ]
+  elif start_date and end_date:
+    rows = [
+      row for row in rows 
+      if start_date <= row['time_log'].date() <= end_date and row['user_id']
+    ]
+  elif user_name: 
+    rows = [
+      row for row in rows 
+      if row['user_id'] and row['user_id']['name'] == user_name
+    ]
 
-    results = []
+  names = []
+  for row in rows:
+    try:
+      if row['user_id']:
+        names.append(row['user_id']['name'])
+      else:
+        names.append('Unknown')
+    except anvil.tables.TableError:
+      names.append('Unknown')
 
-    for name, count in names_counts.items():
-        results.append({
-            "name": name,
-            "pocet": count,
-            "suma": round(count * 0.6, 2)
-        })
-    #print(results)
-    return results
+  names_counts = collections.Counter(names)
+
+  results = []
+  for name, count in names_counts.items():
+    results.append({
+      "name": name,
+      "pocet": count,
+      "suma": round(count * 0.6, 2)
+    })
+
+  return results
+
+  
 @anvil.server.callable
 def get_filtered_data_csv():
-    rows = app_tables.coffee_logs.search()
-    data_list = [{'id': r['id'], 'user_id': r['user_id']['id'], 'name': r['user_id']['name'], 'time_log': r['time_log']} for r in rows]
-    df = pd.DataFrame(data_list)
-    csv_string = df.to_csv(index=False)
-  
-    return anvil.BlobMedia("text/csv", csv_string.encode("utf-8"), name="data.csv")
+  rows = app_tables.coffee_logs.search()
+  data_list = []
+
+  for r in rows:
+    try:
+      # Overíme, či user_id existuje a nie je vymazaný
+      user_id = r['user_id']['id'] if r['user_id'] else 'Unknown'
+      name = r['user_id']['name'] if r['user_id'] else 'Unknown'
+    except anvil.tables.TableError:
+      user_id = 'Unknown'
+      name = 'Unknown'
+
+    data_list.append({
+      'id': r['id'],
+      'user_id': user_id,
+      'name': name,
+      'time_log': r['time_log']
+    })
+
+  df = pd.DataFrame(data_list)
+  csv_string = df.to_csv(index=False)
+
+  return anvil.BlobMedia("text/csv", csv_string.encode("utf-8"), name="data.csv")
+
 
 @anvil.server.callable
 def generate_pdf(data, start_date, end_date):
